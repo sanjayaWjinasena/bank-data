@@ -19,6 +19,7 @@
                         <field name="city" string="City"/>
                         <field name="phone" string="Phone"/>
                         <field name="email" string="Email"/>
+                        <field name="x_studio_lc_limit" string="LC Limit" optional="show"/>
                     </tree>
                 </field>
             </field>

@@ -25,3 +25,4 @@ class JinasenaBankBranch(models.Model):
     city = fields.Char(string='City')
     phone = fields.Char(string='Phone')
     email = fields.Char(string='Email')
+    x_studio_lc_limit = fields.Float(string='LC Limit')
