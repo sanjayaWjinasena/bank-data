@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Add MICR Code + Branches to res.bank form -->
+    <record id="view_res_bank_form_inherit" model="ir.ui.view">
+        <field name="name">res.bank.form.jinasena.micr</field>
+        <field name="model">res.bank</field>
+        <field name="inherit_id" ref="base.view_res_bank_form"/>
+        <field name="arch" type="xml">
+            <field name="bic" position="after">
+                <field name="x_micr_code"
+                       placeholder="e.g. 7056"
+                       help="4-digit SLIPS bank MICR code. ComBank=7056, BOC=7010, NTB=7719, Sampath=7755, HNB=7728, NSB=7737, Peoples=7214, Seylan=7135"/>
+                <field name="branch_ids" string="Branches">
+                    <tree editable="bottom">
+                        <field name="branch_code" string="Branch Code"/>
+                        <field name="name" string="Branch Name"/>
+                        <field name="street" string="Address"/>
+                        <field name="city" string="City"/>
+                        <field name="phone" string="Phone"/>
+                        <field name="email" string="Email"/>
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+
+    <!-- Add MICR Code column to res.bank list -->
+    <record id="view_res_bank_list_inherit" model="ir.ui.view">
+        <field name="name">res.bank.list.jinasena.micr</field>
+        <field name="model">res.bank</field>
+        <field name="inherit_id" ref="base.view_res_bank_tree"/>
+        <field name="arch" type="xml">
+            <field name="bic" position="after">
+                <field name="x_micr_code" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

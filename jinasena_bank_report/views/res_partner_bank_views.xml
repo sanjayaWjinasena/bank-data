@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Add Branch Code to res.partner.bank form -->
+    <record id="view_res_partner_bank_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.bank.form.jinasena.branch</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_form"/>
+        <field name="arch" type="xml">
+            <field name="bank_id" position="after">
+                <field name="branch_id"
+                       placeholder="Select branch..."
+                       help="Branch is filtered to the selected bank. Choosing it fills the Branch Code automatically."/>
+                <field name="x_branch_code"
+                       placeholder="e.g. 050"
+                       help="3-digit CBC branch code. Auto-filled when Branch is selected, or enter manually."/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

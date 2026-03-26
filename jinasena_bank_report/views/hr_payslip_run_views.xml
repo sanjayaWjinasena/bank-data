@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        This view extension is only loaded when hr_payroll (Enterprise) is installed.
+        On Community, the Paymaster wizard is accessed from Accounting > Vendors > Paymaster
+        or directly from the action menu.
+    -->
+</odoo>

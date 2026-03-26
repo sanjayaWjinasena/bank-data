@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Sub-view for the payment lines (One2many inline list) -->
+    <record id="view_paymaster_wizard_line_list" model="ir.ui.view">
+        <field name="name">jinasena.paymaster.wizard.line.list</field>
+        <field name="model">jinasena.paymaster.wizard.line</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="employee_id" readonly="1"/>
+                <field name="bank_account_id" readonly="1" optional="show"/>
+                <field name="amount" sum="Total (LKR)"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Wizard form -->
+    <record id="view_paymaster_wizard_form" model="ir.ui.view">
+        <field name="name">jinasena.paymaster.wizard.form</field>
+        <field name="model">jinasena.paymaster.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate CBC Paymaster File">
+                <group string="Payment Details">
+                    <field name="reference" placeholder="e.g. SalaryMAR2026"
+                           help="Max 15 characters. Appears in Reference column of .dat file."/>
+                    <field name="payment_date"
+                           help="Date bank executes transfers (becomes Value Date YYMMDD)."/>
+                </group>
+                <group string="Originating Bank Account (Jinasena CBC Account)">
+                    <field name="company_account_id"/>
+                    <field name="company_branch_code" placeholder="e.g. 003"
+                           help="3-digit CBC branch code for Jinasena's account."/>
+                </group>
+                <group string="Employees">
+                    <field name="employee_ids" widget="many2many_tags"
+                           help="Select employees — payment lines appear below. Enter amount for each."/>
+                </group>
+                <field name="line_ids"/>
+                <footer>
+                    <button name="action_generate"
+                            string="Generate &amp; Download .dat File"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open wizard -->
+    <record id="action_paymaster_wizard" model="ir.actions.act_window">
+        <field name="name">Generate Paymaster File</field>
+        <field name="res_model">jinasena.paymaster.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
