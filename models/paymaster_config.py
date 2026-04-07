@@ -60,7 +60,7 @@ class JinasenaPaymasterConfig(models.Model):
     @api.model
     def get_config(self):
         """Return the singleton config record, creating defaults if none exists."""
-        config = self.search([], limit=1, order='id asc')
+        config = self.sudo().search([], limit=1, order='id asc')
         if not config:
-            config = self.create({'name': 'CBC Paymaster Config'})
+            config = self.sudo().create({'name': 'CBC Paymaster Config'})
         return config

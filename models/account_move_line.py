@@ -47,7 +47,7 @@ class AccountMoveLine(models.Model):
         )
         emp_by_partner = {emp.address_home_id.id: emp for emp in employees}
 
-        cfg = self.env['jinasena.paymaster.config'].get_config()
+        cfg = self.env['jinasena.paymaster.config'].sudo().get_config()
 
         for line in self:
             emp  = emp_by_partner.get(line.partner_id.id)
