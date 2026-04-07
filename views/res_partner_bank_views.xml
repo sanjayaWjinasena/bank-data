@@ -8,12 +8,9 @@
         <field name="inherit_id" ref="base.view_partner_bank_form"/>
         <field name="arch" type="xml">
             <field name="bank_id" position="after">
-                <field name="branch_id"
-                       placeholder="Select branch..."
-                       help="Branch is filtered to the selected bank. Choosing it fills the Branch Code automatically."/>
                 <field name="x_branch_code"
                        placeholder="e.g. 050"
-                       help="3-digit CBC branch code. Auto-filled when Branch is selected, or enter manually."/>
+                       help="3-digit CBC branch code for SLIPS transfers."/>
             </field>
         </field>
     </record>
