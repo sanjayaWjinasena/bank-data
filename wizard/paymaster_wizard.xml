@@ -1,15 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Sub-view for the payment lines (One2many inline list) -->
+    <!-- Payment lines list — all 20 columns in Excel column order A→T -->
     <record id="view_paymaster_wizard_line_list" model="ir.ui.view">
         <field name="name">jinasena.paymaster.wizard.line.list</field>
         <field name="model">jinasena.paymaster.wizard.line</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field name="employee_id" readonly="1"/>
-                <field name="bank_account_id" readonly="1" optional="show"/>
-                <field name="amount" sum="Total (LKR)"/>
+                <!-- B  Destination Bank MICR (04) -->
+                <field name="dest_bank_micr"  readonly="1"/>
+                <!-- C  Destination Branch (03) -->
+                <field name="dest_branch"     readonly="1"/>
+                <!-- D  Destination Account (12) -->
+                <field name="dest_account"    readonly="1"/>
+                <!-- E  Destination Account Name (20) -->
+                <field name="employee_id"     string="Dest Name (E)" readonly="1"/>
+                <!-- F  TRN Code (02) -->
+                <field name="trn_code"        readonly="1"/>
+                <!-- G  Return Code (02) -->
+                <field name="return_code"     readonly="1"/>
+                <!-- H  Cr/Dr Code (01) -->
+                <field name="cr_dr_code"      readonly="1"/>
+                <!-- I  Return Date (06) -->
+                <field name="return_date"     readonly="1"/>
+                <!-- J  Amount (12) -->
+                <field name="amount"          sum="Total (LKR)"/>
+                <!-- K  Currency Code (03) -->
+                <field name="currency_code"   readonly="1"/>
+                <!-- L  Originating Bank (04) -->
+                <field name="orig_bank_micr"  readonly="1"/>
+                <!-- M  Originating Branch (03) -->
+                <field name="orig_branch"     readonly="1"/>
+                <!-- N  Originating Account (12) -->
+                <field name="orig_account"    readonly="1"/>
+                <!-- O  Originating Account Name (20) -->
+                <field name="orig_name"       readonly="1"/>
+                <!-- P  Particulars (15) -->
+                <field name="particulars"     readonly="1"/>
+                <!-- Q  Reference (15) -->
+                <field name="reference"       readonly="1"/>
+                <!-- R  Value Date (06) -->
+                <field name="value_date"      readonly="1"/>
+                <!-- S  Security Field (06) -->
+                <field name="security_field"  readonly="1"/>
+                <!-- T  Filler (01) -->
+                <field name="filler"          readonly="1"/>
             </tree>
         </field>
     </record>
@@ -36,6 +71,20 @@
                            help="Select employees — payment lines appear below. Enter amount for each."/>
                 </group>
                 <field name="line_ids"/>
+
+                <!-- File Format Config — only change if bank spec changes -->
+                <group string="File Format Settings" col="2">
+                    <group>
+                        <field name="trn_code"      placeholder="23"/>
+                        <field name="return_code"   placeholder="00"/>
+                        <field name="cr_dr_code"/>
+                    </group>
+                    <group>
+                        <field name="return_date"   placeholder="000000"/>
+                        <field name="currency_code" placeholder="SLR"/>
+                    </group>
+                </group>
+
                 <footer>
                     <button name="action_generate"
                             string="Generate &amp; Download .dat File"

@@ -11,17 +11,6 @@
                 <field name="x_micr_code"
                        placeholder="e.g. 7056"
                        help="4-digit SLIPS bank MICR code. ComBank=7056, BOC=7010, NTB=7719, Sampath=7755, HNB=7728, NSB=7737, Peoples=7214, Seylan=7135"/>
-                <field name="branch_ids" string="Branches">
-                    <tree editable="bottom">
-                        <field name="branch_code" string="Branch Code"/>
-                        <field name="name" string="Branch Name"/>
-                        <field name="street" string="Address"/>
-                        <field name="city" string="City"/>
-                        <field name="phone" string="Phone"/>
-                        <field name="email" string="Email"/>
-                        <field name="x_studio_lc_limit" string="LC Limit" optional="show"/>
-                    </tree>
-                </field>
             </field>
         </field>
     </record>

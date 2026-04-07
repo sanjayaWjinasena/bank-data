@@ -41,6 +41,43 @@ class PaymasterWizard(models.TransientModel):
         required=True,
         help="3-digit CBC branch code for Jinasena's account. e.g. 003",
     )
+    # ── File format config (override defaults only when bank spec changes) ──
+    trn_code = fields.Char(
+        string='TRN Code',
+        size=2,
+        default='23',
+        required=True,
+        help='2-digit transaction type code. 23 = Salary/Loan credit transfer (SLIPS standard).',
+    )
+    return_code = fields.Char(
+        string='Return Code',
+        size=2,
+        default='00',
+        required=True,
+        help='2-digit return/error code. 00 = no return (normal outgoing payment).',
+    )
+    cr_dr_code = fields.Selection(
+        selection=[('0', '0 – Credit (payment out)'), ('1', '1 – Debit (collection in)')],
+        string='Cr/Dr Code',
+        default='0',
+        required=True,
+        help='Credit/Debit indicator. 0 = credit (outgoing salary/loan payment).',
+    )
+    return_date = fields.Char(
+        string='Return Date',
+        size=6,
+        default='000000',
+        required=True,
+        help='6-digit return date in YYMMDD. 000000 = no return date (standard for outgoing payments).',
+    )
+    currency_code = fields.Char(
+        string='Currency Code',
+        size=3,
+        default='SLR',
+        required=True,
+        help='3-char ISO currency code. SLR = Sri Lankan Rupee.',
+    )
+
     # Amount per employee — entered manually when not using hr_payroll
     line_ids = fields.One2many(
         'jinasena.paymaster.wizard.line',
@@ -81,12 +118,12 @@ class PaymasterWizard(models.TransientModel):
             + str(dest_branch).zfill(3)                         # C  Dest Branch     3
             + self._digits_only(dest_acc).zfill(12)             # D  Dest Account   12
             + str(dest_name)[:20].ljust(20)                     # E  Dest Name      20
-            + '23'                                              # F  TRN Code        2
-            + '00'                                              # G  Return Code     2
-            + '0'                                               # H  Cr/Dr Code      1
-            + '000000'                                          # I  Return Date     6
+            + str(self.trn_code).zfill(2)                       # F  TRN Code        2
+            + str(self.return_code).zfill(2)                    # G  Return Code     2
+            + str(self.cr_dr_code)                              # H  Cr/Dr Code      1
+            + str(self.return_date).ljust(6)[:6]               # I  Return Date     6
             + str(int(round(amount_cents))).zfill(12)           # J  Amount         12
-            + 'SLR'                                             # K  Currency        3
+            + str(self.currency_code).upper()[:3].ljust(3)      # K  Currency        3
             + str(orig_bank).zfill(4)                           # L  Orig Bank       4
             + str(orig_branch).zfill(3)                         # M  Orig Branch     3
             + self._digits_only(orig_acc).zfill(12)             # N  Orig Account   12
@@ -208,27 +245,151 @@ class PaymasterWizardLine(models.TransientModel):
     _name = 'jinasena.paymaster.wizard.line'
     _description = 'Paymaster Wizard Payment Line'
 
-    wizard_id = fields.Many2one('jinasena.paymaster.wizard', required=True, ondelete='cascade')
+    wizard_id   = fields.Many2one('jinasena.paymaster.wizard', required=True, ondelete='cascade')
     employee_id = fields.Many2one('hr.employee', string='Employee', required=True)
-    amount = fields.Float(string='Net Amount (LKR)', digits=(12, 2), default=0.0)
+    amount      = fields.Float(string='Amount (J)', digits=(12, 2), default=0.0)
+
+    # ── Internal helper (not shown in list) ───────────────────────────────
     bank_account_id = fields.Many2one(
-        'res.partner.bank',
-        string='Bank Account',
-        compute='_compute_bank_account',
-        store=False,
+        'res.partner.bank', compute='_compute_dest_fields', store=False,
     )
 
+    # ── Per-row destination fields (depend on employee) ───────────────────
+    # B
+    dest_bank_micr = fields.Char(
+        string='Dest Bank (B)', compute='_compute_dest_fields', store=False,
+        help='4-digit SLIPS bank MICR code',
+    )
+    # C
+    dest_branch = fields.Char(
+        string='Dest Branch (C)', compute='_compute_dest_fields', store=False,
+        help='3-digit branch code',
+    )
+    # D
+    dest_account = fields.Char(
+        string='Dest Account (D)', compute='_compute_dest_fields', store=False,
+        help='Destination account number up to 12 digits',
+    )
+    # E  (employee_id.name serves as Destination Account Name)
+    # P
+    particulars = fields.Char(
+        string='Particulars (P)', compute='_compute_dest_fields', store=False,
+        help='Employee number / barcode',
+    )
+
+    # ── Batch-level fields pulled from wizard (same for every row) ────────
+    # F
+    trn_code = fields.Char(
+        string='TRN Code (F)', compute='_compute_wizard_fields', store=False,
+    )
+    # G
+    return_code = fields.Char(
+        string='Return Code (G)', compute='_compute_wizard_fields', store=False,
+    )
+    # H
+    cr_dr_code = fields.Char(
+        string='Cr/Dr (H)', compute='_compute_wizard_fields', store=False,
+    )
+    # I
+    return_date = fields.Char(
+        string='Return Date (I)', compute='_compute_wizard_fields', store=False,
+    )
+    # K
+    currency_code = fields.Char(
+        string='Currency (K)', compute='_compute_wizard_fields', store=False,
+    )
+    # L
+    orig_bank_micr = fields.Char(
+        string='Orig Bank (L)', compute='_compute_wizard_fields', store=False,
+        help='Originating bank MICR code',
+    )
+    # M
+    orig_branch = fields.Char(
+        string='Orig Branch (M)', compute='_compute_wizard_fields', store=False,
+    )
+    # N
+    orig_account = fields.Char(
+        string='Orig Account (N)', compute='_compute_wizard_fields', store=False,
+    )
+    # O
+    orig_name = fields.Char(
+        string='Orig Name (O)', compute='_compute_wizard_fields', store=False,
+    )
+    # Q
+    reference = fields.Char(
+        string='Reference (Q)', compute='_compute_wizard_fields', store=False,
+    )
+    # R
+    value_date = fields.Char(
+        string='Value Date (R)', compute='_compute_wizard_fields', store=False,
+        help='YYMMDD format',
+    )
+    # S
+    security_field = fields.Char(
+        string='Security (S)', compute='_compute_wizard_fields', store=False,
+    )
+    # T
+    filler = fields.Char(
+        string='Filler (T)', compute='_compute_wizard_fields', store=False,
+    )
+
+    # ─────────────────────────────────────────────────────────────────────
+
     @api.depends('employee_id')
-    def _compute_bank_account(self):
+    def _compute_dest_fields(self):
         for rec in self:
-            if rec.employee_id:
-                partner = rec.employee_id.address_home_id or rec.employee_id.address_id
-                if partner:
-                    acc = self.env['res.partner.bank'].search(
-                        [('partner_id', '=', partner.id)], limit=1
-                    )
-                    rec.bank_account_id = acc
-                else:
-                    rec.bank_account_id = False
-            else:
+            emp = rec.employee_id
+            if not emp:
                 rec.bank_account_id = False
+                rec.dest_bank_micr  = False
+                rec.dest_branch     = False
+                rec.dest_account    = False
+                rec.particulars     = False
+                continue
+
+            partner = emp.address_home_id or emp.address_id
+            if partner:
+                accounts = self.env['res.partner.bank'].search(
+                    [('partner_id', '=', partner.id)], limit=10
+                )
+                acc = accounts.filtered(lambda b: b.x_branch_code)[:1] or accounts[:1]
+            else:
+                acc = self.env['res.partner.bank']
+
+            rec.bank_account_id = acc or False
+            rec.dest_account    = acc.acc_number if acc else False
+            rec.dest_branch     = acc.x_branch_code if acc else False
+            rec.dest_bank_micr  = acc.bank_id.x_micr_code if (acc and acc.bank_id) else False
+            rec.particulars     = emp.barcode or str(emp.id)
+
+    @api.depends(
+        'wizard_id.trn_code', 'wizard_id.return_code', 'wizard_id.cr_dr_code',
+        'wizard_id.return_date', 'wizard_id.currency_code',
+        'wizard_id.company_account_id', 'wizard_id.company_branch_code',
+        'wizard_id.reference', 'wizard_id.payment_date',
+    )
+    def _compute_wizard_fields(self):
+        for rec in self:
+            wiz = rec.wizard_id
+            orig_acc = wiz.company_account_id
+
+            rec.trn_code      = wiz.trn_code or '23'
+            rec.return_code   = wiz.return_code or '00'
+            rec.cr_dr_code    = wiz.cr_dr_code or '0'
+            rec.return_date   = wiz.return_date or '000000'
+            rec.currency_code = wiz.currency_code or 'SLR'
+            rec.orig_bank_micr = (
+                orig_acc.bank_id.x_micr_code if (orig_acc and orig_acc.bank_id) else False
+            )
+            rec.orig_branch   = wiz.company_branch_code or False
+            rec.orig_account  = orig_acc.acc_number if orig_acc else False
+            rec.orig_name     = (
+                orig_acc.acc_holder_name or
+                (orig_acc.partner_id.name if orig_acc else False)
+            )
+            rec.reference     = wiz.reference or False
+            rec.value_date    = (
+                wiz.payment_date.strftime('%y%m%d') if wiz.payment_date else False
+            )
+            rec.security_field = '      '
+            rec.filler         = '@'
