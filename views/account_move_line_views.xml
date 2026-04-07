@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- CBC Paymaster columns on the Bank Data list view (columns B–T in Excel order) -->
+    <record id="view_account_move_line_bank_data_tree" model="ir.ui.view">
+        <field name="name">account.move.line.tree.bank.data.jinasena</field>
+        <field name="model">account.move.line</field>
+        <field name="arch" type="xml">
+            <tree string="Bank Data" create="false" edit="true" multi_edit="1" sample="1">
+
+                <!-- B  Destination Bank MICR (04) -->
+                <field name="x_dest_bank_micr"/>
+                <!-- C  Destination Branch (03) -->
+                <field name="x_dest_branch"/>
+                <!-- D  Destination Account (12) -->
+                <field name="x_dest_account"/>
+                <!-- E  Destination Account Name (20) -->
+                <field name="x_dest_name"/>
+                <!-- F  TRN Code (02) -->
+                <field name="x_trn_code"/>
+                <!-- G  Return Code (02) -->
+                <field name="x_return_code"/>
+                <!-- H  Cr/Dr Code (01) -->
+                <field name="x_cr_dr_code"/>
+                <!-- I  Return Date (06) -->
+                <field name="x_return_date"/>
+                <!-- J  Amount (12) -->
+                <field name="x_cbc_amount" sum="Total (LKR)"/>
+                <!-- K  Currency Code (03) -->
+                <field name="x_currency_code"/>
+                <!-- L  Originating Bank MICR (04) -->
+                <field name="x_orig_bank_micr"/>
+                <!-- M  Originating Branch (03) -->
+                <field name="x_orig_branch"/>
+                <!-- N  Originating Account (12) -->
+                <field name="x_orig_account"/>
+                <!-- O  Originating Account Name (20) -->
+                <field name="x_orig_name"/>
+                <!-- P  Particulars (15) -->
+                <field name="x_particulars"/>
+                <!-- Q  Reference (15) -->
+                <field name="x_reference"/>
+                <!-- R  Value Date (06) -->
+                <field name="x_value_date"/>
+                <!-- S  Security Field (06) -->
+                <field name="x_security_field"/>
+                <!-- T  Filler (01) -->
+                <field name="x_filler"/>
+
+            </tree>
+        </field>
+    </record>
+
+</odoo>

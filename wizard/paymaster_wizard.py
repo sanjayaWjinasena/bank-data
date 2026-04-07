@@ -41,39 +41,39 @@ class PaymasterWizard(models.TransientModel):
         required=True,
         help="3-digit CBC branch code for Jinasena's account. e.g. 003",
     )
-    # ── File format config (override defaults only when bank spec changes) ──
+    # ── File format config — defaults pulled from jinasena.paymaster.config ─
     trn_code = fields.Char(
         string='TRN Code',
         size=2,
-        default='23',
+        default=lambda self: self.env['jinasena.paymaster.config'].get_config().trn_code or '23',
         required=True,
         help='2-digit transaction type code. 23 = Salary/Loan credit transfer (SLIPS standard).',
     )
     return_code = fields.Char(
         string='Return Code',
         size=2,
-        default='00',
+        default=lambda self: self.env['jinasena.paymaster.config'].get_config().return_code or '00',
         required=True,
         help='2-digit return/error code. 00 = no return (normal outgoing payment).',
     )
     cr_dr_code = fields.Selection(
         selection=[('0', '0 – Credit (payment out)'), ('1', '1 – Debit (collection in)')],
         string='Cr/Dr Code',
-        default='0',
+        default=lambda self: self.env['jinasena.paymaster.config'].get_config().cr_dr_code or '0',
         required=True,
         help='Credit/Debit indicator. 0 = credit (outgoing salary/loan payment).',
     )
     return_date = fields.Char(
         string='Return Date',
         size=6,
-        default='000000',
+        default=lambda self: self.env['jinasena.paymaster.config'].get_config().return_date or '000000',
         required=True,
         help='6-digit return date in YYMMDD. 000000 = no return date (standard for outgoing payments).',
     )
     currency_code = fields.Char(
         string='Currency Code',
         size=3,
-        default='SLR',
+        default=lambda self: self.env['jinasena.paymaster.config'].get_config().currency_code or 'SLR',
         required=True,
         help='3-char ISO currency code. SLR = Sri Lankan Rupee.',
     )

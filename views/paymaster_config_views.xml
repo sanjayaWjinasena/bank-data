@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Config form view -->
+    <record id="view_paymaster_config_form" model="ir.ui.view">
+        <field name="name">jinasena.paymaster.config.form</field>
+        <field name="model">jinasena.paymaster.config</field>
+        <field name="arch" type="xml">
+            <form string="CBC Paymaster Configuration">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+
+                    <group string="Originating Bank — Jinasena's CBC Account (Columns L, M, N, O)">
+                        <group>
+                            <field name="orig_bank_micr" placeholder="e.g. 7056"/>
+                            <field name="orig_branch"    placeholder="e.g. 003"/>
+                        </group>
+                        <group>
+                            <field name="orig_account"   placeholder="e.g. 1234567"/>
+                            <field name="orig_name"      placeholder="e.g. JINASENA PVT LTD"/>
+                        </group>
+                    </group>
+
+                    <group string="File Format Constants (Columns F, G, H, I, K, S, T)">
+                        <group>
+                            <field name="trn_code"       placeholder="23"/>
+                            <field name="return_code"    placeholder="00"/>
+                            <field name="cr_dr_code"/>
+                        </group>
+                        <group>
+                            <field name="return_date"    placeholder="000000"/>
+                            <field name="currency_code"  placeholder="SLR"/>
+                            <field name="security_field" placeholder="      (6 spaces)"/>
+                            <field name="filler"         placeholder="@"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open config (opens singleton directly) -->
+    <record id="action_paymaster_config" model="ir.actions.act_window">
+        <field name="name">Paymaster Config</field>
+        <field name="res_model">jinasena.paymaster.config</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <!-- res_id is set dynamically by the post_migrate hook -->
+    </record>
+
+</odoo>

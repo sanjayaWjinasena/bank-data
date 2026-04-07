@@ -18,10 +18,13 @@
         'security/ir.model.access.csv',
         'views/res_bank_views.xml',
         'views/res_partner_bank_views.xml',
+        'views/paymaster_config_views.xml',
+        'views/account_move_line_views.xml',
         'wizard/paymaster_wizard.xml',
         'views/hr_payslip_run_views.xml',
     ],
     'installable': True,
     'application': False,
     'license': 'LGPL-3',
+    'post_migrate': 'odoo.addons.bank_data.hooks.post_migrate',
 }
