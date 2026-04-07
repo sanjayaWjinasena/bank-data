@@ -167,13 +167,7 @@ class PaymasterWizard(models.TransientModel):
 
         for line in lines_to_pay:
             emp = line.employee_id
-            partner = emp.address_home_id or emp.address_id
-
-            bank_accounts = self.env['res.partner.bank'].search(
-                [('partner_id', '=', partner.id)], limit=10
-            ) if partner else self.env['res.partner.bank']
-
-            bank_acc = bank_accounts.filtered(lambda b: b.x_branch_code)[:1] or bank_accounts[:1]
+            bank_acc = emp.bank_account_id  # standard hr.employee field
 
             if not bank_acc:
                 errors.append(_('Employee "%s" has no bank account configured.') % emp.name)
@@ -248,11 +242,6 @@ class PaymasterWizardLine(models.TransientModel):
     wizard_id   = fields.Many2one('jinasena.paymaster.wizard', required=True, ondelete='cascade')
     employee_id = fields.Many2one('hr.employee', string='Employee', required=True)
     amount      = fields.Float(string='Amount (J)', digits=(12, 2), default=0.0)
-
-    # ── Internal helper (not shown in list) ───────────────────────────────
-    bank_account_id = fields.Many2one(
-        'res.partner.bank', compute='_compute_dest_fields', store=False,
-    )
 
     # ── Per-row destination fields (depend on employee) ───────────────────
     # B
@@ -340,27 +329,18 @@ class PaymasterWizardLine(models.TransientModel):
         for rec in self:
             emp = rec.employee_id
             if not emp:
-                rec.bank_account_id = False
-                rec.dest_bank_micr  = False
-                rec.dest_branch     = False
-                rec.dest_account    = False
-                rec.particulars     = False
+                rec.dest_bank_micr = False
+                rec.dest_branch    = False
+                rec.dest_account   = False
+                rec.particulars    = False
                 continue
 
-            partner = emp.address_home_id or emp.address_id
-            if partner:
-                accounts = self.env['res.partner.bank'].search(
-                    [('partner_id', '=', partner.id)], limit=10
-                )
-                acc = accounts.filtered(lambda b: b.x_branch_code)[:1] or accounts[:1]
-            else:
-                acc = self.env['res.partner.bank']
+            acc = emp.bank_account_id  # standard hr.employee field — direct Many2one to res.partner.bank
 
-            rec.bank_account_id = acc or False
-            rec.dest_account    = acc.acc_number if acc else False
-            rec.dest_branch     = acc.x_branch_code if acc else False
-            rec.dest_bank_micr  = acc.bank_id.x_micr_code if (acc and acc.bank_id) else False
-            rec.particulars     = emp.barcode or str(emp.id)
+            rec.dest_account   = acc.acc_number if acc else False
+            rec.dest_branch    = acc.x_branch_code if acc else False
+            rec.dest_bank_micr = acc.bank_id.x_micr_code if (acc and acc.bank_id) else False
+            rec.particulars    = emp.barcode or str(emp.id)
 
     @api.depends(
         'wizard_id.trn_code', 'wizard_id.return_code', 'wizard_id.cr_dr_code',
