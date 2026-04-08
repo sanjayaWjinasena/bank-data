@@ -9,6 +9,9 @@
             <tree string="Bank Data — Net Salaries"
                   create="false" edit="false" multi_edit="0" sample="1">
 
+                <!-- Required by employee_id domain validation -->
+                <field name="company_id" column_invisible="True"/>
+
                 <!-- B  Destination Bank MICR (04) -->
                 <field name="x_dest_bank_micr"  string="Dest Bank (B)"/>
                 <!-- C  Destination Branch (03) -->
