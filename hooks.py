@@ -36,18 +36,19 @@ def post_migrate(cr, registry):
             'context':   "{'search_default_my_payslip': 0}",
         })
 
-    # ── 5. Add "Paymaster Config" menu item under Bank Data (menu 1477) ──
+    # ── 5. Add "Paymaster Config" under Payroll → Configuration (menu 800) ──
     if action:
-        parent_menu = env['ir.ui.menu'].browse(1477)
-        if parent_menu.exists():
+        payroll_config_menu = env['ir.ui.menu'].browse(800)
+        parent_id = payroll_config_menu.id if payroll_config_menu.exists() else False
+        if parent_id:
             existing = env['ir.ui.menu'].search([
-                ('parent_id', '=', parent_menu.id),
+                ('parent_id', '=', parent_id),
                 ('name', '=', 'Paymaster Config'),
             ], limit=1)
             if not existing:
                 env['ir.ui.menu'].create({
                     'name':      'Paymaster Config',
-                    'parent_id': parent_menu.id,
+                    'parent_id': parent_id,
                     'action':    f'ir.actions.act_window,{action.id}',
-                    'sequence':  20,
+                    'sequence':  50,
                 })
