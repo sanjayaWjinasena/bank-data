@@ -27,12 +27,12 @@ def post_migrate(cr, registry):
         'bank_data.view_hr_payslip_bank_data_tree', raise_if_not_found=False
     )
     bank_action = env['ir.actions.act_window'].browse(2895)
-    if payslip_view and bank_action.exists() and bank_action.res_model != 'hr.payslip':
+    if payslip_view and bank_action.exists():
         bank_action.write({
             'res_model': 'hr.payslip',
             'view_id':   payslip_view.id,
             'view_mode': 'tree,form',
-            'domain':    "[('state', 'in', ['done', 'paid'])]",
+            'domain':    "[('net_wage', '>', 0)]",
             'context':   "{'search_default_my_payslip': 0}",
         })
 
