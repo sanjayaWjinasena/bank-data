@@ -15,5 +15,20 @@
         </field>
     </record>
 
+    <!-- Action: Employee Bank Accounts (filtered to employees only) -->
+    <record id="action_employee_bank_accounts" model="ir.actions.act_window">
+        <field name="name">Employee Bank Accounts</field>
+        <field name="res_model">res.partner.bank</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('partner_id.employee_ids', '!=', False)]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Menu: Payroll > Configuration > Employee Bank Accounts -->
+    <menuitem id="menu_employee_bank_accounts"
+              name="Employee Bank Accounts"
+              parent="hr_payroll.menu_payroll_configuration"
+              action="action_employee_bank_accounts"
+              sequence="30"/>
 
 </odoo>
