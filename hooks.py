@@ -22,7 +22,21 @@ def post_migrate(cr, registry):
     if action and config:
         action.write({'res_id': config.id})
 
-    # ── 4. Add "Paymaster Config" menu item under Bank Data (menu 1477) ──
+    # ── 4. Switch action 2895 (Bank Data) to hr.payslip + new view ───────
+    payslip_view = env.ref(
+        'bank_data.view_hr_payslip_bank_data_tree', raise_if_not_found=False
+    )
+    bank_action = env['ir.actions.act_window'].browse(2895)
+    if payslip_view and bank_action.exists() and bank_action.res_model != 'hr.payslip':
+        bank_action.write({
+            'res_model': 'hr.payslip',
+            'view_id':   payslip_view.id,
+            'view_mode': 'tree,form',
+            'domain':    "[('state', 'in', ['done', 'paid'])]",
+            'context':   "{'search_default_my_payslip': 0}",
+        })
+
+    # ── 5. Add "Paymaster Config" menu item under Bank Data (menu 1477) ──
     if action:
         parent_menu = env['ir.ui.menu'].browse(1477)
         if parent_menu.exists():

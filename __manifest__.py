@@ -13,13 +13,14 @@
         - res.partner.bank: x_branch_code (3-digit CBC branch code)
     """,
     'author': 'Jinasena',
-    'depends': ['account', 'hr', 'base'],
+    'depends': ['account', 'hr', 'hr_payroll', 'base'],
     'data': [
         'security/ir.model.access.csv',
         'views/res_bank_views.xml',
         'views/res_partner_bank_views.xml',
         'views/paymaster_config_views.xml',
         'views/account_move_line_views.xml',
+        'views/hr_payslip_bank_data_views.xml',
         'wizard/paymaster_wizard.xml',
         'views/hr_payslip_run_views.xml',
     ],

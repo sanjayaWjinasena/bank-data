@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Bank Data list view on hr.payslip — one row per employee = net salary -->
+    <record id="view_hr_payslip_bank_data_tree" model="ir.ui.view">
+        <field name="name">hr.payslip.tree.bank.data.jinasena</field>
+        <field name="model">hr.payslip</field>
+        <field name="arch" type="xml">
+            <tree string="Bank Data — Net Salaries"
+                  create="false" edit="false" multi_edit="0" sample="1">
+
+                <!-- B  Destination Bank MICR (04) -->
+                <field name="x_dest_bank_micr"  string="Dest Bank (B)"/>
+                <!-- C  Destination Branch (03) -->
+                <field name="x_dest_branch"     string="Dest Branch (C)"/>
+                <!-- D  Destination Account (12) -->
+                <field name="x_dest_account"    string="Dest Account (D)"/>
+                <!-- E  Destination Account Name (20) -->
+                <field name="employee_id"       string="Dest Name (E)"/>
+                <!-- F  TRN Code (02) -->
+                <field name="x_trn_code"        string="TRN Code (F)"/>
+                <!-- G  Return Code (02) -->
+                <field name="x_return_code"     string="Return Code (G)"/>
+                <!-- H  Cr/Dr Code (01) -->
+                <field name="x_cr_dr_code"      string="Cr/Dr (H)"/>
+                <!-- I  Return Date (06) -->
+                <field name="x_return_date"     string="Return Date (I)"/>
+                <!-- J  Amount (12) — net salary -->
+                <field name="net_wage"          string="Amount (J)" sum="Total (LKR)"/>
+                <!-- K  Currency Code (03) -->
+                <field name="x_currency_code"   string="Currency (K)"/>
+                <!-- L  Originating Bank MICR (04) -->
+                <field name="x_orig_bank_micr"  string="Orig Bank (L)"/>
+                <!-- M  Originating Branch (03) -->
+                <field name="x_orig_branch"     string="Orig Branch (M)"/>
+                <!-- N  Originating Account (12) -->
+                <field name="x_orig_account"    string="Orig Account (N)"/>
+                <!-- O  Originating Name (20) -->
+                <field name="x_orig_name"       string="Orig Name (O)"/>
+                <!-- P  Particulars / Employee No (15) -->
+                <field name="x_particulars"     string="Particulars (P)"/>
+                <!-- Q  Reference (15) -->
+                <field name="x_cbc_reference"   string="Reference (Q)"/>
+                <!-- R  Value Date YYMMDD (06) -->
+                <field name="x_value_date"      string="Value Date (R)"/>
+                <!-- S  Security Field (06) -->
+                <field name="x_security_field"  string="Security (S)"/>
+                <!-- T  Filler (01) -->
+                <field name="x_filler"          string="Filler (T)"/>
+
+            </tree>
+        </field>
+    </record>
+
+</odoo>
