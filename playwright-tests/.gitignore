@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+dist/
+
+# Environment — never commit credentials
+.env
+
+# Playwright outputs
+playwright-report/
+test-results/
+
+# Test output folders (results + screenshots are generated, not source)
+tests/*/results/*.html
+tests/*/results/*.json
+tests/*/screenshots/
+
+# Keep the paymaster seed data — it's input, not generated output
+!tests/paymaster-gap-analysis/results/excel-paymaster-data.json

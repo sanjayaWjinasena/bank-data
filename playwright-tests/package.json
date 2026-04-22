@@ -1,0 +1,24 @@
+{
+  "name": "jinasena-playwright-tests",
+  "version": "1.0.0",
+  "description": "Playwright audit scripts for Jinasena Odoo instance — Bank Data, Payroll, Repair Module",
+  "private": true,
+  "scripts": {
+    "install:browsers": "npx playwright install chromium",
+    "audit":            "npx playwright test tests/bank-technical-audit/bank-technical-audit.spec.ts --project=chromium",
+    "bank-data-report": "npx playwright test tests/bank-data-report/bank-data-report.spec.ts --project=chromium",
+    "bank-gap":         "npx playwright test tests/bank-data-gap-analysis/bank-data-gap-analysis.spec.ts --project=chromium",
+    "payslip-audit":    "npx playwright test tests/payslip-technical-audit/payslip-technical-audit.spec.ts --project=chromium",
+    "paymaster-report": "npx playwright test tests/paymaster-report/paymaster-report.spec.ts --project=chromium",
+    "paymaster-gap":    "npx playwright test tests/paymaster-gap-analysis/paymaster-gap-analysis.spec.ts --project=chromium",
+    "repair-audit":     "npx playwright test tests/repair-audit/repair-audit.spec.ts --project=chromium",
+    "run:all": "npx playwright test tests/bank-technical-audit/bank-technical-audit.spec.ts tests/bank-data-report/bank-data-report.spec.ts tests/payslip-technical-audit/payslip-technical-audit.spec.ts tests/paymaster-gap-analysis/paymaster-gap-analysis.spec.ts tests/paymaster-report/paymaster-report.spec.ts tests/bank-data-gap-analysis/bank-data-gap-analysis.spec.ts tests/repair-audit/repair-audit.spec.ts --project=chromium",
+    "report":           "npx playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.41.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "dotenv": "^16.0.0"
+  }
+}
