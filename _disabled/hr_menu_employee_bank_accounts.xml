@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    DISABLED - not loaded by __manifest__.py.
+
+    Purpose: exposes bank-data's action_employee_bank_accounts as a
+    menu item under Payroll > Configuration > Employee Bank Accounts.
+
+    Why disabled (2026-08-29):
+      1. Clear-DB verbatim parity - the bank-data pin inventory on
+         Clear-DB has ZERO ir.ui.menu pins. This menu was added to
+         the repo AFTER bank-data was already installed on Clear-DB,
+         so Clear-DB never processed it. Loading it here would
+         diverge from Clear-DB.
+      2. Semantic mismatch - "Employee Bank Accounts" is HR/Payroll
+         UX, not bank-data domain. The functionality (an action over
+         res.partner.bank filtered to employees) doesn't need to
+         ship with the paymaster feature.
+
+    To re-enable:
+      1. Add this file to __manifest__.py `data` list:
+         'data': [ ..., '_disabled/hr_menu_employee_bank_accounts.xml' ],
+      2. Add `hr_work_entry_contract_enterprise` to `depends` - the
+         parent menu xmlid lives in that module, NOT in hr_payroll.
+         (The wrong xmlid `hr_payroll.menu_payroll_configuration`
+         was the install blocker on v17.0.1.0.1.)
+      3. Bump the version.
+
+    Verified 2026-08-29 via RPC against Clear-DB + repair-test-101:
+    the correct parent xmlid is
+    `hr_work_entry_contract_enterprise.menu_hr_payroll_configuration`
+    (menu id 720, complete name 'Payroll/Configuration').
+-->
+<odoo>
+
+    <menuitem id="menu_employee_bank_accounts"
+              name="Employee Bank Accounts"
+              parent="hr_work_entry_contract_enterprise.menu_hr_payroll_configuration"
+              action="action_employee_bank_accounts"
+              sequence="30"/>
+
+</odoo>
