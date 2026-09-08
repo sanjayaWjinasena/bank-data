@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- bank-data: gap automations from audit gap-analysis -->
+<odoo>
+  <data noupdate="0">
+
+    <record id="server_action_3630_validate_acc_number_max_13_digits" model="ir.actions.server">
+      <field name="name">Validate: acc_number max 13 digits</field>
+      <field name="model_id" search="[('model', '=', 'res.partner.bank')]"/>
+      <field name="state">code</field>
+      <field name="usage">ir_actions_server</field>
+      <field name="code"><![CDATA[
+for record in records:
+    acc = (record.acc_number or '').strip()
+    digits_only = ''.join(c for c in acc if c.isdigit())
+    if len(digits_only) > 13:
+        raise UserError(
+            'Account number "%s" exceeds 13 digits. '
+            'Please enter a maximum of 13 digits.' % acc
+        )
+      ]]></field>
+    </record>
+
+    <record id="base_automation_347_validate_acc_number_max_13_digits" model="base.automation">
+      <field name="name">Validate: acc_number max 13 digits</field>
+      <field name="active" eval="True"/>
+      <field name="model_id" search="[('model', '=', 'res.partner.bank')]"/>
+      <field name="trigger">on_create_or_write</field>
+      <field name="action_server_ids" eval="[(6, 0, [ref('bank-data.server_action_3630_validate_acc_number_max_13_digits')])]"/>
+    </record>
+
+  </data>
+</odoo>

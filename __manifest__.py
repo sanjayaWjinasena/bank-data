@@ -1,6 +1,6 @@
 {
     'name': 'Jinasena : SubModule : Bank Data',
-    'version': '17.0.1.0.2',
+    'version': '17.0.1.0.3',
     'category': 'Payroll',
     'summary': 'Generate CBC Paymaster file for bulk salary bank transfers (SLIPS)',
     'description': """
@@ -13,7 +13,7 @@
         - res.partner.bank: x_branch_code (3-digit CBC branch code)
     """,
     'author': 'Jinasena',
-    'depends': ['account', 'hr', 'hr_payroll', 'base'],
+    'depends': ['account', 'hr', 'hr_payroll', 'base', 'base_automation'],
     'data': [
         'security/ir.model.access.csv',
         'views/res_bank_views.xml',
@@ -23,6 +23,7 @@
         'views/hr_payslip_bank_data_views.xml',
         'wizard/paymaster_wizard.xml',
         'views/hr_payslip_run_views.xml',
+        'data/gap_automations.xml',
     ],
     'installable': True,
     'application': False,
