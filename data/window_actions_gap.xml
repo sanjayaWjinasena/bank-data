@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- bank-data: 1 gap window actions -->
+<odoo>
+
+
+  <record id="act_window_2895_bank_data" model="ir.actions.act_window">
+    <field name="name">Bank Data</field>
+    <field name="res_model">hr.payslip</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('net_wage', '&gt;', 0)]</field>
+  </record>
+
+</odoo>
