@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- bank-data: Phase E - 2 views for res.bank -->
+<odoo>
+  <data>
+    <record id="view_3058_odoo_studio_res_bank_form_customization_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: res.bank.form customization</field>
+      <field name="model">res.bank</field>
+      <field name="type">form</field>
+      <field name="priority">99</field>
+      <field name="inherit_id" ref="base.view_res_bank_form"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+  <xpath expr="//field[@name='email']" position="after">
+    <field name="x_studio_lc_limit" string="LC Limit"/>
+  </xpath>
+</data>
+      </field>
+    </record>
+
+    <record id="view_3059_odoo_studio_res_bank_tree_customization_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: res.bank.tree customization</field>
+      <field name="model">res.bank</field>
+      <field name="type">tree</field>
+      <field name="priority">99</field>
+      <field name="inherit_id" ref="base.view_res_bank_tree"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+  <xpath expr="//field[@name='country']" position="after">
+    <field name="x_studio_lc_limit"/>
+  </xpath>
+</data>
+      </field>
+    </record>
+
+  </data>
+</odoo>

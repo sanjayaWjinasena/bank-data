@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- bank-data: Phase E - 1 views for res.partner.bank -->
+<odoo>
+  <data>
+    <record id="view_5279_odoo_studio_res_partner_bank_form_customization_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: res.partner.bank.form customization</field>
+      <field name="model">res.partner.bank</field>
+      <field name="type">form</field>
+      <field name="priority">200</field>
+      <field name="inherit_id" ref="base.view_partner_bank_form"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+  <xpath expr="//field[@name='acc_holder_name']" position="after">
+    <field name="x_studio_swift_code" string="SWIFT Code"/>
+  </xpath>
+</data>
+      </field>
+    </record>
+
+  </data>
+</odoo>
