@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- bank-data: Phase F6 - 1 menus -->
+<odoo>
+  <menuitem id="menu_f6_bank_data" name="Bank Data" parent="hr_payroll.menu_hr_payroll_report" action="bank-data.act_window_2895_bank_data" sequence="5"/>
+</odoo>
