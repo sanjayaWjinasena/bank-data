@@ -1,6 +1,6 @@
 {
     'name': 'Jinasena : SubModule : Bank Data',
-    'version': '17.0.1.0.7',
+    'version': '17.0.1.0.8',
     'category': 'Payroll',
     'summary': 'Generate CBC Paymaster file for bulk salary bank transfers (SLIPS)',
     'description': """
@@ -15,7 +15,6 @@
     'author': 'Jinasena',
     'depends': ['account', 'hr', 'hr_payroll', 'base', 'base_automation'],
     'data': [
-        'data/menus_f6.xml',
         'security/ir.model.access.csv',
         'views/res_bank_views.xml',
         'views/res_partner_bank_views.xml',
@@ -28,6 +27,9 @@
         'data/window_actions_gap.xml',
         'views/res_bank_e_views.xml',
         'views/res_partner_bank_e_views.xml',
+        # menus_f6.xml references act_window_2895_bank_data defined in
+        # window_actions_gap.xml — must load AFTER it.
+        'data/menus_f6.xml',
     ],
     'installable': True,
     'application': False,
