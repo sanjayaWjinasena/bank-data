@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<title>Bank Data Gap Analysis</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f172a;color:#e2e8f0;padding:32px}
+  h1{color:#38bdf8;margin-bottom:4px;font-size:22px}
+  h2{color:#7dd3fc;font-size:15px;margin:32px 0 12px;border-bottom:1px solid #1e293b;padding-bottom:6px;display:flex;align-items:center;gap:10px}
+  h2 .count{background:#1e293b;color:#94a3b8;font-size:12px;padding:2px 10px;border-radius:10px;font-weight:400}
+  p.sub{color:#64748b;font-size:12px;margin-bottom:20px}
+  .summary{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0 24px}
+  .badge{padding:10px 20px;border-radius:8px;font-weight:700;font-size:13px;text-align:center;min-width:130px}
+  .b-green {background:#052e16;color:#4ade80;border:1px solid #166534}
+  .b-amber {background:#1c1407;color:#fbbf24;border:1px solid #92400e}
+  .b-red   {background:#2d0707;color:#f87171;border:1px solid #7f1d1d}
+  .b-blue  {background:#0c1a2e;color:#60a5fa;border:1px solid #1e40af}
+  table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:8px}
+  th{background:#1e293b;padding:8px 12px;text-align:left;color:#94a3b8;position:sticky;top:0;white-space:nowrap;border-bottom:2px solid #334155}
+  tr:hover{filter:brightness(1.15)}
+  .scroll{overflow-x:auto;margin-bottom:32px}
+  .action-card{background:#1e293b;border-radius:8px;padding:16px 20px;margin-bottom:12px;border-left:4px solid #1e40af}
+  .action-card.red{border-left-color:#dc2626}
+  .action-card.amber{border-left-color:#d97706}
+  .action-card.green{border-left-color:#16a34a}
+  .action-card h3{font-size:13px;color:#e2e8f0;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .action-card p{font-size:12px;color:#94a3b8;margin-top:4px}
+  .action-card .tag{font-family:monospace;color:#60a5fa;font-size:11px;background:#0f172a;padding:1px 6px;border-radius:3px}
+  .tabs{display:flex;gap:4px;margin-bottom:0;border-bottom:2px solid #1e293b}
+  .tab{padding:9px 20px;cursor:pointer;border-radius:6px 6px 0 0;color:#94a3b8;font-size:13px;font-weight:600;background:#1e293b}
+  .tab.active{background:#0f172a;color:#38bdf8;border-bottom:2px solid #38bdf8;margin-bottom:-2px}
+  .tab-content{display:none;padding-top:20px}
+  .tab-content.active{display:block}
+</style>
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.getElementById('content-'+id).classList.add('active');
+}
+</script>
+</head><body>
+
+<h1>Bank Data Gap Analysis</h1>
+<p class="sub">Generated 4/22/2026, 9:18:45 AM &nbsp;·&nbsp; Excel Paymaster File vs Odoo Bank Data Report (account.move.line)</p>
+
+<!-- Summary Badges -->
+<div class="summary">
+  <div class="badge b-blue">Excel Fields: 16</div>
+  <div class="badge b-blue">Odoo Columns: 6</div>
+  <div class="badge b-green">✔ Fully Mapped: 4</div>
+  <div class="badge b-amber">⚠ Partial / Unclear: 4</div>
+  <div class="badge b-red">✘ Wrong Field Name: 1</div>
+  <div class="badge b-red">✘ Missing (No Field): 2</div>
+  <div class="badge b-blue">↗ Derived / Constant: 5</div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <div class="tab active" id="tab-mapping"  onclick="showTab('mapping')">Field Mapping (16)</div>
+  <div class="tab"        id="tab-odoo"     onclick="showTab('odoo')">Current Odoo Columns (6)</div>
+  <div class="tab"        id="tab-actions"  onclick="showTab('actions')">Required Actions</div>
+  <div class="tab"        id="tab-excel"    onclick="showTab('excel')">Excel Fields Reference (16)</div>
+</div>
+
+<!-- Tab: Field Mapping -->
+<div class="tab-content active" id="content-mapping">
+  <div class="scroll"><table>
+    <thead><tr>
+      <th style="min-width:180px">Excel Field</th>
+      <th style="width:70px">Type</th>
+      <th style="width:100px">Sample Value</th>
+      <th style="min-width:180px">Odoo Field</th>
+      <th style="width:110px">Status</th>
+      <th style="min-width:260px">Analysis</th>
+      <th style="min-width:260px">Recommended Action</th>
+    </tr></thead>
+    <tbody><tr style="background:#181208;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Employee ID</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">emp_id</div>
+        
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">char</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">1101003</td>
+      <td style="padding:8px 12px">
+        <div style="font-family:monospace;color:#60a5fa;font-size:11px">x_studio_beneficiary_id</div>
+             <div style="color:#94a3b8;font-size:11px">Beneficiary ID</div>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#1c1407;color:#fbbf24;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">⚠ PARTIAL</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">Field exists but is labelled "Beneficiary ID" — should be renamed to "Employee ID". Currently empty (not populated).</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">Rename x_studio_beneficiary_id → "Employee ID". Populate via payslip link.</td>
+    </tr><tr style="background:#0a1a0f;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Beneficiary Name</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">dest_name</div>
+        
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">char</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">U N D Gunaweera</td>
+      <td style="padding:8px 12px">
+        <div style="font-family:monospace;color:#60a5fa;font-size:11px">x_studio_beneficiary_name</div>
+             <div style="color:#94a3b8;font-size:11px">Beneficiary Name</div>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#052e16;color:#4ade80;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">✔ MAPPED</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">Field and label match correctly. Currently empty — needs data population.</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">Populate via payslip → employee name link.</td>
+    </tr><tr style="background:#0a1a0f;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Destination Account No.</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">dest_account</div>
+        
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">char</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">850546</td>
+      <td style="padding:8px 12px">
+        <div style="font-family:monospace;color:#60a5fa;font-size:11px">x_studio_to_account</div>
+             <div style="color:#94a3b8;font-size:11px">To Account</div>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#052e16;color:#4ade80;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">✔ MAPPED</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">Field matches. Currently empty — needs data from employee's bank account.</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">Populate via payslip → employee → bank account number.</td>
+    </tr><tr style="background:#1a0a0a;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Destination Bank MICR</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">dest_bank</div>
+        
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">integer</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">7010</td>
+      <td style="padding:8px 12px">
+        <div style="font-family:monospace;color:#60a5fa;font-size:11px">x_studio_swift_code</div>
+             <div style="color:#94a3b8;font-size:11px">Swift Code</div>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#2d0707;color:#f87171;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">✘ WRONG</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">Field is labelled "Swift Code" but paymaster needs MICR code (e.g. 7010), not SWIFT/BIC. These are different values. Currently empty.</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">Rename x_studio_swift_code to "Dest Bank MICR Code". Populate from res.bank.x_micr_code via employee bank account.</td>
+    </tr><tr style="background:#1a0a0a;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Destination Branch Code</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">dest_branch</div>
+        
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">integer</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">45</td>
+      <td style="padding:8px 12px">
+        <span style="color:#475569;font-size:12px">— no field —</span>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#2d0707;color:#f87171;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">✘ MISSING</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">No field exists in Odoo for destination branch code.</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">Create new Studio field: x_studio_dest_branch (Integer) "Destination Branch Code". Populate from res.partner.bank.x_branch_code.</td>
+    </tr><tr style="background:#0a0f1a;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Transaction Code</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">trn_code</div>
+        <div style="color:#60a5fa;font-size:10px">constant: 23</div>
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">integer</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">23</td>
+      <td style="padding:8px 12px">
+        <span style="color:#475569;font-size:12px">— no field —</span>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#0c1a2e;color:#60a5fa;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">⬡ CONSTANT</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">Always 23 for paymaster payments. No Odoo field exists.</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">Create new Studio field: x_studio_trn_code (Integer, default=23) "Transaction Code". OR hard-code 23 in the file generator.</td>
+    </tr><tr style="background:#0a0f1a;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Credit/Debit Flag</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">cr_dr</div>
+        <div style="color:#60a5fa;font-size:10px">constant: 0</div>
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">integer</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">0</td>
+      <td style="padding:8px 12px">
+        <span style="color:#475569;font-size:12px">— no field —</span>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#0c1a2e;color:#60a5fa;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">⬡ CONSTANT</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">Always 0 (credit payment). No Odoo field exists.</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">Hard-code 0 in the file generator — no Studio field needed.</td>
+    </tr><tr style="background:#0a1a0f;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Amount (Rs)</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">amount_rs</div>
+        
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">float</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">35000.00</td>
+      <td style="padding:8px 12px">
+        <div style="font-family:monospace;color:#60a5fa;font-size:11px">amount_currency</div>
+             <div style="color:#94a3b8;font-size:11px">Amount</div>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#052e16;color:#4ade80;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">✔ MAPPED</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">Standard monetary field — populated from journal entry amount.</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">No action — use amount_currency directly.</td>
+    </tr><tr style="background:#0a0f1a;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Amount (Cents)</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">amount_cents</div>
+        
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">integer</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">3500000</td>
+      <td style="padding:8px 12px">
+        <span style="color:#475569;font-size:12px">— no field —</span>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#0c1a2e;color:#60a5fa;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">↗ DERIVED</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">Derived value: amount_rs × 100. No separate Odoo field needed.</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">Calculate in file generator: amount_currency × 100.</td>
+    </tr><tr style="background:#0a1a0f;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Currency</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">currency</div>
+        <div style="color:#60a5fa;font-size:10px">constant: SLR</div>
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">char</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">SLR</td>
+      <td style="padding:8px 12px">
+        <div style="font-family:monospace;color:#60a5fa;font-size:11px">currency_id</div>
+             <div style="color:#94a3b8;font-size:11px">Currency</div>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#052e16;color:#4ade80;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">✔ MAPPED</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">Standard currency field. Always SLR.</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">Use currency_id.name directly.</td>
+    </tr><tr style="background:#0a0f1a;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Originating Bank MICR</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">orig_bank</div>
+        <div style="color:#60a5fa;font-size:10px">constant: 7056</div>
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">integer</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">7056</td>
+      <td style="padding:8px 12px">
+        <span style="color:#475569;font-size:12px">— no field —</span>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#0c1a2e;color:#60a5fa;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">⬡ CONSTANT</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">Always 7056 (Commercial Bank). No Odoo field exists.</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">Create Studio field x_studio_orig_bank (Integer) "Orig Bank MICR" on journal/company. OR hard-code 7056 in file generator.</td>
+    </tr><tr style="background:#1a0a0a;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Originating Branch</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">orig_branch</div>
+        
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">integer</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">3 or 50</td>
+      <td style="padding:8px 12px">
+        <span style="color:#475569;font-size:12px">— no field —</span>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#2d0707;color:#f87171;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">✘ MISSING</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">No Odoo field. Value varies (3 or 50 seen in Excel).</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">Create Studio field x_studio_orig_branch (Integer) "Orig Branch Code". Set on journal entry or company bank account.</td>
+    </tr><tr style="background:#0a0f1a;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Originating Account No.</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">orig_account</div>
+        <div style="color:#60a5fa;font-size:10px">constant: 1500001888</div>
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">char</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">1500001888</td>
+      <td style="padding:8px 12px">
+        <span style="color:#475569;font-size:12px">— no field —</span>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#0c1a2e;color:#60a5fa;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">⬡ CONSTANT</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">Always 1500001888 (Jinasena Commercial Bank account). No Odoo field.</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">This is the company's own bank account. Already exists in res.partner.bank. Hard-code or link from journal.</td>
+    </tr><tr style="background:#181208;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Originating Name</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">orig_name</div>
+        <div style="color:#60a5fa;font-size:10px">constant: Jinasena (Pvt) Ltd</div>
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">char</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">Jinasena (Pvt) Ltd</td>
+      <td style="padding:8px 12px">
+        <div style="font-family:monospace;color:#60a5fa;font-size:11px">company_id</div>
+             <div style="color:#94a3b8;font-size:11px">Company</div>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#1c1407;color:#fbbf24;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">⚠ PARTIAL</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">Company name is available via company_id.name. Value in Excel is "Jinasena (Pvt) Ltd" (shortened from full name).</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">Use company_id.name OR add a "Short Name" field on res.company. Hard-code in file generator for now.</td>
+    </tr><tr style="background:#181208;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Payment Reference</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">reference</div>
+        
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">char</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:8px 12px">
+        <div style="font-family:monospace;color:#60a5fa;font-size:11px">ref</div>
+             <div style="color:#94a3b8;font-size:11px">Reference</div>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#1c1407;color:#fbbf24;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">⚠ PARTIAL</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">Standard ref field exists but is the journal entry reference. May not match paymaster reference. x_studio_purpose_code could also serve this.</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">Clarify whether x_studio_purpose_code = payment reference. If yes, rename to "Payment Reference". Otherwise use ref.</td>
+    </tr><tr style="background:#181208;border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px">
+        <div style="font-weight:700;color:#e2e8f0">Value Date</div>
+        <div style="font-family:monospace;color:#64748b;font-size:11px">value_date</div>
+        
+      </td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">char</td>
+      <td style="padding:8px 12px;font-family:monospace;color:#fbbf24;font-size:11px">250725</td>
+      <td style="padding:8px 12px">
+        <div style="font-family:monospace;color:#60a5fa;font-size:11px">date</div>
+             <div style="color:#94a3b8;font-size:11px">Date</div>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#1c1407;color:#fbbf24;padding:2px 10px;border-radius:4px;font-weight:700;font-size:11px;white-space:nowrap">⚠ PARTIAL</span></td>
+      <td style="padding:8px 12px;font-size:12px;color:#94a3b8">Standard date field exists. Format must be converted from Odoo YYYY-MM-DD to paymaster DDMMYY.</td>
+      <td style="padding:8px 12px;font-size:12px;color:#e2e8f0">Use date field + convert format in file generator.</td>
+    </tr></tbody>
+  </table></div>
+</div>
+
+<!-- Tab: Current Odoo Columns -->
+<div class="tab-content" id="content-odoo">
+  <p style="color:#64748b;font-size:12px;margin-bottom:12px">
+    The Bank Data report currently shows 6 columns on <span style="font-family:monospace;color:#60a5fa">account.move.line</span>.
+    All Studio fields are empty — no data has been populated yet.
+  </p>
+  <div class="scroll"><table>
+    <thead><tr>
+      <th>Field Name</th>
+      <th>Label</th>
+      <th>Type</th>
+      <th>Origin</th>
+      <th>Data Status</th>
+      <th>Maps to Excel</th>
+      <th>Notes</th>
+    </tr></thead>
+    <tbody><tr style="border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px;font-family:monospace;color:#60a5fa;font-size:12px">x_studio_to_account</td>
+      <td style="padding:8px 12px;color:#e2e8f0">To Account</td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">char</td>
+      <td style="padding:8px 12px">
+        <span style="background:#0c1a2e;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:11px">Studio</span>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#2d0707;color:#f87171;padding:2px 8px;border-radius:4px;font-size:11px">EMPTY</span></td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">Destination Account No.</td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">Destination bank account number — linked from payslip/employee bank</td>
+    </tr><tr style="border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px;font-family:monospace;color:#60a5fa;font-size:12px">amount_currency</td>
+      <td style="padding:8px 12px;color:#e2e8f0">Amount</td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">monetary</td>
+      <td style="padding:8px 12px">
+        <span style="background:#1a1a0a;color:#fbbf24;padding:2px 8px;border-radius:4px;font-size:11px">Standard</span>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#052e16;color:#4ade80;padding:2px 8px;border-radius:4px;font-size:11px">HAS DATA</span></td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">Amount (Rs)</td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">Standard Odoo monetary field — populated from journal entry</td>
+    </tr><tr style="border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px;font-family:monospace;color:#60a5fa;font-size:12px">x_studio_beneficiary_name</td>
+      <td style="padding:8px 12px;color:#e2e8f0">Beneficiary Name</td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">char</td>
+      <td style="padding:8px 12px">
+        <span style="background:#0c1a2e;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:11px">Studio</span>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#2d0707;color:#f87171;padding:2px 8px;border-radius:4px;font-size:11px">EMPTY</span></td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">Beneficiary Name</td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">Employee/beneficiary full name — linked from payslip</td>
+    </tr><tr style="border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px;font-family:monospace;color:#60a5fa;font-size:12px">x_studio_beneficiary_id</td>
+      <td style="padding:8px 12px;color:#e2e8f0">Beneficiary ID</td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">char</td>
+      <td style="padding:8px 12px">
+        <span style="background:#0c1a2e;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:11px">Studio</span>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#2d0707;color:#f87171;padding:2px 8px;border-radius:4px;font-size:11px">EMPTY</span></td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">Employee ID</td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">Employee ID/number — linked from payslip</td>
+    </tr><tr style="border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px;font-family:monospace;color:#60a5fa;font-size:12px">x_studio_swift_code</td>
+      <td style="padding:8px 12px;color:#e2e8f0">Swift Code</td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">char</td>
+      <td style="padding:8px 12px">
+        <span style="background:#0c1a2e;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:11px">Studio</span>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#2d0707;color:#f87171;padding:2px 8px;border-radius:4px;font-size:11px">EMPTY</span></td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">Destination Bank MICR</td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">LABELLED as Swift Code but intended for bank MICR. Naming conflict.</td>
+    </tr><tr style="border-bottom:1px solid #1e293b">
+      <td style="padding:8px 12px;font-family:monospace;color:#60a5fa;font-size:12px">x_studio_purpose_code</td>
+      <td style="padding:8px 12px;color:#e2e8f0">Purpose Code</td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">char</td>
+      <td style="padding:8px 12px">
+        <span style="background:#0c1a2e;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:11px">Studio</span>
+      </td>
+      <td style="padding:8px 12px"><span style="background:#2d0707;color:#f87171;padding:2px 8px;border-radius:4px;font-size:11px">EMPTY</span></td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px"><span style="color:#475569">not in Excel</span></td>
+      <td style="padding:8px 12px;color:#94a3b8;font-size:12px">Unclear purpose — may be reference or transaction code</td>
+    </tr></tbody>
+  </table></div>
+</div>
+
+<!-- Tab: Required Actions -->
+<div class="tab-content" id="content-actions">
+
+  <h2>Fields That Must Be Created <span class="count">2 new Studio fields</span></h2>
+  
+  <div class="action-card red">
+    <h3>
+      <span style="color:#f87171">NEW FIELD</span>
+      <span class="tag">x_studio_dest_branch</span>
+      <span style="color:#94a3b8;font-weight:400">→ "Destination Branch Code"</span>
+    </h3>
+    <p><strong style="color:#e2e8f0">Type:</strong> Integer &nbsp;·&nbsp;
+       <strong style="color:#e2e8f0">Excel column:</strong> dest_branch</p>
+    <p><strong style="color:#e2e8f0">How to populate:</strong> Link from hr.payslip → employee → bank account → res.partner.bank.x_branch_code</p>
+  </div>
+  <div class="action-card red">
+    <h3>
+      <span style="color:#f87171">NEW FIELD</span>
+      <span class="tag">x_studio_orig_branch</span>
+      <span style="color:#94a3b8;font-weight:400">→ "Originating Branch Code"</span>
+    </h3>
+    <p><strong style="color:#e2e8f0">Type:</strong> Integer &nbsp;·&nbsp;
+       <strong style="color:#e2e8f0">Excel column:</strong> orig_branch</p>
+    <p><strong style="color:#e2e8f0">How to populate:</strong> Set on the payroll journal or company bank account (res.partner.bank)</p>
+  </div>
+  <div class="action-card red">
+    <h3>
+      <span style="color:#f87171">NEW FIELD</span>
+      <span class="tag">x_studio_trn_code</span>
+      <span style="color:#94a3b8;font-weight:400">→ "Transaction Code"</span>
+    </h3>
+    <p><strong style="color:#e2e8f0">Type:</strong> Integer (default 23) &nbsp;·&nbsp;
+       <strong style="color:#e2e8f0">Excel column:</strong> trn_code</p>
+    <p><strong style="color:#e2e8f0">How to populate:</strong> Hard-code 23 on creation, or set as default on the Bank Data action</p>
+  </div>
+
+  <h2>Fields That Need Renaming / Fixing <span class="count">5 fields</span></h2>
+  
+  <div class="action-card amber">
+    <h3>
+      <span style="color:#fbbf24">RENAME</span>
+      <span style="color:#94a3b8;font-size:12px;font-weight:400">x_studio_swift_code → "Swift Code"</span>
+      <span style="color:#e2e8f0">→</span>
+      <span style="color:#4ade80">"Dest Bank MICR Code"</span>
+    </h3>
+    <p>Swift/BIC codes are alphanumeric (e.g. CCEYLKLX). MICR codes are numeric (7010, 7056). The field holds MICR, not SWIFT.</p>
+  </div>
+  <div class="action-card amber">
+    <h3>
+      <span style="color:#fbbf24">RENAME</span>
+      <span style="color:#94a3b8;font-size:12px;font-weight:400">x_studio_beneficiary_id → "Beneficiary ID"</span>
+      <span style="color:#e2e8f0">→</span>
+      <span style="color:#4ade80">"Employee ID / Number"</span>
+    </h3>
+    <p>The Excel emp_id is the employee's payroll number. "Beneficiary ID" is ambiguous.</p>
+  </div>
+  <div class="action-card amber">
+    <h3>
+      <span style="color:#fbbf24">RENAME</span>
+      <span style="color:#94a3b8;font-size:12px;font-weight:400">x_studio_purpose_code → "Purpose Code"</span>
+      <span style="color:#e2e8f0">→</span>
+      <span style="color:#4ade80">"Payment Reference"</span>
+    </h3>
+    <p>The Excel reference field (LoanInsJUNE2025, etc.) is what goes here. "Purpose Code" suggests something like a bank purpose category code.</p>
+  </div>
+
+  <h2>Fields Already Mapped — Just Need Data Population <span class="count">4 fields</span></h2>
+  
+  <div class="action-card green">
+    <h3>
+      <span style="color:#4ade80">POPULATE</span>
+      <span class="tag">x_studio_beneficiary_name</span>
+      <span style="color:#94a3b8;font-weight:400">→ "Beneficiary Name"</span>
+    </h3>
+    <p>Populate via payslip → employee name link.</p>
+  </div>
+  <div class="action-card green">
+    <h3>
+      <span style="color:#4ade80">POPULATE</span>
+      <span class="tag">x_studio_to_account</span>
+      <span style="color:#94a3b8;font-weight:400">→ "To Account"</span>
+    </h3>
+    <p>Populate via payslip → employee → bank account number.</p>
+  </div>
+  <div class="action-card green">
+    <h3>
+      <span style="color:#4ade80">POPULATE</span>
+      <span class="tag">amount_currency</span>
+      <span style="color:#94a3b8;font-weight:400">→ "Amount"</span>
+    </h3>
+    <p>No action — use amount_currency directly.</p>
+  </div>
+  <div class="action-card green">
+    <h3>
+      <span style="color:#4ade80">POPULATE</span>
+      <span class="tag">currency_id</span>
+      <span style="color:#94a3b8;font-weight:400">→ "Currency"</span>
+    </h3>
+    <p>Use currency_id.name directly.</p>
+  </div>
+
+  <h2>Fields to Hard-Code / Derive in File Generator <span class="count">5 fields</span></h2>
+  
+  <div class="action-card" style="border-left-color:#1e40af">
+    <h3>
+      <span style="color:#60a5fa">CONSTANT</span>
+      <span style="color:#94a3b8;font-weight:400;font-size:12px">Transaction Code</span>
+      <span style="color:#4ade80;font-size:12px">= 23</span>
+    </h3>
+    <p>Create new Studio field: x_studio_trn_code (Integer, default=23) "Transaction Code". OR hard-code 23 in the file generator.</p>
+  </div>
+  <div class="action-card" style="border-left-color:#1e40af">
+    <h3>
+      <span style="color:#60a5fa">CONSTANT</span>
+      <span style="color:#94a3b8;font-weight:400;font-size:12px">Credit/Debit Flag</span>
+      <span style="color:#4ade80;font-size:12px">= 0</span>
+    </h3>
+    <p>Hard-code 0 in the file generator — no Studio field needed.</p>
+  </div>
+  <div class="action-card" style="border-left-color:#1e40af">
+    <h3>
+      <span style="color:#60a5fa">DERIVED</span>
+      <span style="color:#94a3b8;font-weight:400;font-size:12px">Amount (Cents)</span>
+      
+    </h3>
+    <p>Calculate in file generator: amount_currency × 100.</p>
+  </div>
+  <div class="action-card" style="border-left-color:#1e40af">
+    <h3>
+      <span style="color:#60a5fa">CONSTANT</span>
+      <span style="color:#94a3b8;font-weight:400;font-size:12px">Originating Bank MICR</span>
+      <span style="color:#4ade80;font-size:12px">= 7056</span>
+    </h3>
+    <p>Create Studio field x_studio_orig_bank (Integer) "Orig Bank MICR" on journal/company. OR hard-code 7056 in file generator.</p>
+  </div>
+  <div class="action-card" style="border-left-color:#1e40af">
+    <h3>
+      <span style="color:#60a5fa">CONSTANT</span>
+      <span style="color:#94a3b8;font-weight:400;font-size:12px">Originating Account No.</span>
+      <span style="color:#4ade80;font-size:12px">= 1500001888</span>
+    </h3>
+    <p>This is the company's own bank account. Already exists in res.partner.bank. Hard-code or link from journal.</p>
+  </div>
+
+</div>
+
+<!-- Tab: Excel Fields Reference -->
+<div class="tab-content" id="content-excel">
+  <div class="scroll"><table>
+    <thead><tr>
+      <th>#</th>
+      <th>Field Key</th>
+      <th>Label</th>
+      <th>Type</th>
+      <th>Sample Value</th>
+      <th>Constant?</th>
+      <th>Description</th>
+    </tr></thead>
+    <tbody>
+    
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">1</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">emp_id</td>
+        <td style="padding:7px 12px;font-weight:600">Employee ID</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">char</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">1101003</td>
+        <td style="padding:7px 12px">
+          <span style="color:#475569;font-size:12px">—</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">Unique employee number used to identify the payee</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">2</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">dest_name</td>
+        <td style="padding:7px 12px;font-weight:600">Beneficiary Name</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">char</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">U N D Gunaweera</td>
+        <td style="padding:7px 12px">
+          <span style="color:#475569;font-size:12px">—</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">Full name of the payment recipient</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">3</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">dest_account</td>
+        <td style="padding:7px 12px;font-weight:600">Destination Account No.</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">char</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">850546</td>
+        <td style="padding:7px 12px">
+          <span style="color:#475569;font-size:12px">—</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">Destination bank account number</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">4</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">dest_bank</td>
+        <td style="padding:7px 12px;font-weight:600">Destination Bank MICR</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">integer</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">7010</td>
+        <td style="padding:7px 12px">
+          <span style="color:#475569;font-size:12px">—</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">MICR code of the destination bank (e.g. 7010 = BOC)</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">5</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">dest_branch</td>
+        <td style="padding:7px 12px;font-weight:600">Destination Branch Code</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">integer</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">45</td>
+        <td style="padding:7px 12px">
+          <span style="color:#475569;font-size:12px">—</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">Branch code of the destination bank</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">6</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">trn_code</td>
+        <td style="padding:7px 12px;font-weight:600">Transaction Code</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">integer</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">23</td>
+        <td style="padding:7px 12px">
+          <span style="background:#0c1a2e;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:11px">YES: 23</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">Paymaster transaction type code. Always 23 for salary/loan payments.</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">7</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">cr_dr</td>
+        <td style="padding:7px 12px;font-weight:600">Credit/Debit Flag</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">integer</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">0</td>
+        <td style="padding:7px 12px">
+          <span style="background:#0c1a2e;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:11px">YES: 0</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">Credit=0, Debit=1. Always 0 (credit) for outgoing payments.</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">8</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">amount_rs</td>
+        <td style="padding:7px 12px;font-weight:600">Amount (Rs)</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">float</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">35000.00</td>
+        <td style="padding:7px 12px">
+          <span style="color:#475569;font-size:12px">—</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">Payment amount in Sri Lankan Rupees</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">9</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">amount_cents</td>
+        <td style="padding:7px 12px;font-weight:600">Amount (Cents)</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">integer</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">3500000</td>
+        <td style="padding:7px 12px">
+          <span style="color:#475569;font-size:12px">—</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">Amount × 100 in cents (derived from Amount Rs)</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">10</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">currency</td>
+        <td style="padding:7px 12px;font-weight:600">Currency</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">char</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">SLR</td>
+        <td style="padding:7px 12px">
+          <span style="background:#0c1a2e;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:11px">YES: SLR</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">Currency code. Always SLR.</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">11</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">orig_bank</td>
+        <td style="padding:7px 12px;font-weight:600">Originating Bank MICR</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">integer</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">7056</td>
+        <td style="padding:7px 12px">
+          <span style="background:#0c1a2e;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:11px">YES: 7056</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">MICR code of Jinasena's own bank (Commercial Bank = 7056)</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">12</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">orig_branch</td>
+        <td style="padding:7px 12px;font-weight:600">Originating Branch</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">integer</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">3 or 50</td>
+        <td style="padding:7px 12px">
+          <span style="color:#475569;font-size:12px">—</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">Branch code of Jinasena's bank account</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">13</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">orig_account</td>
+        <td style="padding:7px 12px;font-weight:600">Originating Account No.</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">char</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">1500001888</td>
+        <td style="padding:7px 12px">
+          <span style="background:#0c1a2e;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:11px">YES: 1500001888</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">Jinasena's own account number that funds are debited from</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">14</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">orig_name</td>
+        <td style="padding:7px 12px;font-weight:600">Originating Name</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">char</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">Jinasena (Pvt) Ltd</td>
+        <td style="padding:7px 12px">
+          <span style="background:#0c1a2e;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:11px">YES: Jinasena (Pvt) Ltd</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">Name of the sending organisation</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">15</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">reference</td>
+        <td style="padding:7px 12px;font-weight:600">Payment Reference</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">char</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">LoanInsJUNE2025</td>
+        <td style="padding:7px 12px">
+          <span style="color:#475569;font-size:12px">—</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">Batch/payment reference string (e.g. LoanInsJUNE2025)</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:7px 12px;color:#64748b">16</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#60a5fa;font-size:12px">value_date</td>
+        <td style="padding:7px 12px;font-weight:600">Value Date</td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">char</td>
+        <td style="padding:7px 12px;font-family:monospace;color:#fbbf24;font-size:12px">250725</td>
+        <td style="padding:7px 12px">
+          <span style="color:#475569;font-size:12px">—</span>
+        </td>
+        <td style="padding:7px 12px;color:#94a3b8;font-size:12px">Effective date in DDMMYY format (e.g. 250725 = 25 Jul 2025)</td>
+      </tr>
+    </tbody>
+  </table></div>
+</div>
+
+</body></html>

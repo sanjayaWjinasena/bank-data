@@ -1,0 +1,4553 @@
+{
+  "generatedAt": "2026-04-22T03:51:33.611Z",
+  "customModels": [
+    {
+      "label": "Task Diagnosis (x_task_diagnosis)",
+      "found": true,
+      "detail": "Task Diagnosis"
+    },
+    {
+      "label": "Conditions (x_conditions)",
+      "found": true,
+      "detail": "Conditions"
+    },
+    {
+      "label": "Diagnosis Areas (x_diagnosis_areas)",
+      "found": true,
+      "detail": "Diagnosis Areas"
+    },
+    {
+      "label": "Diagnosis Codes (x_diagnosis_codes)",
+      "found": true,
+      "detail": "Diagnosis Codes"
+    },
+    {
+      "label": "Repair Reason (x_repair_reason)",
+      "found": true,
+      "detail": "Repair Reason"
+    },
+    {
+      "label": "Repair Stage (x_repair_stages)",
+      "found": true,
+      "detail": "Repair Stages"
+    },
+    {
+      "label": "Resolution (x_resolutions)",
+      "found": true,
+      "detail": "Resolutions"
+    },
+    {
+      "label": "Repair Sub Reason (x_repair_sub_reason)",
+      "found": true,
+      "detail": "Repair Sub Reason"
+    },
+    {
+      "label": "Symptom Areas (x_symptom_areas)",
+      "found": true,
+      "detail": "Symptom Areas"
+    },
+    {
+      "label": "Symptom Codes (x_symptom_codes)",
+      "found": true,
+      "detail": "Symptom Codes"
+    }
+  ],
+  "fieldsByModel": [
+    {
+      "model": "helpdesk.ticket",
+      "expected": [
+        "x_studio_cancelled",
+        "x_studio_repair_complete_stage_updated",
+        "x_studio_estimation_sent_stage_updated",
+        "x_studio_estimation_approved_stage_updated",
+        "x_studio_repair_started_stage_updated",
+        "x_studio_invoice_stage_updated",
+        "x_studio_handed_over",
+        "x_studio_rug_approved",
+        "x_studio_send_to_factory",
+        "x_studio_receive_at_factory",
+        "x_studio_send_to_centre",
+        "x_studio_receive_at_centre",
+        "x_studio_sn_updated",
+        "x_studio_repair_serial_created",
+        "x_studio_normal_repair_without_serial_no",
+        "x_studio_normal_repair_with_serial_no",
+        "x_studio_rug_repair",
+        "x_studio_warranty_card",
+        "x_studio_pick_id",
+        "x_studio_virtual_location_id",
+        "x_studio_repair_reason",
+        "x_studio_return_receipt_location",
+        "x_studio_serial_no",
+        "x_studio_source_location",
+        "x_studio_job_location",
+        "x_studio_quick_repair_status",
+        "x_studio_cancel_status",
+        "x_studio_repair_status",
+        "x_studio_stage_date",
+        "x_studio_created_by_1",
+        "x_studio_created_by_4",
+        "x_studio_created_by_5",
+        "x_studio_created_by_6",
+        "x_studio_created_by_7",
+        "x_studio_created_by_8",
+        "x_studio_created_on_1",
+        "x_studio_created_on_4",
+        "x_studio_created_on_5",
+        "x_studio_created_on_6",
+        "x_studio_created_on_7",
+        "x_studio_created_on_8",
+        "x_studio_fsm_task_done",
+        "x_studio_fully_paid_so",
+        "x_studio_handed_over",
+        "x_studio_re_estimate_count",
+        "x_studio_sale_order",
+        "x_studio_task_status",
+        "x_studio_valid_confirm_return",
+        "x_studio_valid_confirmed2_so",
+        "x_studio_valid_confirmed_so",
+        "x_studio_valid_delivered_so",
+        "x_studio_valid_invoiced_so",
+        "x_studio_valid_return",
+        "x_studio_receive_at_centre",
+        "x_studio_minimals_availability",
+        "x_studio_invoice_price",
+        "x_studio_unit_price",
+        "x_studio_valid_confirmed_so",
+        "x_studio_estimation_approved_stage_updated",
+        "x_studio_pick_id",
+        "x_studio_picking_count",
+        "x_studio_repair_location",
+        "x_studio_repair_serial_no"
+      ],
+      "found": [
+        {
+          "id": 26247,
+          "name": "x_studio_rug_repair",
+          "field_description": "Repair Under Warranty",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26249,
+          "name": "x_studio_rug_confirmed",
+          "field_description": "RUG Confirmed",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26251,
+          "name": "x_studio_normal_repair_with_serial_no",
+          "field_description": "Normal Repair (With Serial No)",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26253,
+          "name": "x_studio_normal_repair_without_serial_no",
+          "field_description": "Normal Repair (Without Serial No)",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26255,
+          "name": "x_studio_return_receipt_location",
+          "field_description": "Return Receipt Location",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26257,
+          "name": "x_studio_repair_location",
+          "field_description": "Repair Location",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26269,
+          "name": "x_studio_job_location",
+          "field_description": "Job Location",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26271,
+          "name": "x_studio_rug_approved",
+          "field_description": "RUG Approved",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26273,
+          "name": "x_studio_rug_request_sent",
+          "field_description": "RUG Request Sent",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26275,
+          "name": "x_studio_repair_serial_created",
+          "field_description": "Repair Serial Created",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26277,
+          "name": "x_studio_valid_confirm_return",
+          "field_description": "Valid Confirm Return",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid = False\r\n  for line in rec.picking_ids:\r\n    if line.state == 'done':\r\n      valid = True\r\n    \r\n  rec['x_studio_valid_confirm_return'] = valid\r\n"
+        },
+        {
+          "id": 26279,
+          "name": "x_studio_send_to_factory",
+          "field_description": "Send to Factory",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26281,
+          "name": "x_studio_receive_at_factory",
+          "field_description": "Receive at Factory",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26283,
+          "name": "x_studio_send_to_centre",
+          "field_description": "Send to Centre",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26285,
+          "name": "x_studio_receive_at_centre",
+          "field_description": "Receive at Centre",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26287,
+          "name": "x_studio_material_availability",
+          "field_description": "Material Availability",
+          "ttype": "selection",
+          "store": false,
+          "compute": "for rec in self:\r\n  val = 'Material Not Ready'\r\n  for invoices in rec.fsm_task_ids:\r\n      val = invoices.x_studio_material_availability\r\n  rec['x_studio_material_availability'] = val"
+        },
+        {
+          "id": 26291,
+          "name": "x_studio_valid_invoiced_so",
+          "field_description": "Valid Invoiced SO",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  company_ids = rec.env.context.get('allowed_company_ids', [rec.env.user.company_id.id])\r\n  company = self.env['res.company'].browse(company_ids[0])\r\n  valid = False\r\n  for invoices in rec.fsm_task_ids:\r\n    if invoices.sale_order_id.x_studio_order_payment_method == 'Credit':\r\n      valid = False\r\n    else:\r\n      if invoices.x_studio_valid_invoiced_so == True:\r\n        valid = True\r\n  if valid == True:\r\n    if rec.x_studio_repair_complete_stage_updated == False:\r\n      if rec.x_studio_invoice_stage_updated == False:\r\n        if company.id == 1:\r\n          rec['stage_id'] = 3\r\n        else:\r\n          rec['stage_id'] = 22\r\n        rec['x_studio_stage_date'] = datetime.datetime.now()\r\n        rec['x_studio_created_by_6'] = self._uid\r\n        rec['x_studio_created_on_6'] = datetime.datetime.now()\r\n        rec['x_studio_invoice_stage_updated'] = True\r\n  rec['x_studio_valid_invoiced_so'] = valid"
+        },
+        {
+          "id": 26293,
+          "name": "x_studio_invoice_stage_updated",
+          "field_description": "Invoice Stage Updated",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26295,
+          "name": "x_studio_repair_complete_stage_updated",
+          "field_description": "Repair Complete Stage Updated",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26299,
+          "name": "x_studio_valid_confirmed_so",
+          "field_description": "Valid Confirmed SO",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  company_ids = rec.env.context.get('allowed_company_ids', [rec.env.user.company_id.id])\r\n  company = self.env['res.company'].browse(company_ids[0])\r\n  valid = False\r\n  for invoices in rec.fsm_task_ids:\r\n      if invoices.x_studio_valid_confirm_so == True:\r\n        valid = True\r\n  if valid == True:\r\n    if rec.x_studio_estimation_sent_stage_updated == False:\r\n      rec['x_studio_estimation_sent_stage_updated'] = True\r\n      if company.id == 1:\r\n        rec['stage_id'] = 10\r\n      else:\r\n        rec['stage_id'] = 29\r\n      rec['x_studio_stage_date'] = datetime.datetime.now()\r\n      rec['x_studio_created_by_4'] = self._uid\r\n      rec['x_studio_created_on_4'] = datetime.datetime.now()\r\n  rec['x_studio_valid_confirmed_so'] = valid "
+        },
+        {
+          "id": 26301,
+          "name": "x_studio_estimation_sent_stage_updated",
+          "field_description": "Estimation Sent Stage Updated",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26303,
+          "name": "x_studio_valid_confirmed2_so",
+          "field_description": "Valid Confirmed2 SO",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  company_ids = rec.env.context.get('allowed_company_ids', [rec.env.user.company_id.id])\r\n  company = self.env['res.company'].browse(company_ids[0])\r\n  valid = False\r\n  for invoices in rec.fsm_task_ids:\r\n      if invoices.x_studio_valid_confirm2_so == True:\r\n        valid = True\r\n  if valid == True:\r\n    if rec.x_studio_estimation_approved_stage_updated == False:\r\n      rec['x_studio_estimation_approved_stage_updated'] = True\r\n      if company.id == 1:\r\n        rec['stage_id'] = 12\r\n      else:\r\n        rec['stage_id'] = 31\r\n      rec['x_studio_stage_date'] = datetime.datetime.now()\r\n      rec['x_studio_created_by_5'] = self._uid\r\n      rec['x_studio_created_on_5'] = datetime.datetime.now()\r\n  rec['x_studio_valid_confirmed2_so'] = valid "
+        },
+        {
+          "id": 26305,
+          "name": "x_studio_estimation_approved_stage_updated",
+          "field_description": "Estimation Approved Stage Updated",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26307,
+          "name": "x_studio_valid_delivered_so",
+          "field_description": "Valid Delivered SO",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  company_ids = rec.env.context.get('allowed_company_ids', [rec.env.user.company_id.id])\r\n  company = self.env['res.company'].browse(company_ids[0])\r\n  valid = False\r\n  valid2 = False\r\n  for invoices in rec.fsm_task_ids:\r\n    if invoices.x_studio_valid_delivered_so == True:\r\n      valid = True\r\n      \r\n    if invoices.x_studio_valid_delivered_so2 == True:\r\n        valid2 = True\r\n  if valid2 == True:\r\n    if rec.x_studio_repair_complete_stage_updated == False:\r\n      if company.id == 1:\r\n        rec['stage_id'] = 9\r\n      else:\r\n        rec['stage_id'] = 28 \r\n      rec['x_studio_stage_date'] = datetime.datetime.now()\r\n      rec['x_studio_created_by_8'] = self._uid\r\n      rec['x_studio_created_on_8'] = datetime.datetime.now()\r\n      rec['x_studio_repair_complete_stage_updated'] = True\r\n        \r\n      so_items = self.env['sale.order.line'].search([('order_id', '=', rec.x_studio_sale_order.id)])\r\n      if so_items:\r\n        tot_item_ids = []\r\n        qty = []\r\n        prices = []\r\n        for items in so_items:\r\n          if items.product_uom_qty > 0:\r\n            tot_item_ids.append(items.product_id.id)\r\n            qty.append(items.product_uom_qty)\r\n            prices.append(items.price_unit)\r\n            \r\n        rec['x_studio_items'] = [(6, 0, tot_item_ids)]\r\n        rec['x_studio_qty'] = qty\r\n        rec['x_studio_sales_price'] = prices\r\n  else:\r\n    if valid == True:\r\n      if rec.x_studio_repair_started_stage_updated == False:\r\n        if company.id == 1:\r\n          rec['stage_id'] = 11\r\n        else:\r\n          rec['stage_id'] = 30\r\n        rec['x_studio_stage_date'] = datetime.datetime.now()\r\n        rec['x_studio_created_by_7'] = self._uid\r\n        rec['x_studio_created_on_7'] = datetime.datetime.now()\r\n        rec['x_studio_repair_started_stage_updated'] = True\r\n  rec['x_studio_valid_delivered_so'] = valid"
+        },
+        {
+          "id": 26309,
+          "name": "x_studio_repair_started_stage_updated",
+          "field_description": "Repair Started Stage Updated",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26311,
+          "name": "x_studio_serial_number",
+          "field_description": "Serial Number-11",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26313,
+          "name": "x_studio_tracking",
+          "field_description": "Tracking",
+          "ttype": "selection",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 26329,
+          "name": "x_studio_source_location",
+          "field_description": "Source Location",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26331,
+          "name": "x_studio_virtual_location",
+          "field_description": "Virtual Location",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26333,
+          "name": "x_studio_virtual_location_id",
+          "field_description": "Virtual Location Id",
+          "ttype": "integer",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26335,
+          "name": "x_studio_valid_return",
+          "field_description": "Valid Return",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid = False\r\n  for line in rec.picking_ids:\r\n    if line.state != 'cancel':\r\n      valid = True\r\n    \r\n  rec['x_studio_valid_return'] = valid\r\n"
+        },
+        {
+          "id": 26337,
+          "name": "x_studio_pick_id",
+          "field_description": "Pick Id",
+          "ttype": "integer",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26341,
+          "name": "x_studio_picking_id",
+          "field_description": "Picking Id",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26343,
+          "name": "x_studio_s_shipped_date",
+          "field_description": "Shipped Date",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26345,
+          "name": "x_studio_s_shipped_by",
+          "field_description": "Shipped By",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26347,
+          "name": "x_studio_s_received_date",
+          "field_description": "Received Date",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26349,
+          "name": "x_studio_s_received_by",
+          "field_description": "Received By",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26351,
+          "name": "x_studio_f_shipped_date",
+          "field_description": "Shipped Date",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26353,
+          "name": "x_studio_f_shipped_by",
+          "field_description": "Shipped By",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26357,
+          "name": "x_studio_f_received_date",
+          "field_description": "Received Date",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26359,
+          "name": "x_studio_f_received_by",
+          "field_description": "Received By",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26461,
+          "name": "x_x_studio_created_from_help_ticket_stock_picking_count",
+          "field_description": "Created from Help Ticket count",
+          "ttype": "integer",
+          "store": false,
+          "compute": "\nfor record in self: record['x_x_studio_created_from_help_ticket_stock_picking_count'] = self.env['stock.picking'].search_count([('x_studio_created_from_help_ticket', '=', record.id)])\n"
+        },
+        {
+          "id": 26463,
+          "name": "x_studio_task_status",
+          "field_description": "Task Status",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  company_ids = rec.env.context.get('allowed_company_ids', [rec.env.user.company_id.id])\r\n  company = self.env['res.company'].browse(company_ids[0])\r\n  task_status = False\r\n  for line in rec.fsm_task_ids:\r\n    if line.fsm_done == True:\r\n      task_status = True\r\n      \r\n    if line.x_studio_end_quick_repair == True:\r\n      task_status = True\r\n      \r\n  if task_status == False:\r\n    if rec.x_studio_sale_order == True:\r\n      \r\n      if rec.x_studio_sale_order.state == 'cancel':\r\n        task_status = True  \r\n      else:\r\n        delivery1 = self.env['stock.picking'].search([('sale_id', '=', rec.x_studio_sale_order.id)],limit=1)\r\n        if delivery1:\r\n          delivery = self.env['stock.picking'].search([('sale_id', '=', rec.x_studio_sale_order.id),('state', 'not in', ['done', 'cancel'])],limit=1)    \r\n          if delivery:\r\n            task_status = False\r\n          else:\r\n            task_status = True\r\n        else:\r\n          task_status = False\r\n    \r\n  if task_status == True:\r\n    if rec.x_studio_repair_complete_stage_updated == False:\r\n      if company.id == 1:\r\n        rec['stage_id'] = 9\r\n      else:\r\n        rec['stage_id'] = 28\r\n      rec['x_studio_stage_date'] = datetime.datetime.now()\r\n      rec['x_studio_created_by_8'] = self._uid\r\n      rec['x_studio_created_on_8'] = datetime.datetime.now()\r\n      rec['x_studio_repair_complete_stage_updated'] = True\r\n        \r\n      so_items = self.env['sale.order.line'].search([('order_id', '=', rec.x_studio_sale_order.id)])\r\n      if so_items:\r\n        tot_item_ids = []\r\n        qty = []\r\n        prices = []\r\n        for items in so_items:\r\n          if items.product_uom_qty > 0:\r\n            tot_item_ids.append(items.product_id.id)\r\n            qty.append(items.product_uom_qty)\r\n            prices.append(items.price_unit)\r\n            \r\n        rec['x_studio_items'] = [(6, 0, tot_item_ids)]\r\n        rec['x_studio_qty'] = qty\r\n        rec['x_studio_sales_price'] = prices  \r\n      \r\n  rec['x_studio_task_status'] = task_status\r\n"
+        },
+        {
+          "id": 26809,
+          "name": "x_studio_serial_no",
+          "field_description": "Serial Number",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27208,
+          "name": "x_studio_driver_name",
+          "field_description": "Driver Name",
+          "ttype": "char",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27214,
+          "name": "x_studio_vehicle_details",
+          "field_description": "Vehicle Details",
+          "ttype": "char",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27216,
+          "name": "x_studio_stage_date",
+          "field_description": "Stage Date",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27307,
+          "name": "x_studio_created_by_1",
+          "field_description": "Created By 1",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27309,
+          "name": "x_studio_created_on_1",
+          "field_description": "Created On 1",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27311,
+          "name": "x_studio_created_by_2",
+          "field_description": "Created By 2",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27313,
+          "name": "x_studio_created_on_2",
+          "field_description": "Created On 2",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27315,
+          "name": "x_studio_created_by_3",
+          "field_description": "Created By 3",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27317,
+          "name": "x_studio_created_on_3",
+          "field_description": "Created On 3",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27319,
+          "name": "x_studio_created_by_4",
+          "field_description": "Created By 4",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27321,
+          "name": "x_studio_created_on_4",
+          "field_description": "Created On 4",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27323,
+          "name": "x_studio_created_by_5",
+          "field_description": "Created By 5",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27325,
+          "name": "x_studio_created_on_5",
+          "field_description": "Created On 5",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27327,
+          "name": "x_studio_created_by_6",
+          "field_description": "Created By 6",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27329,
+          "name": "x_studio_created_on_6",
+          "field_description": "Created On 6",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27331,
+          "name": "x_studio_created_by_7",
+          "field_description": "Created By 7",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27333,
+          "name": "x_studio_created_on_7",
+          "field_description": "Created On 7",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27335,
+          "name": "x_studio_created_by_8",
+          "field_description": "Created By 8",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27337,
+          "name": "x_studio_created_on_8",
+          "field_description": "Created On 8",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27339,
+          "name": "x_studio_created_by_9",
+          "field_description": "Created By 9",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27341,
+          "name": "x_studio_created_on_9",
+          "field_description": "Created On 9",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27343,
+          "name": "x_studio_created_by_10",
+          "field_description": "Created By 10",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27345,
+          "name": "x_studio_created_on_10",
+          "field_description": "Created On 10",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27421,
+          "name": "x_studio_handed_over",
+          "field_description": "Handed Over",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  company_ids = rec.env.context.get('allowed_company_ids', [rec.env.user.company_id.id])\r\n  company = self.env['res.company'].browse(company_ids[0])\r\n  valid = False\r\n  c = 0\r\n  for line in rec.picking_ids:\r\n    if line.state == 'done':\r\n      c += 1\r\n      \r\n  if c > 1:\r\n    valid = True\r\n    \r\n  if valid == True:\r\n    if rec.x_studio_handed_over == False:\r\n      rec['x_studio_handed_over'] = True\r\n      if company.id == 1:\r\n        rec['stage_id'] = 13\r\n      else:\r\n        rec['stage_id'] = 32\r\n      rec['x_studio_stage_date'] = datetime.datetime.now()\r\n      \r\n  rec['x_studio_handed_over'] = valid"
+        },
+        {
+          "id": 28410,
+          "name": "x_studio_rug_approval_status",
+          "field_description": "RUG Approval Status",
+          "ttype": "selection",
+          "store": false,
+          "compute": "for rec in self:\r\n  val = 'Pending RUG Approval'\r\n  for invoices in rec.fsm_task_ids:\r\n      so = self.env['sale.order'].search([('task_id', '=', invoices.id)],limit=1)\r\n      if so:\r\n        if so.x_studio_rug_approved == True:\r\n          val = 'RUG Approved'\r\n        elif so.x_studio_rug_rejected == True:\r\n          val = 'RUG Rejected'\r\n  rec['x_studio_rug_approval_status'] = val"
+        },
+        {
+          "id": 28489,
+          "name": "x_studio_warranty_card",
+          "field_description": "Warranty Card",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29529,
+          "name": "x_studio_repair_reason",
+          "field_description": "Repair Reason",
+          "ttype": "many2many",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29561,
+          "name": "x_studio_cancelled",
+          "field_description": "Cancelled",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29563,
+          "name": "x_studio_cancelled_stage_id",
+          "field_description": "Cancelled Stage Id",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29565,
+          "name": "x_studio_reopened",
+          "field_description": "Reopened",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29569,
+          "name": "x_studio_cancel_reason",
+          "field_description": "Cancel Reason",
+          "ttype": "text",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29571,
+          "name": "x_studio_cancelled_by",
+          "field_description": "Cancelled By",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29573,
+          "name": "x_studio_cancelled_date",
+          "field_description": "Cancelled Date",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29575,
+          "name": "x_studio_reopened_by",
+          "field_description": "Reopened By",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29577,
+          "name": "x_studio_reopened_date",
+          "field_description": "Reopened Date",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29585,
+          "name": "x_studio_cancel_status",
+          "field_description": "Cancel Status",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29587,
+          "name": "x_studio_reopen_status",
+          "field_description": "Reopen Status",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29680,
+          "name": "x_studio_balance_due",
+          "field_description": "Balance Due",
+          "ttype": "float",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29710,
+          "name": "x_studio_re_estimate_status",
+          "field_description": "Re-estimate Status",
+          "ttype": "selection",
+          "store": false,
+          "compute": "for rec in self:\r\n  val = 'None'\r\n  for invoices in rec.fsm_task_ids:\r\n    if invoices.sale_order_id.x_studio_re_estimate_count > 0:\r\n      val = 'Re-estimated'\r\n  rec['x_studio_re_estimate_status'] = val"
+        },
+        {
+          "id": 29712,
+          "name": "x_studio_re_estimate_count",
+          "field_description": "Re-estimate Count",
+          "ttype": "integer",
+          "store": false,
+          "compute": "for rec in self:\r\n  val = 0\r\n  for invoices in rec.fsm_task_ids:\r\n    val = invoices.sale_order_id.x_studio_re_estimate_count\r\n  rec['x_studio_re_estimate_count'] = val"
+        },
+        {
+          "id": 29855,
+          "name": "x_studio_fully_paid_so",
+          "field_description": "Fully Paid SO",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid = False\r\n  for invoices in rec.fsm_task_ids:\r\n    if invoices.x_studio_fully_invoiced_so == True:\r\n      valid = True\r\n      \r\n    if invoices.x_studio_end_quick_repair == True:\r\n      valid = True\r\n \r\n  rec['x_studio_fully_paid_so'] = valid "
+        },
+        {
+          "id": 29880,
+          "name": "x_studio_related_field_QuqN1",
+          "field_description": "New Related Field",
+          "ttype": "integer",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29882,
+          "name": "x_studio_related_field_FNjnC",
+          "field_description": "New Related Field",
+          "ttype": "one2many",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 29884,
+          "name": "x_studio_sale_order",
+          "field_description": "Sales Order",
+          "ttype": "many2one",
+          "store": false,
+          "compute": "for rec in self:\r\n  so = False\r\n  for invoices in rec.fsm_task_ids:\r\n      if invoices.sale_order_id != False:\r\n        so = invoices.sale_order_id.id    \r\n  rec['x_studio_sale_order'] = so   \r\n  \r\n  "
+        },
+        {
+          "id": 29889,
+          "name": "x_studio_materials_used",
+          "field_description": "Materials Used ",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29893,
+          "name": "x_studio_quantity",
+          "field_description": "Quantity",
+          "ttype": "float",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29897,
+          "name": "x_studio_unit_price",
+          "field_description": "Unit Price",
+          "ttype": "char",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 29907,
+          "name": "x_studio_items",
+          "field_description": "Items",
+          "ttype": "many2many",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29917,
+          "name": "x_studio_quick_repair_status",
+          "field_description": "Tested OK",
+          "ttype": "selection",
+          "store": true,
+          "compute": ""
+        },
+        {
+          "id": 29924,
+          "name": "x_studio_qty",
+          "field_description": "Qty",
+          "ttype": "char",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29926,
+          "name": "x_studio_sales_price",
+          "field_description": "Sales Price",
+          "ttype": "char",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29948,
+          "name": "x_studio_related_information",
+          "field_description": "Related Information",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29960,
+          "name": "x_studio_cancelled_2",
+          "field_description": "Cancelled-2",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30241,
+          "name": "x_studio_fsm_task_done",
+          "field_description": "FSM Task Done",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  task_status = False\r\n  for line in rec.fsm_task_ids:\r\n    if line.fsm_done == True:\r\n      task_status = True\r\n      \r\n    if line.x_studio_end_quick_repair == True:\r\n      task_status = True\r\n      \r\n  rec['x_studio_fsm_task_done'] = task_status"
+        },
+        {
+          "id": 30829,
+          "name": "x_studio_sn_updated",
+          "field_description": "SN Updated",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 31551,
+          "name": "x_studio_user_location_validation",
+          "field_description": "User Location Validation",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid = False\r\n  if rec.x_studio_return_receipt_location:\r\n    loc = self.env['stock.location'].search([('id', '=', rec.x_studio_return_receipt_location.id),('x_studio_users_stock_location', 'ilike', self._uid),('active', '=', True)],limit=1)\r\n    if loc:\r\n      valid = False\r\n    else:\r\n      valid = True\r\n  \r\n  rec['x_studio_user_location_validation'] = valid \r\n  "
+        },
+        {
+          "id": 33835,
+          "name": "x_studio_cccc",
+          "field_description": "CCCC",
+          "ttype": "char",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 33841,
+          "name": "x_studio_cccc3",
+          "field_description": "CCCC3",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 33847,
+          "name": "x_studio_stage_name",
+          "field_description": "Stage Name",
+          "ttype": "char",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 33867,
+          "name": "x_studio_virtual_location_1",
+          "field_description": "Virtual Location",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 33877,
+          "name": "x_studio_source_location_1",
+          "field_description": "Source Location",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 63414,
+          "name": "x_studio_city",
+          "field_description": "City",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 63416,
+          "name": "x_studio_branch",
+          "field_description": "Branch",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        }
+      ],
+      "present": [
+        {
+          "label": "x_studio_cancelled",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_repair_complete_stage_updated",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_estimation_sent_stage_updated",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_estimation_approved_stage_updated",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_repair_started_stage_updated",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_invoice_stage_updated",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_handed_over",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_rug_approved",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_send_to_factory",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_receive_at_factory",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_send_to_centre",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_receive_at_centre",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_sn_updated",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_repair_serial_created",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_normal_repair_without_serial_no",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_normal_repair_with_serial_no",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_rug_repair",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_warranty_card",
+          "found": true,
+          "detail": "binary [stored]"
+        },
+        {
+          "label": "x_studio_pick_id",
+          "found": true,
+          "detail": "integer [stored]"
+        },
+        {
+          "label": "x_studio_virtual_location_id",
+          "found": true,
+          "detail": "integer [stored]"
+        },
+        {
+          "label": "x_studio_repair_reason",
+          "found": true,
+          "detail": "many2many [stored]"
+        },
+        {
+          "label": "x_studio_return_receipt_location",
+          "found": true,
+          "detail": "many2one [stored]"
+        },
+        {
+          "label": "x_studio_serial_no",
+          "found": true,
+          "detail": "many2one [stored]"
+        },
+        {
+          "label": "x_studio_source_location",
+          "found": true,
+          "detail": "many2one [stored]"
+        },
+        {
+          "label": "x_studio_job_location",
+          "found": true,
+          "detail": "selection [stored]"
+        },
+        {
+          "label": "x_studio_quick_repair_status",
+          "found": true,
+          "detail": "selection [stored]"
+        },
+        {
+          "label": "x_studio_cancel_status",
+          "found": true,
+          "detail": "selection [stored]"
+        },
+        {
+          "label": "x_studio_repair_status",
+          "found": false
+        },
+        {
+          "label": "x_studio_stage_date",
+          "found": true,
+          "detail": "datetime [stored]"
+        },
+        {
+          "label": "x_studio_created_by_1",
+          "found": true,
+          "detail": "many2one [stored]"
+        },
+        {
+          "label": "x_studio_created_by_4",
+          "found": true,
+          "detail": "many2one [stored]"
+        },
+        {
+          "label": "x_studio_created_by_5",
+          "found": true,
+          "detail": "many2one [stored]"
+        },
+        {
+          "label": "x_studio_created_by_6",
+          "found": true,
+          "detail": "many2one [stored]"
+        },
+        {
+          "label": "x_studio_created_by_7",
+          "found": true,
+          "detail": "many2one [stored]"
+        },
+        {
+          "label": "x_studio_created_by_8",
+          "found": true,
+          "detail": "many2one [stored]"
+        },
+        {
+          "label": "x_studio_created_on_1",
+          "found": true,
+          "detail": "datetime [stored]"
+        },
+        {
+          "label": "x_studio_created_on_4",
+          "found": true,
+          "detail": "datetime [stored]"
+        },
+        {
+          "label": "x_studio_created_on_5",
+          "found": true,
+          "detail": "datetime [stored]"
+        },
+        {
+          "label": "x_studio_created_on_6",
+          "found": true,
+          "detail": "datetime [stored]"
+        },
+        {
+          "label": "x_studio_created_on_7",
+          "found": true,
+          "detail": "datetime [stored]"
+        },
+        {
+          "label": "x_studio_created_on_8",
+          "found": true,
+          "detail": "datetime [stored]"
+        },
+        {
+          "label": "x_studio_fsm_task_done",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_fully_paid_so",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_handed_over",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_re_estimate_count",
+          "found": true,
+          "detail": "integer [computed]"
+        },
+        {
+          "label": "x_studio_sale_order",
+          "found": true,
+          "detail": "many2one [computed]"
+        },
+        {
+          "label": "x_studio_task_status",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_valid_confirm_return",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_valid_confirmed2_so",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_valid_confirmed_so",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_valid_delivered_so",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_valid_invoiced_so",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_valid_return",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_receive_at_centre",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_minimals_availability",
+          "found": false
+        },
+        {
+          "label": "x_studio_invoice_price",
+          "found": false
+        },
+        {
+          "label": "x_studio_unit_price",
+          "found": true,
+          "detail": "char"
+        },
+        {
+          "label": "x_studio_valid_confirmed_so",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_estimation_approved_stage_updated",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_pick_id",
+          "found": true,
+          "detail": "integer [stored]"
+        },
+        {
+          "label": "x_studio_picking_count",
+          "found": false
+        },
+        {
+          "label": "x_studio_repair_location",
+          "found": true,
+          "detail": "many2one [stored]"
+        },
+        {
+          "label": "x_studio_repair_serial_no",
+          "found": false
+        }
+      ]
+    },
+    {
+      "model": "stock.picking",
+      "expected": [
+        "x_studio_cancelled",
+        "x_studio_cash_full_payment_mode",
+        "x_studio_helpdesk_ticket_id",
+        "x_studio_created_from_help_ticket",
+        "x_studio_ticket_sales_order",
+        "x_studio_form_task_items",
+        "x_studio_removed_at_centre",
+        "x_studio_repair_return_location",
+        "x_studio_factory_repair",
+        "x_studio_received_at_centre",
+        "x_studio_picking_count",
+        "x_studio_valid_factory_repair",
+        "x_studio_cash_full_payment_made",
+        "x_studio_fsm_task_done",
+        "x_studio_fully_paid_so",
+        "x_studio_repair_payment_made",
+        "x_studio_valid_factory_repair"
+      ],
+      "found": [
+        {
+          "id": 13562,
+          "name": "x_studio_supplier_invoice_number",
+          "field_description": "Supplier Invoice Number",
+          "ttype": "char",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18259,
+          "name": "x_studio_consignment_no",
+          "field_description": "Consignment No",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18262,
+          "name": "x_studio_custom_clearance_no",
+          "field_description": "Custom Clearance No",
+          "ttype": "char",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18264,
+          "name": "x_studio_pr_type",
+          "field_description": "PR Type",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18266,
+          "name": "x_studio_update_consignment",
+          "field_description": "Update Consignment",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18322,
+          "name": "x_x_studio_created_from_transfer__account_move_count",
+          "field_description": "Created From Transfer count",
+          "ttype": "integer",
+          "store": false,
+          "compute": "\nresults = self.env['account.move'].read_group([('x_studio_created_from_transfer', 'in', self.ids)], ['x_studio_created_from_transfer'], ['x_studio_created_from_transfer'])\ndic = {}\nfor x in results: dic[x['x_studio_created_from_transfer'][0]] = x['x_studio_created_from_transfer_count']\nfor record in self: record['x_x_studio_created_from_transfer__account_move_count'] = dic.get(record.id, 0)\n"
+        },
+        {
+          "id": 18361,
+          "name": "x_x_studio_create_from_transfer_1__account_move_count",
+          "field_description": "Create From Transfer count",
+          "ttype": "integer",
+          "store": false,
+          "compute": "\nresults = self.env['account.move'].read_group([('x_studio_create_from_transfer_1', 'in', self.ids)], ['x_studio_create_from_transfer_1'], ['x_studio_create_from_transfer_1'])\ndic = {}\nfor x in results: dic[x['x_studio_create_from_transfer_1'][0]] = x['x_studio_create_from_transfer_1_count']\nfor record in self: record['x_x_studio_create_from_transfer_1__account_move_count'] = dic.get(record.id, 0)\n"
+        },
+        {
+          "id": 21825,
+          "name": "x_studio_supplier_invoice_number_1",
+          "field_description": "Supplier Invoice Number",
+          "ttype": "char",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 21894,
+          "name": "x_studio_maintenance_request_",
+          "field_description": "Maintenance Request #",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 23050,
+          "name": "x_studio_sales_order",
+          "field_description": "Sales Order",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26432,
+          "name": "x_studio_helpdesk_ticket_id",
+          "field_description": "Helpdesk Ticket Id",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26434,
+          "name": "x_studio_created_from_help_ticket",
+          "field_description": "Created from Help Ticket",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26437,
+          "name": "x_studio_repair_payment_made",
+          "field_description": "Repair Payment Made",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid = False\r\n  if rec.sale_id.id != False:\r\n    if rec.sale_id.x_studio_order_payment_method == 'Credit':\r\n      valid = True\r\n    elif rec.sale_id.x_studio_rug_approved == True:\r\n      valid = True\r\n    else:\r\n      #for invoices in rec.sale_id.invoice_ids:\r\n      #  if invoices.payment_state == 'in_payment' or invoices.payment_state == 'partial' or invoices.payment_state == 'paid':\r\n      #    valid = True\r\n      payment = self.env['account.payment'].search([('x_studio_sales_order', '=', rec.sale_id.id),('state', '=', 'posted')])\r\n      if payment:\r\n        valid = True\r\n      else:\r\n        for invoices in rec.sale_id.invoice_ids:\r\n          if invoices.payment_state == 'in_payment' or invoices.payment_state == 'partial' or invoices.payment_state == 'paid':\r\n            valid = True\r\n  rec['x_studio_repair_payment_made'] = valid "
+        },
+        {
+          "id": 26441,
+          "name": "x_studio_quotation_type",
+          "field_description": "Quotation Type",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26443,
+          "name": "x_studio_repair_return_location",
+          "field_description": "Repair Return Location",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26445,
+          "name": "x_studio_return_receipt_location",
+          "field_description": "Return Receipt Location",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26447,
+          "name": "x_studio_return_sequence",
+          "field_description": "Return Sequence",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26449,
+          "name": "x_studio_transfer_approval",
+          "field_description": "Transfer Approval",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26781,
+          "name": "x_studio_task_status",
+          "field_description": "Task Status",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 28413,
+          "name": "x_studio_cash_full_payment_made",
+          "field_description": "Cash Full Payment Made",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid = False\r\n  inv_found = False\r\n  so_amount = rec.x_studio_ticket_sales_order.amount_total \r\n  inv_amount = 0\r\n  if rec.x_studio_ticket_sales_order != False:\r\n    if rec.x_studio_ticket_sales_order.state == 'cancel':\r\n      if rec.x_studio_created_from_help_ticket.x_studio_repair_complete_stage_updated == True:\r\n        valid = False\r\n      if rec.x_studio_helpdesk_ticket_id.x_studio_repair_complete_stage_updated == True:\r\n        valid = False  \r\n    else:\r\n      if rec.x_studio_ticket_sales_order.x_studio_order_payment_method == 'Cash':\r\n        for invoices in rec.x_studio_ticket_sales_order.invoice_ids:\r\n          ##if invoices.partner_id.x_studio_payment_method == 'Cash':\r\n            inv_amount += invoices.amount_total\r\n            if invoices.payment_state == 'not_paid' or invoices.payment_state == 'partial' or invoices.payment_state == 'reversed' or invoices.payment_state == 'invoicing_legacy':\r\n              valid = True\r\n            if rec.x_studio_ticket_sales_order.x_studio_rug_approved == True:\r\n              valid = False\r\n        \r\n        if so_amount > inv_amount:\r\n          valid = True\r\n      else:\r\n        for invoices in rec.x_studio_ticket_sales_order.invoice_ids:\r\n          inv_found = True\r\n          \r\n        if inv_found == True:\r\n          valid = False\r\n        else:\r\n          valid = True\r\n       \r\n      \r\n  if rec.x_studio_created_from_help_ticket.x_studio_quick_repair_status == 'Quick Repair':\r\n    valid = False\r\n  \r\n  if rec.x_studio_helpdesk_ticket_id.x_studio_quick_repair_status == 'Quick Repair':\r\n    valid = False  \r\n    \r\n  rec['x_studio_cash_full_payment_made'] = valid "
+        },
+        {
+          "id": 28614,
+          "name": "x_studio_xxx",
+          "field_description": "XXX",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28616,
+          "name": "x_studio_budget_created",
+          "field_description": "Budget Created",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28618,
+          "name": "x_studio_analytic_account",
+          "field_description": "Analytic Account",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28681,
+          "name": "x_studio_related_field_zZDiA",
+          "field_description": "New Related Field",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28683,
+          "name": "x_studio_quotation_type_2",
+          "field_description": "Quotation Type-2",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28794,
+          "name": "x_studio_transfer_request_sent",
+          "field_description": "Transfer Request Sent",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28796,
+          "name": "x_studio_transfer_approved",
+          "field_description": "Transfer Approved",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28798,
+          "name": "x_studio_transfer_rejected",
+          "field_description": "Transfer Rejected",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28804,
+          "name": "x_studio_valid_transfer_lines",
+          "field_description": "Valid Transfer Lines",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid_lines = False\r\n  \r\n  for line in rec.move_line_ids_without_package:\r\n    valid_lines = True  \r\n    \r\n  for line in rec.move_ids_without_package:\r\n    valid_lines = True\r\n  \r\n  rec['x_studio_valid_transfer_lines'] = valid_lines"
+        },
+        {
+          "id": 29590,
+          "name": "x_studio_ttt",
+          "field_description": "TTT",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29592,
+          "name": "x_studio_cancelled",
+          "field_description": "Cancelled",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29837,
+          "name": "x_studio_need_approval",
+          "field_description": "Need Approval",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  val = False\r\n  if rec.picking_type_code == 'internal':\r\n    if rec.origin == False:\r\n      val = True\r\n      \r\n  if rec.picking_type_code == 'outgoing':\r\n    if rec.origin != False:\r\n      val = True\r\n  \r\n  rec['x_studio_need_approval'] = val\r\n  "
+        },
+        {
+          "id": 29860,
+          "name": "x_studio_fully_paid_so",
+          "field_description": "Fully Paid SO",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  value = False\r\n  if rec.x_studio_created_from_help_ticket.id != False:\r\n    if rec.x_studio_created_from_help_ticket.x_studio_sale_order.id != False:\r\n      if rec.x_studio_created_from_help_ticket.x_studio_sale_order.partner_id.id:\r\n        if rec.x_studio_created_from_help_ticket.x_studio_sale_order.x_studio_order_payment_method == 'Credit':\r\n          value = False\r\n        else:\r\n          value = rec.x_studio_created_from_help_ticket.x_studio_fully_paid_so\r\n    else:\r\n      if rec.x_studio_created_from_help_ticket.x_studio_quick_repair_status == 'Quick Repair':\r\n          value = True\r\n  elif rec.x_studio_helpdesk_ticket_id.id  != False:\r\n    if rec.x_studio_helpdesk_ticket_id.x_studio_sale_order.id != False:\r\n      if rec.x_studio_helpdesk_ticket_id.x_studio_sale_order.partner_id.id:\r\n        if rec.x_studio_helpdesk_ticket_id.x_studio_sale_order.x_studio_order_payment_method == 'Credit':\r\n          value = False\r\n        else:\r\n          value = rec.x_studio_helpdesk_ticket_id.x_studio_fully_paid_so\r\n    else:\r\n      #if rec.x_studio_helpdesk_ticket_id.x_studio_quick_repair_status == 'Quick Repair':\r\n      value = True\r\n      \r\n  rec['x_studio_fully_paid_so'] = value"
+        },
+        {
+          "id": 29974,
+          "name": "x_studio_fsm_task_done",
+          "field_description": "FSM Task Done",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  value = False\r\n  if rec.x_studio_created_from_help_ticket.id  != False:\r\n    for line in rec.x_studio_created_from_help_ticket.fsm_task_ids:\r\n      if line.fsm_done == True:\r\n        value = True\r\n      else:\r\n        if line.x_studio_end_quick_repair == True:\r\n          value = True\r\n  elif rec.x_studio_helpdesk_ticket_id.id  != False:\r\n    for line in rec.x_studio_helpdesk_ticket_id.fsm_task_ids:\r\n      if line.fsm_done == True:\r\n        value = True\r\n      else:\r\n        if line.x_studio_end_quick_repair == True:\r\n          value = True\r\n  \r\n  rec['x_studio_fsm_task_done'] = value\r\n"
+        },
+        {
+          "id": 30248,
+          "name": "x_studio_valid_factory_repair",
+          "field_description": "Valid Factory Repair",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  value = False\r\n  value2 = False\r\n  value3 = False \r\n  value4 = False\r\n  if rec.x_studio_created_from_help_ticket.id != False:\r\n    if rec.x_studio_created_from_help_ticket.x_studio_receive_at_factory == True:\r\n      value = True\r\n    if rec.x_studio_created_from_help_ticket.x_studio_job_location == 'Factory Repair':\r\n      value2 = True\r\n      \r\n    value3 = rec.x_studio_created_from_help_ticket.x_studio_receive_at_centre\r\n    \r\n    if rec.x_studio_created_from_help_ticket.pickings_count > 1:\r\n      value4 = True \r\n      \r\n  elif rec.x_studio_helpdesk_ticket_id.id  != False:\r\n    if rec.x_studio_helpdesk_ticket_id.x_studio_receive_at_factory == True:\r\n      value = True\r\n    if rec.x_studio_helpdesk_ticket_id.x_studio_job_location == 'Factory Repair':\r\n      value2 = True\r\n      \r\n    value3 = rec.x_studio_helpdesk_ticket_id.x_studio_receive_at_centre\r\n    \r\n    if rec.x_studio_helpdesk_ticket_id.pickings_count > 1:\r\n      value4 = True \r\n      \r\n  rec['x_studio_factory_repair'] = value2\r\n  rec['x_studio_received_at_centre'] = value3\r\n  rec['x_studio_picking_count'] = value4\r\n  rec['x_studio_valid_factory_repair'] = value\r\n  "
+        },
+        {
+          "id": 30253,
+          "name": "x_studio_factory_repair",
+          "field_description": "Factory Repair",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30302,
+          "name": "x_studio_received_at_centre",
+          "field_description": "Received at Centre",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30304,
+          "name": "x_studio_validation",
+          "field_description": "Validation",
+          "ttype": "char",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30307,
+          "name": "x_studio_picking_count",
+          "field_description": "Picking Count",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30320,
+          "name": "x_studio_ticket_sales_order",
+          "field_description": "Ticket Sales Order",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 30417,
+          "name": "x_studio_created_from_material_request_no",
+          "field_description": "Created from Material Request No",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30776,
+          "name": "x_studio_journal_type",
+          "field_description": "Journal Type",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30779,
+          "name": "x_studio_movement_journal",
+          "field_description": "Movement Journal",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30795,
+          "name": "x_studio_gl_account_status",
+          "field_description": "G/L Account Status",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30797,
+          "name": "x_studio_offset_account_updated",
+          "field_description": "Offset Account Updated",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30802,
+          "name": "x_studio_type_of_operation",
+          "field_description": "Type of Operation",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30817,
+          "name": "x_studio_mj_in",
+          "field_description": "MJ IN",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30821,
+          "name": "x_studio_mj_out",
+          "field_description": "MJ OUT",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30831,
+          "name": "x_studio_sequence_code",
+          "field_description": "Sequence Code",
+          "ttype": "char",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30998,
+          "name": "x_studio_user_location_validation",
+          "field_description": "User Location Validation",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  company_ids = rec.env.context.get('allowed_company_ids', [rec.env.user.company_id.id])\r\n  company = self.env['res.company'].browse(company_ids[0])\r\n  \r\n  valid = False\r\n  valid2 = False\r\n  if rec.x_studio_type_of_operation == 'internal':\r\n    loc = self.env['stock.location'].search([('id', '=', rec.location_dest_id.id),('x_studio_users_internal_transfer', 'ilike', self._uid),('active', '=', True),('company_id', '=', company.id)],limit=1)\r\n    if loc:\r\n      valid = False\r\n    else:\r\n      valid = True\r\n  else:\r\n    if rec.x_studio_type_of_operation == 'outgoing':\r\n      if rec.x_studio_created_from_help_ticket:\r\n        loc = self.env['stock.location'].search([('id', '=', rec.location_dest_id.id),('x_studio_users_stock_location', 'ilike', self._uid),('active', '=', True),('company_id', '=', company.id)],limit=1)\r\n        if loc:\r\n          valid = False\r\n        else:\r\n          valid = True\r\n      else:\r\n        loc = self.env['stock.location'].search([('id', '=', rec.location_id.id),('x_studio_users_stock_location', 'ilike', self._uid),('active', '=', True),('company_id', '=', company.id)],limit=1)\r\n        if loc:\r\n          valid2 = False\r\n        else:\r\n          valid2 = True\r\n    else:\r\n      loc = self.env['stock.location'].search([('id', '=', rec.location_dest_id.id),('x_studio_users_stock_location', 'ilike', self._uid),('active', '=', True),('company_id', '=', company.id)],limit=1)\r\n    if loc:\r\n      valid = False\r\n    else:\r\n      valid = True\r\n  \r\n  rec['x_studio_user_location_validation'] = valid \r\n  rec['x_studio_user_location_validation_2'] = valid2 \r\n  "
+        },
+        {
+          "id": 31508,
+          "name": "x_studio_user_location_validation_2",
+          "field_description": "User Location Validation 2",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        }
+      ],
+      "present": [
+        {
+          "label": "x_studio_cancelled",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_cash_full_payment_mode",
+          "found": false
+        },
+        {
+          "label": "x_studio_helpdesk_ticket_id",
+          "found": true,
+          "detail": "many2one [stored]"
+        },
+        {
+          "label": "x_studio_created_from_help_ticket",
+          "found": true,
+          "detail": "many2one [stored]"
+        },
+        {
+          "label": "x_studio_ticket_sales_order",
+          "found": true,
+          "detail": "many2one"
+        },
+        {
+          "label": "x_studio_form_task_items",
+          "found": false
+        },
+        {
+          "label": "x_studio_removed_at_centre",
+          "found": false
+        },
+        {
+          "label": "x_studio_repair_return_location",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_factory_repair",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_received_at_centre",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_picking_count",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_valid_factory_repair",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_cash_full_payment_made",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_fsm_task_done",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_fully_paid_so",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_repair_payment_made",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_valid_factory_repair",
+          "found": true,
+          "detail": "boolean [computed]"
+        }
+      ]
+    },
+    {
+      "model": "project.task",
+      "expected": [
+        "x_studio_diagnosis_ids",
+        "x_studio_repair_image_01",
+        "x_studio_quick_repair_status",
+        "x_studio_end_quick_repair",
+        "x_studio_cancelled",
+        "x_studio_repair_reason",
+        "x_studio_repair_stage",
+        "x_studio_repair_information",
+        "x_studio_quotation_type",
+        "x_studio_payment_type",
+        "x_studio_warranty_card",
+        "x_studio_valid_confirm_so",
+        "x_studio_valid_confirm2_so",
+        "x_studio_valid_delivered_so",
+        "x_studio_valid_delivered_so2",
+        "x_studio_valid_invoiced_so",
+        "x_studio_fully_invoiced_so",
+        "x_studio_incomplete_delivery_available",
+        "x_studio_valid_diagnosis"
+      ],
+      "found": [
+        {
+          "id": 18276,
+          "name": "x_studio_priority",
+          "field_description": "Priority",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18278,
+          "name": "x_studio_created_date",
+          "field_description": "Created Date",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18286,
+          "name": "x_studio_starting_date",
+          "field_description": "Starting Date",
+          "ttype": "datetime",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26406,
+          "name": "x_studio_quotation_type",
+          "field_description": "Quotation Type",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26408,
+          "name": "x_studio_material_availability",
+          "field_description": "Material Availability",
+          "ttype": "selection",
+          "store": false,
+          "compute": "for rec in self:\r\n  val = 'Material Not Ready'\r\n  if rec.sale_order_id != False:\r\n    if rec.sale_order_id.state == 'done':\r\n      delivery = self.env['stock.picking'].search([('sale_id', '=', rec.sale_order_id.id),('state', '=', 'done'),('picking_type_code', '=', 'outgoing'),('location_id', '!=', rec.sale_order_id.warehouse_id.lot_stock_id.id)],limit=1)\r\n      if delivery:\r\n        val = 'Material Ready'\r\n      \r\n  rec['x_studio_material_availability'] = val\r\n  "
+        },
+        {
+          "id": 26410,
+          "name": "x_studio_valid_confirm_so",
+          "field_description": "Valid Confirm SO",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid = False\r\n  if rec.sale_order_id != False:\r\n    if rec.sale_order_id.state == 'sent':\r\n      valid = True\r\n    \r\n  rec['x_studio_valid_confirm_so'] = valid"
+        },
+        {
+          "id": 26412,
+          "name": "x_studio_valid_confirm2_so",
+          "field_description": "Valid Confirm2 SO",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid = False\r\n  if rec.sale_order_id != False:\r\n    if rec.sale_order_id.state == 'done':\r\n      valid = True\r\n    \r\n  rec['x_studio_valid_confirm2_so'] = valid"
+        },
+        {
+          "id": 26414,
+          "name": "x_studio_valid_invoiced_so",
+          "field_description": "Valid Invoiced SO",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid = False\r\n  valid2 = False\r\n  if rec.sale_order_id.id != False:\r\n    if rec.sale_order_id.x_studio_order_payment_method == 'Credit' or rec.sale_order_id.x_studio_rug_approved == True:\r\n      if rec.x_studio_repair_completed_stage_updated == True:\r\n        if rec.sale_order_id.state == 'cancel':\r\n          valid = True\r\n        else:\r\n          if rec.sale_order_id.x_studio_order_payment_method == 'Credit':\r\n            valid = True\r\n          else:\r\n            if rec.sale_order_id.x_studio_rug_approved == True:\r\n              valid = True\r\n            else:\r\n              payment = self.env['account.payment'].search([('x_studio_sales_order', '=', rec.sale_order_id.id),('state', '=', 'posted')])\r\n              if payment:\r\n                valid = True\r\n              else:\r\n                for invoices in rec.sale_order_id.invoice_ids:\r\n                  if invoices.payment_state == 'in_payment':\r\n                    valid = True\r\n                  else:\r\n                    valid2 = True\r\n              \r\n              if valid2 == True:\r\n                valid = False  \r\n    else:\r\n      if rec.sale_order_id.state == 'cancel':\r\n        valid = True\r\n      else:\r\n        payment = self.env['account.payment'].search([('x_studio_sales_order', '=', rec.sale_order_id.id),('state', '=', 'posted')])\r\n        if payment:\r\n          valid = True\r\n        else:\r\n          for invoices in rec.sale_order_id.invoice_ids:\r\n            if invoices.payment_state == 'in_payment':\r\n              valid = True\r\n            else:\r\n              valid2 = True\r\n              \r\n        if valid2 == True:\r\n          valid = False \r\n  rec['x_studio_valid_invoiced_so'] = valid"
+        },
+        {
+          "id": 26416,
+          "name": "x_studio_valid_delivered_so",
+          "field_description": "Valid Delivered SO",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid = False\r\n  valid2 = False\r\n  if rec.sale_order_id != False:\r\n    if rec.sale_order_id.state == 'done':\r\n      delivery = self.env['stock.picking'].search([('sale_id', '=', rec.sale_order_id.id),('state', '=', 'done')],limit=1)\r\n      if delivery:\r\n        valid = True\r\n      loc_type = self.env['stock.location'].search([('usage', '=', 'customer')],limit=1) \r\n      if loc_type:\r\n        delivery2 = self.env['stock.picking'].search([('sale_id', '=', rec.sale_order_id.id),('state', '=', 'done'),('location_dest_id', '=', loc_type.id)],limit=1)\r\n        if delivery2:\r\n          valid2 = True\r\n  \r\n  rec['x_studio_valid_delivered_so'] = valid\r\n  rec['x_studio_valid_delivered_so2'] = valid2"
+        },
+        {
+          "id": 26418,
+          "name": "x_studio_incomplete_delivery_available",
+          "field_description": "Incomplete Delivery Available",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid = False\r\n  if rec.sale_order_id != False:\r\n    if rec.sale_order_id.state == 'cancel':\r\n      if rec.x_studio_repair_completed_stage_updated == True:\r\n        valid = False\r\n    else:    \r\n    #\r\n      delivery = self.env['stock.picking'].search([('sale_id', '=', rec.sale_order_id.id),('state', '!=', 'done')],limit=1)\r\n      if delivery:\r\n        if delivery.state == 'cancel':\r\n          valid = False\r\n        else:\r\n          valid = True\r\n      else:\r\n        delivery2 = self.env['stock.picking'].search([('sale_id', '=', rec.sale_order_id.id)],limit=1)\r\n        if delivery2:\r\n          valid = False\r\n        else:\r\n          valid = True  \r\n    \r\n  rec['x_studio_incomplete_delivery_available'] = valid\r\n"
+        },
+        {
+          "id": 26420,
+          "name": "x_studio_repair_image_01",
+          "field_description": "Repair Image 01",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26422,
+          "name": "x_studio_repair_image_02",
+          "field_description": "Repair Image 02",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26797,
+          "name": "x_studio_repair_reason",
+          "field_description": "Repair Reason",
+          "ttype": "many2many",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28493,
+          "name": "x_studio_warranty_card",
+          "field_description": "Warranty Card",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29462,
+          "name": "x_studio_diagnosis_ids",
+          "field_description": "Diagnosis Ids",
+          "ttype": "one2many",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29558,
+          "name": "x_studio_valid_diagnosis",
+          "field_description": "Valid Diagnosis",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid_lines = False\r\n  for line in rec.x_studio_diagnosis_ids:\r\n    valid_lines = True\r\n  rec['x_studio_valid_diagnosis'] = valid_lines"
+        },
+        {
+          "id": 29594,
+          "name": "x_studio_cancelled",
+          "field_description": "Cancelled",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29852,
+          "name": "x_studio_fully_invoiced_so",
+          "field_description": "Fully Invoiced SO",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid = False\r\n  if rec.sale_order_id != False:\r\n    if rec.sale_order_id.state == 'cancel':\r\n      if rec.x_studio_repair_completed_stage_updated == True:\r\n        valid = True\r\n        #\r\n    else:\r\n      if rec.sale_order_id.invoice_status == 'invoiced':\r\n        valid = True\r\n    \r\n  rec['x_studio_fully_invoiced_so'] = valid"
+        },
+        {
+          "id": 29909,
+          "name": "x_studio_end_quick_repair",
+          "field_description": "End Quick Repair",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29915,
+          "name": "x_studio_quick_repair_status_1",
+          "field_description": "Quick Repair Status",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29950,
+          "name": "x_studio_related_information",
+          "field_description": "Related Information",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30246,
+          "name": "x_studio_payment_type",
+          "field_description": "Payment Type",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30318,
+          "name": "x_studio_valid_delivered_so2",
+          "field_description": "Valid Delivered SO2",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30322,
+          "name": "x_studio_repair_completed_stage_updated",
+          "field_description": "Repair Completed Stage Updated",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        }
+      ],
+      "present": [
+        {
+          "label": "x_studio_diagnosis_ids",
+          "found": true,
+          "detail": "one2many [stored]"
+        },
+        {
+          "label": "x_studio_repair_image_01",
+          "found": true,
+          "detail": "binary [stored]"
+        },
+        {
+          "label": "x_studio_quick_repair_status",
+          "found": false
+        },
+        {
+          "label": "x_studio_end_quick_repair",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_cancelled",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_repair_reason",
+          "found": true,
+          "detail": "many2many [stored]"
+        },
+        {
+          "label": "x_studio_repair_stage",
+          "found": false
+        },
+        {
+          "label": "x_studio_repair_information",
+          "found": false
+        },
+        {
+          "label": "x_studio_quotation_type",
+          "found": true,
+          "detail": "selection [stored]"
+        },
+        {
+          "label": "x_studio_payment_type",
+          "found": true,
+          "detail": "selection [stored]"
+        },
+        {
+          "label": "x_studio_warranty_card",
+          "found": true,
+          "detail": "binary [stored]"
+        },
+        {
+          "label": "x_studio_valid_confirm_so",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_valid_confirm2_so",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_valid_delivered_so",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_valid_delivered_so2",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_valid_invoiced_so",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_fully_invoiced_so",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_incomplete_delivery_available",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_valid_diagnosis",
+          "found": true,
+          "detail": "boolean [computed]"
+        }
+      ]
+    },
+    {
+      "model": "sale.order",
+      "expected": [
+        "x_studio_quotation_type",
+        "x_studio_order_payment_method",
+        "x_studio_rug_approved",
+        "x_studio_re_estimate_count",
+        "x_studio_cancelled",
+        "x_studio_tag_approved",
+        "x_studio_tag_confirmed",
+        "x_studio_tag_rejected",
+        "x_studio_tag_request_sent",
+        "x_studio_customer_payment_method",
+        "x_studio_fully_paid",
+        "x_studio_fsm_done"
+      ],
+      "found": [
+        {
+          "id": 19222,
+          "name": "x_studio_over_credit",
+          "field_description": "Over Credit",
+          "ttype": "boolean",
+          "store": true,
+          "compute": "for record in self:\r\n  record['x_studio_over_credit'] = False\r\n  if record.partner_id.id:\r\n    if record.x_studio_quotation_type == 'Repair':\r\n      amount_total = record.amount_total * 0.5\r\n    else:\r\n      amount_total = record.amount_total\r\n      \r\n    if record.x_studio_order_payment_method == 'Credit':\r\n      record['x_studio_over_credit'] = (record.partner_invoice_id.credit + amount_total) > record.partner_invoice_id.credit_limit"
+        },
+        {
+          "id": 19224,
+          "name": "x_studio_customer_payment_method",
+          "field_description": "Customer Payment Type",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19226,
+          "name": "x_studio_order_payment_method",
+          "field_description": "Order Payment Type",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19228,
+          "name": "x_studio_credit_limit_approved",
+          "field_description": "Credit Limit Approved",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19232,
+          "name": "x_studio_customer_credit_limit",
+          "field_description": "Customer Credit Limit",
+          "ttype": "float",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19234,
+          "name": "x_studio_cust_total_receivable",
+          "field_description": "Cust. Total Receivable",
+          "ttype": "monetary",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 19236,
+          "name": "x_studio_current_tot_amount",
+          "field_description": "Current Tot. Amount",
+          "ttype": "float",
+          "store": true,
+          "compute": "for record in self:\r\n      record['x_studio_current_tot_amount'] = record.amount_total"
+        },
+        {
+          "id": 19238,
+          "name": "x_studio_over_credit_amount",
+          "field_description": "Over Credit Amount",
+          "ttype": "float",
+          "store": true,
+          "compute": "for record in self:\r\n  if record.partner_id.id:\r\n    record['x_studio_over_credit_amount'] = 0\r\n    if record.x_studio_order_payment_method == 'Credit':\r\n      record['x_studio_over_credit_amount'] = (record.partner_invoice_id.credit + record.amount_total) - record.partner_invoice_id.credit_limit"
+        },
+        {
+          "id": 19405,
+          "name": "x_studio_approval_request_sent",
+          "field_description": "Approval Request Sent",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19407,
+          "name": "x_studio_grant_temporary_credit",
+          "field_description": "Temporary Credit Sale",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19409,
+          "name": "x_studio_tem_credit_approval_request_sent",
+          "field_description": "Tem. Credit Approval Request Sent",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19411,
+          "name": "x_studio_temporary_credit_approved",
+          "field_description": "Temporary Credit Approved",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19413,
+          "name": "x_studio_total_overdue",
+          "field_description": "Total Overdue",
+          "ttype": "monetary",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 19415,
+          "name": "x_studio_overdue",
+          "field_description": "Overdue",
+          "ttype": "boolean",
+          "store": true,
+          "compute": "for record in self:\r\n  record['x_studio_overdue'] = False\r\n  if record.partner_id.id:\r\n    if record.x_studio_order_payment_method == 'Credit':\r\n      record['x_studio_overdue'] = record.partner_invoice_id.total_overdue > 0.00"
+        },
+        {
+          "id": 19417,
+          "name": "x_studio_overdue_approved",
+          "field_description": "Overdue Approved",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19419,
+          "name": "x_studio_overdue_request_sent",
+          "field_description": "Overdue Request Sent",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19450,
+          "name": "x_studio_over_bank_guarantee",
+          "field_description": "Over Bank Guarantee",
+          "ttype": "boolean",
+          "store": true,
+          "compute": "for record in self:\r\n  record['x_studio_over_bank_guarantee'] = False\r\n  if record.partner_id.id:\r\n    if record.x_studio_order_payment_method == 'Credit' and record.x_studio_valid_bank_guarantee == True:\r\n      if record.partner_id.x_studio_expiry_date < datetime.date.today():\r\n        record['x_studio_over_bank_guarantee'] = True\r\n      else:\r\n        record['x_studio_over_bank_guarantee'] = (record.partner_invoice_id.credit + record.amount_total) > record.partner_invoice_id.x_studio_bank_guarantee_amount"
+        },
+        {
+          "id": 19452,
+          "name": "x_studio_customer_bank_guarantee",
+          "field_description": "Customer Bank Guarantee",
+          "ttype": "float",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19456,
+          "name": "x_studio_current_tot_amount_1",
+          "field_description": "Current Tot. Amount",
+          "ttype": "float",
+          "store": true,
+          "compute": "for record in self:\r\n  record['x_studio_current_tot_amount_1'] = record.amount_total"
+        },
+        {
+          "id": 19458,
+          "name": "x_studio_over_bank_guarantee_amount",
+          "field_description": "Over Bank Guarantee Amount",
+          "ttype": "float",
+          "store": true,
+          "compute": "for record in self:\r\n  if record.partner_id.id:\r\n    record['x_studio_over_bank_guarantee_amount'] = 0\r\n    if record.x_studio_order_payment_method == 'Credit'and record.x_studio_valid_bank_guarantee == True:\r\n      record['x_studio_over_bank_guarantee_amount'] = (record.partner_invoice_id.credit + record.amount_total) - record.partner_invoice_id.x_studio_bank_guarantee_amount"
+        },
+        {
+          "id": 19460,
+          "name": "x_studio_bank_guarantee_approved",
+          "field_description": "Bank Guarantee Approved",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19467,
+          "name": "x_studio_valid_bank_guarantee",
+          "field_description": "Valid Bank Guarantee",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19469,
+          "name": "x_studio_cust_total_receivable_1",
+          "field_description": "Cust. Total Receivable",
+          "ttype": "monetary",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 19471,
+          "name": "x_studio_bank_guarantee_request_sent",
+          "field_description": "Bank Guarantee Request Sent",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19473,
+          "name": "x_studio_petty_cash_reimbursement",
+          "field_description": "Petty Cash Reimbursement",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19475,
+          "name": "x_studio_sell_and_win",
+          "field_description": "Sell and Win",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19502,
+          "name": "x_studio_over_commission",
+          "field_description": "Over Commission",
+          "ttype": "boolean",
+          "store": true,
+          "compute": "for rec in self:\r\n  rec['x_studio_over_commission'] = False\r\n  for line in rec.order_line:\r\n    if line.x_studio_over_commission == True:\r\n      rec['x_studio_over_commission'] = True\r\n  "
+        },
+        {
+          "id": 19504,
+          "name": "x_studio_over_comm_approval_request_sent",
+          "field_description": "Over Comm. Approval Request Sent",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19508,
+          "name": "x_studio_over_commission_approved",
+          "field_description": "Over Commission Approved",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19512,
+          "name": "x_studio_margin_exceed",
+          "field_description": "Margin Exceed",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  rec['x_studio_margin_exceed'] = False\r\n  for line in rec.order_line:\r\n    if line.x_studio_margin_exceed == True:\r\n      rec['x_studio_margin_exceed'] = True"
+        },
+        {
+          "id": 19514,
+          "name": "x_studio_margin_approval_request_sent",
+          "field_description": "Margin Approval Request Sent",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19516,
+          "name": "x_studio_",
+          "field_description": "Test Field",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19518,
+          "name": "x_studio_margin_approved",
+          "field_description": "Margin Approved",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19545,
+          "name": "x_studio_expiry_date",
+          "field_description": "Bank Guarantee Expiry Date",
+          "ttype": "date",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19547,
+          "name": "x_studio_guarantee_status",
+          "field_description": "Guarantee Status",
+          "ttype": "char",
+          "store": true,
+          "compute": "for record in self:\r\n  if record.x_studio_order_payment_method == 'Credit' and record.x_studio_valid_bank_guarantee == True:\r\n    if record.partner_id.x_studio_expiry_date < datetime.date.today():\r\n      record['x_studio_guarantee_status'] = 'Bank Guarantee has Expired'\r\n    else:\r\n      record['x_studio_guarantee_status'] = 'Valid Bank Guarantee'"
+        },
+        {
+          "id": 23056,
+          "name": "x_studio_valid_order_lines",
+          "field_description": "Valid Order Lines",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  val = False\r\n  val2 = False\r\n  val3 = False\r\n  for line in rec.order_line:\r\n    if line.display_type == False:\r\n      val2 = False\r\n      if line.product_uom_qty == 0:\r\n        val2 = True\r\n      else:\r\n        if line.price_unit == 0:\r\n          val2 = True\r\n        else:\r\n          val = True\r\n          \r\n      if val2 == True:\r\n        val3 = True\r\n  \r\n  if val3 == True:\r\n    val = False\r\n  \r\n  rec['x_studio_valid_order_lines'] = val\r\n  "
+        },
+        {
+          "id": 23059,
+          "name": "x_studio_bank_guarantee_validation",
+          "field_description": "Bank Guarantee Validation",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for record in self:\r\n  validatioin = False\r\n  \r\n  if record.x_studio_bank_guarantee_approved == False:\r\n    if record.partner_id.customer_rank > 0:\r\n      if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':\r\n        if record.partner_id.x_studio_mandatory_bank_guarantee == True:\r\n          if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():\r\n            validatioin = True\r\n          else:\r\n            if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):\r\n              validatioin = True\r\n        else:\r\n          if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():\r\n            validatioin = False  \r\n          else:\r\n            if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):\r\n              validatioin = False    \r\n    \r\n  record['x_studio_bank_guarantee_validation'] = validatioin"
+        },
+        {
+          "id": 23062,
+          "name": "x_studio_bank_guarantee_notification",
+          "field_description": "Bank Guarantee Notification",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for record in self:\r\n  notification = False\r\n  if record.x_studio_bank_guarantee_approved == False:\r\n    if record.partner_id.customer_rank > 0:\r\n      if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':\r\n        if record.partner_id.x_studio_mandatory_bank_guarantee == True:\r\n          if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():\r\n            notification = False\r\n          else:\r\n            if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):\r\n              notification = False\r\n        else:\r\n          if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():\r\n            notification = True  \r\n          else:\r\n            if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_invoice_id.credit + record.amount_total):\r\n              notification = True    \r\n  \r\n  record['x_studio_bank_guarantee_notification'] = notification"
+        },
+        {
+          "id": 23067,
+          "name": "x_studio_bg_sent",
+          "field_description": "BG Sent",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 23123,
+          "name": "x_studio_credit_limit_validation",
+          "field_description": "Credit Limit Validation",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for record in self:\r\n  record['x_studio_credit_limit_validation'] = False\r\n  if record.x_studio_credit_limit_approved == False:\r\n    if record.partner_id.id:\r\n      if record.x_studio_order_payment_method == 'Credit':\r\n        record['x_studio_credit_limit_validation'] = (record.partner_invoice_id.credit + record.amount_total) > record.partner_invoice_id.credit_limit"
+        },
+        {
+          "id": 26404,
+          "name": "x_studio_quotation_type",
+          "field_description": "Quotation Type",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26451,
+          "name": "x_studio_rug_confirmed",
+          "field_description": "RUG Confirmed",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26453,
+          "name": "x_studio_rug_approved",
+          "field_description": "RUG Approved",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26455,
+          "name": "x_studio_project_no",
+          "field_description": "Project No",
+          "ttype": "many2one",
+          "store": true,
+          "compute": ""
+        },
+        {
+          "id": 26457,
+          "name": "x_studio_rug_request_sent",
+          "field_description": "RUG Request Sent",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26459,
+          "name": "x_studio_rug_rejected",
+          "field_description": "RUG Rejected",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26786,
+          "name": "x_studio_repair_image_01",
+          "field_description": "Repair Image 01",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26788,
+          "name": "x_studio_repair_image_02",
+          "field_description": "Repair Image 02",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 26799,
+          "name": "x_studio_repair_reason",
+          "field_description": "Repair Reason",
+          "ttype": "many2many",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 26942,
+          "name": "x_studio_project_group",
+          "field_description": "Project Group",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27368,
+          "name": "x_studio_transfer_inventory_ok",
+          "field_description": "Transfer Inventory  Not OK",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  self.env['x_sales_model_debug'].create({'x_name':'x_studio_transfer_inventory_ok','x_studio_start_time':datetime.datetime.now()})  \r\n  invalid_lines = False\r\n  invalid_lines2 = False\r\n  onhand_qty = 0\r\n  resupply_count = 0\r\n  if rec.x_studio_quotation_type == 'Repair':\r\n    so_loc = self.env['stock.warehouse'].search([('id', '=', rec.warehouse_id.id)],limit=1)\r\n    if so_loc:\r\n      for sup_lines in so_loc.resupply_wh_ids:\r\n        resupply_count += 1\r\n        for line in rec.order_line:\r\n          same_item = self.env['sale.order.line'].search([('order_id', '=', rec.id),('product_template_id', '=', line.product_template_id.id)])\r\n          onhand_qty = 0\r\n          if same_item:\r\n            for sameitems in same_item:\r\n              onhand_qty += sameitems.product_uom_qty\r\n          else:\r\n           onhand_qty = line.product_uom_qty  \r\n          for routes in line.product_template_id.route_ids:\r\n            if routes.supplier_wh_id:\r\n              if routes.supplier_wh_id.id == sup_lines.id:\r\n                if routes.supplied_wh_id.id == rec.warehouse_id.id:\r\n                  onhand = self.env['stock.quant'].search([('product_tmpl_id', '=', line.product_template_id.id),('location_id', '=', routes.supplier_wh_id.lot_stock_id.id),('quantity', '>=', onhand_qty)], limit=1)\r\n                  if onhand:\r\n                    invalid_lines = False\r\n                  else:\r\n                    invalid_lines = True\r\n                    invalid_lines2 = invalid_lines\r\n    if resupply_count == 0: \r\n      for line in rec.order_line:\r\n        same_item = self.env['sale.order.line'].search([('order_id', '=', rec.id),('product_template_id', '=', line.product_template_id.id)])\r\n        onhand_qty = 0\r\n        if same_item:\r\n          for sameitems in same_item:\r\n            onhand_qty += sameitems.product_uom_qty\r\n        else:\r\n         onhand_qty = line.product_uom_qty\r\n        onhand = self.env['stock.quant'].search([('product_tmpl_id', '=', line.product_template_id.id),('location_id', '=', rec.warehouse_id.lot_stock_id.id),('quantity', '>=', onhand_qty)], limit=1)\r\n        if onhand:\r\n          invalid_lines = False\r\n        else:\r\n          invalid_lines = True\r\n          invalid_lines2 = invalid_lines\r\n  else:\r\n   invalid_lines2 = False \r\n  rec['x_studio_transfer_inventory_ok'] = invalid_lines2\r\n  self.env['x_sales_model_debug'].create({'x_name':'x_studio_transfer_inventory_ok','x_studio_end_time':datetime.datetime.now()})\r\n   "
+        },
+        {
+          "id": 27407,
+          "name": "x_studio_reject_reason",
+          "field_description": "Reject Reason",
+          "ttype": "text",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28407,
+          "name": "x_studio_expired",
+          "field_description": "Expired",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for record in self:\n  exp = False\n  if record.x_studio_quotation_type != 'Project':\n    if record.validity_date < datetime.date.today():\n      exp = True\n    \n  record['x_studio_expired'] = exp"
+        },
+        {
+          "id": 28416,
+          "name": "x_studio_new_item_from_project",
+          "field_description": "New Item From Project",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  check = False\r\n  if rec.x_studio_quotation_type == 'Project':\r\n    for items in rec.order_line:\r\n      if items.x_studio_product_status == 'New Item':\r\n        check = True\r\n        \r\n  rec['x_studio_new_item_from_project'] = check"
+        },
+        {
+          "id": 28419,
+          "name": "x_studio_project_item_request_sent",
+          "field_description": "Project Item Request Sent",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28421,
+          "name": "x_studio_project_item_approved",
+          "field_description": "Project Item Approved",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28469,
+          "name": "x_studio_one2many_field_ERCBB",
+          "field_description": "New One2many",
+          "ttype": "one2many",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28495,
+          "name": "x_studio_warranty_card",
+          "field_description": "Warranty Card",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28604,
+          "name": "x_studio_budget_created",
+          "field_description": "Budget Created",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28608,
+          "name": "x_x_studio_created_from_sales_order_1_crossovered_budget_count",
+          "field_description": "Project Budget",
+          "ttype": "integer",
+          "store": false,
+          "compute": "\nfor record in self: record['x_x_studio_created_from_sales_order_1_crossovered_budget_count'] = self.env['crossovered.budget'].search_count([('x_studio_created_from_sales_order_1', '=', record.id)])\n"
+        },
+        {
+          "id": 28689,
+          "name": "x_studio_inventory_short",
+          "field_description": "Inventory Short",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid_lines = False\r\n  if rec.x_studio_quotation_type == 'Project':\r\n    for line in rec.order_line:\r\n      if line.x_studio_inventory_shortage > 0:\r\n        valid_lines = True\r\n      if line.x_studio_sub_contract == True:\r\n        valid_lines = True\r\n  rec['x_studio_inventory_short'] = valid_lines"
+        },
+        {
+          "id": 28692,
+          "name": "x_studio_pr_created",
+          "field_description": "PR Created",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28700,
+          "name": "x_x_studio_created_from_so_x_purchase_request_count",
+          "field_description": "Created From SO count",
+          "ttype": "integer",
+          "store": false,
+          "compute": "\nfor record in self: record['x_x_studio_created_from_so_x_purchase_request_count'] = self.env['x_purchase_request'].search_count([('x_studio_created_from_so', '=', record.id)])\n"
+        },
+        {
+          "id": 28702,
+          "name": "x_studio_pr_cost_updated",
+          "field_description": "PR Cost Updated",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28715,
+          "name": "x_studio_document_1",
+          "field_description": "Document 1",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28717,
+          "name": "x_studio_image_1",
+          "field_description": "Image 1",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28720,
+          "name": "x_studio_document_2",
+          "field_description": "Document 2",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28723,
+          "name": "x_studio_document_3",
+          "field_description": "Document 3",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28725,
+          "name": "x_studio_image_2",
+          "field_description": "Image 2",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28727,
+          "name": "x_studio_image_3",
+          "field_description": "Image 3",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28755,
+          "name": "x_studio_main_project_no",
+          "field_description": "Main Project No",
+          "ttype": "many2one",
+          "store": false,
+          "compute": "for rec in self:\r\n  proj = False\r\n  if rec.x_studio_quotation_type == 'Project':\r\n    if rec.x_studio_project_no.id == False:\r\n     pro = self.env['project.project'].search([('sale_order_id', '=', rec.id)],limit=1) \r\n     if pro:\r\n       proj = pro.id\r\n    else:\r\n      proj = rec.x_studio_project_no.id\r\n  \r\n  if rec.x_studio_main_project_2.id == False:\r\n    rec['x_studio_main_project_2'] = proj  \r\n  \r\n  rec['x_studio_main_project_no'] = proj"
+        },
+        {
+          "id": 28760,
+          "name": "x_studio_main_project_2",
+          "field_description": "Main Project 2",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28784,
+          "name": "x_studio_project_start_date",
+          "field_description": "Contract Start Date",
+          "ttype": "date",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28786,
+          "name": "x_studio_project_end_date",
+          "field_description": "Contract End Date",
+          "ttype": "date",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28790,
+          "name": "x_studio_project_budget",
+          "field_description": "Project Budget",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28792,
+          "name": "x_studio_proj_budget_status",
+          "field_description": "Proj. Budget Status",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29654,
+          "name": "x_studio_cancelled",
+          "field_description": "Cancelled",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29676,
+          "name": "x_x_studio_subcontracting_so_purchase_order_count",
+          "field_description": "Subcontracting SO count",
+          "ttype": "integer",
+          "store": false,
+          "compute": "\nfor record in self: record['x_x_studio_subcontracting_so_purchase_order_count'] = self.env['purchase.order'].search_count([('x_studio_subcontracting_so', '=', record.id)])\n"
+        },
+        {
+          "id": 29682,
+          "name": "x_studio_re_estimate_request_sent",
+          "field_description": "Re-estimate Request Sent",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29684,
+          "name": "x_studio_re_estimate_count",
+          "field_description": "Re-estimate Count",
+          "ttype": "integer",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29688,
+          "name": "x_studio_re_estimate_request_count",
+          "field_description": "Re-estimate Request Count",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29690,
+          "name": "x_studio_re_estimate_request_count_1",
+          "field_description": "Re-estimate Request Count",
+          "ttype": "integer",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29694,
+          "name": "x_studio_locked",
+          "field_description": "Locked",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29696,
+          "name": "x_studio_unlocked",
+          "field_description": "Unlocked",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29718,
+          "name": "x_studio_sub_contract",
+          "field_description": "Sub Contract",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  valid_lines = False\r\n  if rec.x_studio_quotation_type == 'Project':\r\n    for line in rec.order_line:\r\n      if line.x_studio_sub_contract == True:\r\n        valid_lines = True\r\n  rec['x_studio_sub_contract'] = valid_lines"
+        },
+        {
+          "id": 29834,
+          "name": "x_studio_valid_transfer",
+          "field_description": "Valid Transfer",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  val = False\r\n  if rec.x_studio_quotation_type == 'Repair':\r\n    dest_loc = self.env['stock.location'].search([('usage', '=', 'customer')],limit=1)\r\n    if dest_loc:\r\n      delivery = self.env['stock.picking'].search([('sale_id', '=', rec.id),('state', '=', 'done'),('picking_type_code', '=', 'outgoing'),('location_dest_id', '=', dest_loc.id)],limit=1)\r\n      if delivery:\r\n        val = True\r\n      \r\n  rec['x_studio_valid_transfer'] = val\r\n  "
+        },
+        {
+          "id": 29935,
+          "name": "x_studio_clear_free_items",
+          "field_description": "Clear Free Items",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  val = False\r\n  for line in rec.order_line:\r\n    if line.x_studio_clear_free_items == True:\r\n      val = True\r\n  rec['x_studio_clear_free_items'] = val"
+        },
+        {
+          "id": 29944,
+          "name": "x_x_studio_sales_order_account_payment_count",
+          "field_description": "Sales Order count",
+          "ttype": "integer",
+          "store": false,
+          "compute": "\nfor record in self: record['x_x_studio_sales_order_account_payment_count'] = self.env['account.payment'].search_count([('x_studio_sales_order', '=', record.id)])\n"
+        },
+        {
+          "id": 29953,
+          "name": "x_studio_related_information",
+          "field_description": "Related Information",
+          "ttype": "binary",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 29955,
+          "name": "x_studio_authorized_repair_user",
+          "field_description": "Authorized Repair User",
+          "ttype": "boolean",
+          "store": false,
+          "compute": ""
+        },
+        {
+          "id": 29957,
+          "name": "x_studio_repair_validation",
+          "field_description": "Repair Validation",
+          "ttype": "char",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30457,
+          "name": "x_studio_account_mandatory",
+          "field_description": "Account Mandatory",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30471,
+          "name": "x_studio_sales_order_validity",
+          "field_description": "Sales Order Validity",
+          "ttype": "integer",
+          "store": false,
+          "compute": "for rec in self:\r\n  val = 0\r\n  setup = self.env['x_minimum_sales_margin'].search([])\r\n  if setup:\r\n    val = setup.x_studio_sales_order_validity\r\n      \r\n  rec['x_studio_sales_order_validity'] = val\r\n"
+        },
+        {
+          "id": 30503,
+          "name": "x_studio_fully_paid",
+          "field_description": "Fully Paid",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for record in self:\r\n  validatioin = False\r\n  sum_total = 0\r\n  payment = self.env['account.payment'].search([('x_studio_sales_order', '=', record.id),('state', '!=', 'cancel')])\r\n  if payment:\r\n    for total in payment:\r\n      sum_total += total.amount\r\n          \r\n  if record.amount_total <= sum_total:\r\n    validatioin = True\r\n        \r\n  record['x_studio_fully_paid'] = validatioin"
+        },
+        {
+          "id": 30979,
+          "name": "x_studio_fsm_done",
+          "field_description": "FSM Done",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  val = False\r\n  if rec.x_studio_quotation_type == 'Repair':\r\n    task_id = self.env['project.task'].search([('sale_order_id', '=', rec.id)],limit=1)\r\n    if task_id:\r\n      val = task_id.fsm_done\r\n      \r\n  rec['x_studio_fsm_done'] = val"
+        },
+        {
+          "id": 31729,
+          "name": "x_studio_confirm_validation",
+          "field_description": "Confirm Validation",
+          "ttype": "text",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 31733,
+          "name": "x_studio_valid_order_lines_for_projects",
+          "field_description": "Valid Order Lines for Projects",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  val = False\r\n  for line in rec.order_line:\r\n    val = True\r\n  \r\n  rec['x_studio_valid_order_lines_for_projects'] = val\r\n  "
+        },
+        {
+          "id": 31736,
+          "name": "x_studio_service_item_available",
+          "field_description": "Service Item Available",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  val = False\r\n  for line in rec.order_line:\r\n    if line.product_type == 'service':\r\n      if line.product_id.service_tracking == 'project_only':\r\n        val = True\r\n  \r\n  rec['x_studio_service_item_available'] = val\r\n  "
+        },
+        {
+          "id": 31742,
+          "name": "x_studio_confirm_validation_1",
+          "field_description": "Confirm Validation",
+          "ttype": "text",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 33891,
+          "name": "x_studio_total",
+          "field_description": "Total",
+          "ttype": "char",
+          "store": true,
+          "compute": ""
+        },
+        {
+          "id": 33898,
+          "name": "x_studio_many2one_field_KjdJ3",
+          "field_description": "Budgetary Position",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 34150,
+          "name": "x_studio_valid_order_lines_for_update_rfq_cost",
+          "field_description": "Valid Order Lines for Update RFQ Cost",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  val = False\r\n  val2 = False\r\n  val3 = False\r\n  for line in rec.order_line:\r\n    if line.display_type == False:\r\n      val2 = False\r\n      if line.product_uom_qty == 0:\r\n        val2 = True\r\n      else:\r\n        val = True\r\n      \r\n      if val2 == True:\r\n        val3 = True\r\n  \r\n  if val3 == True:\r\n    val = False \r\n  \r\n  rec['x_studio_valid_order_lines_for_update_rfq_cost'] = val\r\n  "
+        },
+        {
+          "id": 34165,
+          "name": "x_studio_price_not_confirmed",
+          "field_description": "Price Not Confirmed",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  val = False\r\n  if rec.x_studio_quotation_type == 'Project':\r\n    for line in rec.order_line:\r\n      if line.x_studio_price_confirmed == False:\r\n        val = True\r\n  else:\r\n    val = False\r\n    \r\n  rec['x_studio_price_not_confirmed'] = val\r\n  "
+        }
+      ],
+      "present": [
+        {
+          "label": "x_studio_quotation_type",
+          "found": true,
+          "detail": "selection [stored]"
+        },
+        {
+          "label": "x_studio_order_payment_method",
+          "found": true,
+          "detail": "selection [stored]"
+        },
+        {
+          "label": "x_studio_rug_approved",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_re_estimate_count",
+          "found": true,
+          "detail": "integer [stored]"
+        },
+        {
+          "label": "x_studio_cancelled",
+          "found": true,
+          "detail": "boolean [stored]"
+        },
+        {
+          "label": "x_studio_tag_approved",
+          "found": false
+        },
+        {
+          "label": "x_studio_tag_confirmed",
+          "found": false
+        },
+        {
+          "label": "x_studio_tag_rejected",
+          "found": false
+        },
+        {
+          "label": "x_studio_tag_request_sent",
+          "found": false
+        },
+        {
+          "label": "x_studio_customer_payment_method",
+          "found": true,
+          "detail": "selection [stored]"
+        },
+        {
+          "label": "x_studio_fully_paid",
+          "found": true,
+          "detail": "boolean [computed]"
+        },
+        {
+          "label": "x_studio_fsm_done",
+          "found": true,
+          "detail": "boolean [computed]"
+        }
+      ]
+    },
+    {
+      "model": "account.payment",
+      "expected": [
+        "x_studio_quotation_type",
+        "x_studio_sales_order",
+        "x_studio_acc_updated",
+        "x_studio_tag_updated",
+        "x_studio_tag_rejected",
+        "x_studio_payment_validation"
+      ],
+      "found": [
+        {
+          "id": 14069,
+          "name": "x_studio_many2one_field_4CPvU",
+          "field_description": "Purchase  Request Cash",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 14073,
+          "name": "x_studio_cre",
+          "field_description": "Created From CP No",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 14663,
+          "name": "x_studio_many2one_field_rpsBC",
+          "field_description": "Purchase Order (Non-Inventory)",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 14665,
+          "name": "x_studio_created_from_pr_no",
+          "field_description": "Created From PR No",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 14669,
+          "name": "x_studio_created_from_npo_no",
+          "field_description": "Created From NPO No",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 17586,
+          "name": "x_studio_many2one_field_jslCp",
+          "field_description": "Consignment Header",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 17588,
+          "name": "x_studio_created_from_consignment",
+          "field_description": "Created From Consignment",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 17909,
+          "name": "x_studio_many2one_field_A197A",
+          "field_description": "Consignment Header",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 17911,
+          "name": "x_studio_created_from_consignment_2",
+          "field_description": "Created From Consignment 2",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 17915,
+          "name": "x_studio_created_from_consignment_1",
+          "field_description": "Created From Consignment",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18304,
+          "name": "x_studio_many2one_field_TEK9K",
+          "field_description": "Transfer",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18306,
+          "name": "x_studio_created_transfer",
+          "field_description": "Created Transfer",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18310,
+          "name": "x_studio_created_from_transfer",
+          "field_description": "Created From Transfer",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18353,
+          "name": "x_studio_many2one_field_6Sjmv",
+          "field_description": "Transfer",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18355,
+          "name": "x_studio_create_from_transfer",
+          "field_description": "Create From Transfer",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18359,
+          "name": "x_studio_create_from_transfer_1",
+          "field_description": "Create From Transfer",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18390,
+          "name": "x_studio_related_field_yj3hQ",
+          "field_description": "New Related Field",
+          "ttype": "selection",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18398,
+          "name": "x_studio_related_field_m4xKC",
+          "field_description": "New Related Field",
+          "ttype": "selection",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18406,
+          "name": "x_studio_many2one_field_XhwuI",
+          "field_description": "Purchase Order",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18408,
+          "name": "x_studio_purchase_id",
+          "field_description": "Purchase Order",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18414,
+          "name": "x_studio_related_field_w1zkr",
+          "field_description": "New Related Field",
+          "ttype": "selection",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18424,
+          "name": "x_studio_many2one_field_mucWu",
+          "field_description": "Consignment Header",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18426,
+          "name": "x_studio_co",
+          "field_description": "Co",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18430,
+          "name": "x_studio_consignment_no",
+          "field_description": "Consignment No",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18454,
+          "name": "x_studio_related_field_pSJXo",
+          "field_description": "New Related Field",
+          "ttype": "char",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18456,
+          "name": "x_studio_custom_clearance_no",
+          "field_description": "Custom Clearance No",
+          "ttype": "char",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18470,
+          "name": "x_studio_boolean_field_xNbhc",
+          "field_description": "New Checkbox",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18472,
+          "name": "x_studio_update_consignment",
+          "field_description": "Update Consignment",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18478,
+          "name": "x_studio_many2one_field_mULOh",
+          "field_description": "Journal Entry",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18482,
+          "name": "x_studio_many2one_field_xkSx5",
+          "field_description": "Journal Entry",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18486,
+          "name": "x_studio_many2one_field_6HjHy",
+          "field_description": "Journal Entry",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18488,
+          "name": "x_studio_created_from_vendor_bill",
+          "field_description": "Created From Vendor Bill",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18494,
+          "name": "x_studio_many2one_field_ffAE3",
+          "field_description": "Journal Entry",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18496,
+          "name": "x_studio_created_from_vendor_bill_1",
+          "field_description": "Created From Vendor Bill",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18502,
+          "name": "x_x_studio_created_from_vendor_bill__account_move_count",
+          "field_description": "Created From Vendor Bill count",
+          "ttype": "integer",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18506,
+          "name": "x_x_studio_created_from_vendor_bill_1__account_move_count",
+          "field_description": "Created From Vendor Bill count",
+          "ttype": "integer",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18758,
+          "name": "x_studio_many2one_field_KKFaY",
+          "field_description": "TP Invoice Header",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18760,
+          "name": "x_studio_created_from_tp_invoice",
+          "field_description": "Created From TP Invoice",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18770,
+          "name": "x_studio_many2one_field_aIXMs",
+          "field_description": "TP Invoice Header",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18776,
+          "name": "x_studio_tp_id",
+          "field_description": "Created From TP Invoice",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18979,
+          "name": "x_studio_many2one_field_PJkjM",
+          "field_description": "LC Header",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18981,
+          "name": "x_studio_lc_no",
+          "field_description": "LC No",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 18988,
+          "name": "x_studio_lc_no_1",
+          "field_description": "LC No",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19230,
+          "name": "x_studio_sales_order",
+          "field_description": "Sales Order",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19480,
+          "name": "x_studio_boolean_field_bnVim",
+          "field_description": "New Checkbox",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 19482,
+          "name": "x_studio_credit_note_request_sent",
+          "field_description": "Credit Note Request Sent",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 19488,
+          "name": "x_studio_boolean_field_djczB",
+          "field_description": "New Checkbox",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 19490,
+          "name": "x_studio_credit_note_approved",
+          "field_description": "Credit Note Approved",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 21848,
+          "name": "x_studio_related_field_nQx1u",
+          "field_description": "New Related Field",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 21850,
+          "name": "x_studio_lc_test1",
+          "field_description": "LC - test1",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 22190,
+          "name": "x_studio_many2one_field_re1H2",
+          "field_description": "Sales Order",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 22192,
+          "name": "x_studio_sale_id",
+          "field_description": "Sale_Id",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 22278,
+          "name": "x_studio_many2one_field_L9MIu",
+          "field_description": "Sales Report Type",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 22281,
+          "name": "x_studio_report_type_s_cust_aging",
+          "field_description": "Report Type (S - Cust Aging)",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 22746,
+          "name": "x_studio_char_field_FnRNH",
+          "field_description": "New Text",
+          "ttype": "char",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 22748,
+          "name": "x_studio_supplier_invoice_number",
+          "field_description": "XXX Supplier's Invoice Number (Bill Reference)",
+          "ttype": "char",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23080,
+          "name": "x_studio_boolean_field_XzV6D",
+          "field_description": "New Checkbox",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23082,
+          "name": "x_studio_bank_guarantee_validation",
+          "field_description": "Bank Guarantee Validation",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23088,
+          "name": "x_studio_boolean_field_qcQya",
+          "field_description": "New Checkbox",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23090,
+          "name": "x_studio_bank_guarantee_notification",
+          "field_description": "Bank Guarantee Notification",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23096,
+          "name": "x_studio_boolean_field_MVlhn",
+          "field_description": "New Checkbox",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23098,
+          "name": "x_studio_bg_sent",
+          "field_description": "BG Sent",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23109,
+          "name": "x_studio_related_field_7SPn1",
+          "field_description": "New Related Field",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23111,
+          "name": "x_studio_over_bank_guarantee",
+          "field_description": "Over Bank Guarantee",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23117,
+          "name": "x_studio_related_field_v5UEx",
+          "field_description": "New Related Field",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23119,
+          "name": "x_studio_bank_guarantee_approved",
+          "field_description": "Bank Guarantee Approved",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23129,
+          "name": "x_studio_boolean_field_ygnit",
+          "field_description": "New Checkbox",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23131,
+          "name": "x_studio_credit_limit_validation",
+          "field_description": "Credit Limit Validation",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23137,
+          "name": "x_studio_related_field_1JsOz",
+          "field_description": "New Related Field",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23139,
+          "name": "x_studio_credit_limit_approved",
+          "field_description": "Credit Limit Approved",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23145,
+          "name": "x_studio_related_field_bRYM3",
+          "field_description": "New Related Field",
+          "ttype": "selection",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 23147,
+          "name": "x_studio_order_payment_method",
+          "field_description": "Order Payment Method",
+          "ttype": "selection",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 27806,
+          "name": "x_studio_many2one_field_P4o2n",
+          "field_description": "Project",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 27808,
+          "name": "x_studio_created_from_project_no",
+          "field_description": "Created From Project No",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 28585,
+          "name": "x_studio_related_field_QgLxV",
+          "field_description": "New Related Field",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 28587,
+          "name": "x_studio_rug_confirmed",
+          "field_description": "RUG Confirmed",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 28594,
+          "name": "x_studio_boolean_field_RIlaO",
+          "field_description": "New Checkbox",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 28596,
+          "name": "x_studio_rug_acc_updated",
+          "field_description": "RUG Account Updated",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 28732,
+          "name": "x_studio_related_field_VMbnh",
+          "field_description": "New Related Field",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 28734,
+          "name": "x_studio_rug_rejected",
+          "field_description": "RUG Rejected",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 30259,
+          "name": "x_studio_float_field_5tma1",
+          "field_description": "New Decimal",
+          "ttype": "float",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 30261,
+          "name": "x_studio_currency_rate",
+          "field_description": "Currency Rate",
+          "ttype": "float",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 30267,
+          "name": "x_studio_boolean_field_EoMg9",
+          "field_description": "New Checkbox",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 30269,
+          "name": "x_studio_currency_rate_updated",
+          "field_description": "Currency Rate Updated",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 30466,
+          "name": "x_studio_boolean_field_A32jc",
+          "field_description": "New Checkbox",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 30468,
+          "name": "x_studio_account_mandatory",
+          "field_description": "Account Mandatory",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 30474,
+          "name": "x_studio_purchase_order",
+          "field_description": "Purchase Order",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30476,
+          "name": "x_studio_tp_invoice_no",
+          "field_description": "TP Invoice No",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30489,
+          "name": "x_studio_quotation_type",
+          "field_description": "Quotation Type",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30491,
+          "name": "x_studio_payment_validation",
+          "field_description": "Payment Validation",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for record in self:\r\n  validatioin = False\r\n  if record.state == 'draft':\r\n    if record.x_studio_quotation_type == 'Repair':\r\n      sum_total = 0\r\n      so_value = 0\r\n      payment = self.env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sales_order.id),('state', '=', 'posted')])\r\n      if payment:\r\n        for total in payment:\r\n          sum_total += total.amount\r\n          \r\n      min_magin = self.env['x_minimum_sales_margin'].search([], limit=1)\r\n      if min_magin:\r\n        so_value = round(record.x_studio_sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)\r\n        \r\n      if so_value > (record.amount + sum_total):\r\n        validatioin = True\r\n        \r\n  record['x_studio_payment_validation'] = validatioin"
+        },
+        {
+          "id": 30501,
+          "name": "x_studio_payment_validation_1",
+          "field_description": "Payment Validation",
+          "ttype": "char",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 31378,
+          "name": "x_studio_related_field_DBwI2",
+          "field_description": "New Related Field",
+          "ttype": "selection",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 31389,
+          "name": "x_studio_related_field_nIq3I",
+          "field_description": "New Related Field",
+          "ttype": "selection",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 31398,
+          "name": "x_studio_related_field_T4rIR",
+          "field_description": "New Related Field",
+          "ttype": "selection",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 31400,
+          "name": "x_studio_purchase_type",
+          "field_description": "PR Type",
+          "ttype": "selection",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 31408,
+          "name": "x_studio_selection_field_N6ihz",
+          "field_description": "New Selection",
+          "ttype": "selection",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 31410,
+          "name": "x_studio_test_type",
+          "field_description": "Test Type",
+          "ttype": "selection",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 31917,
+          "name": "x_studio_many2one_field_vAeTQ",
+          "field_description": "Project",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 31919,
+          "name": "x_studio_project_no",
+          "field_description": "Project No",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 31924,
+          "name": "x_studio_project_no_1",
+          "field_description": "Project No",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 31934,
+          "name": "x_studio_selection_field_KlNrV",
+          "field_description": "New Selection",
+          "ttype": "selection",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 31936,
+          "name": "x_studio_journal_type",
+          "field_description": "Journal Type",
+          "ttype": "selection",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 32967,
+          "name": "x_studio_boolean_field_E4oM7",
+          "field_description": "New Checkbox",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 32969,
+          "name": "x_studio_created_from_project",
+          "field_description": "Created From Project",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 32973,
+          "name": "x_studio_created_from_project_1",
+          "field_description": "Created From Project",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 32978,
+          "name": "x_studio_many2one_field_R46Ke",
+          "field_description": "Project",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 32980,
+          "name": "x_studio_project_no_bill",
+          "field_description": "Project No Bill",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 32987,
+          "name": "x_studio_many2one_field_B4ibh",
+          "field_description": "Project",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 32991,
+          "name": "x_studio_project_no_issue",
+          "field_description": "Project No Issue",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 33001,
+          "name": "x_studio_many2one_field_tpCkS",
+          "field_description": "Project",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 33003,
+          "name": "x_studio_project_no_settle",
+          "field_description": "Project No Settle",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 33009,
+          "name": "x_studio_project_no_settle_1",
+          "field_description": "Project No Settle",
+          "ttype": "many2one",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 33051,
+          "name": "x_studio_type",
+          "field_description": "Type",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 33053,
+          "name": "x_studio_advance_payment_acc_updated",
+          "field_description": "Advance Payment ACC Updated",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 33439,
+          "name": "x_studio_selection_field_5Gimk",
+          "field_description": "New Selection",
+          "ttype": "selection",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 33447,
+          "name": "x_studio_boolean_field_xud0H",
+          "field_description": "New Checkbox",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 33449,
+          "name": "x_studio_advance_acc_updated",
+          "field_description": "Advance ACC Updated",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 33542,
+          "name": "x_studio_boolean_field_ydmJ5",
+          "field_description": "New Checkbox",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        },
+        {
+          "id": 33544,
+          "name": "x_studio_valid_lines",
+          "field_description": "Valid Lines",
+          "ttype": "boolean",
+          "store": false,
+          "compute": false
+        }
+      ],
+      "present": [
+        {
+          "label": "x_studio_quotation_type",
+          "found": true,
+          "detail": "selection [stored]"
+        },
+        {
+          "label": "x_studio_sales_order",
+          "found": true,
+          "detail": "many2one [stored]"
+        },
+        {
+          "label": "x_studio_acc_updated",
+          "found": false
+        },
+        {
+          "label": "x_studio_tag_updated",
+          "found": false
+        },
+        {
+          "label": "x_studio_tag_rejected",
+          "found": false
+        },
+        {
+          "label": "x_studio_payment_validation",
+          "found": true,
+          "detail": "boolean [computed]"
+        }
+      ]
+    },
+    {
+      "model": "account.move",
+      "expected": [
+        "x_studio_sale_id",
+        "x_studio_acc_updated",
+        "x_studio_tag_updated",
+        "x_studio_tag_rejected"
+      ],
+      "found": [
+        {
+          "id": 14061,
+          "name": "x_studio_cre",
+          "field_description": "Created From CP No",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 14660,
+          "name": "x_studio_created_from_npo_no",
+          "field_description": "Created From NPO No",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 17584,
+          "name": "x_studio_created_from_consignment",
+          "field_description": "Created From Consignment",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 17907,
+          "name": "x_studio_created_from_consignment_1",
+          "field_description": "Created From Consignment",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18302,
+          "name": "x_studio_created_from_transfer",
+          "field_description": "Created From Transfer",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18351,
+          "name": "x_studio_create_from_transfer_1",
+          "field_description": "Create From Transfer",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18404,
+          "name": "x_studio_purchase_id",
+          "field_description": "Purchase Order",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18422,
+          "name": "x_studio_consignment_no",
+          "field_description": "Consignment No",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18452,
+          "name": "x_studio_custom_clearance_no",
+          "field_description": "Custom Clearance No",
+          "ttype": "char",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18468,
+          "name": "x_studio_update_consignment",
+          "field_description": "Update Consignment",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18484,
+          "name": "x_studio_created_from_vendor_bill",
+          "field_description": "Created From Vendor Bill",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18492,
+          "name": "x_studio_created_from_vendor_bill_1",
+          "field_description": "Created From Vendor Bill",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18500,
+          "name": "x_x_studio_created_from_vendor_bill__account_move_count",
+          "field_description": "Created From Vendor Bill count",
+          "ttype": "integer",
+          "store": false,
+          "compute": "\nresults = self.env['account.move'].read_group([('x_studio_created_from_vendor_bill', 'in', self.ids)], ['x_studio_created_from_vendor_bill'], ['x_studio_created_from_vendor_bill'])\ndic = {}\nfor x in results: dic[x['x_studio_created_from_vendor_bill'][0]] = x['x_studio_created_from_vendor_bill_count']\nfor record in self: record['x_x_studio_created_from_vendor_bill__account_move_count'] = dic.get(record.id, 0)\n"
+        },
+        {
+          "id": 18504,
+          "name": "x_x_studio_created_from_vendor_bill_1__account_move_count",
+          "field_description": "Created From Vendor Bill count",
+          "ttype": "integer",
+          "store": false,
+          "compute": "\nresults = self.env['account.move'].read_group([('x_studio_created_from_vendor_bill_1', 'in', self.ids)], ['x_studio_created_from_vendor_bill_1'], ['x_studio_created_from_vendor_bill_1'])\ndic = {}\nfor x in results: dic[x['x_studio_created_from_vendor_bill_1'][0]] = x['x_studio_created_from_vendor_bill_1_count']\nfor record in self: record['x_x_studio_created_from_vendor_bill_1__account_move_count'] = dic.get(record.id, 0)\n"
+        },
+        {
+          "id": 18768,
+          "name": "x_studio_tp_id",
+          "field_description": "Created From TP Invoice",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 18976,
+          "name": "x_studio_lc_no",
+          "field_description": "LC No",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19477,
+          "name": "x_studio_credit_note_request_sent",
+          "field_description": "Credit Note Request Sent",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 19485,
+          "name": "x_studio_credit_note_approved",
+          "field_description": "Credit Note Approved",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 21846,
+          "name": "x_studio_lc_test1",
+          "field_description": "LC - test1",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 22187,
+          "name": "x_studio_sale_id",
+          "field_description": "Sale_Id",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 22274,
+          "name": "x_studio_report_type_s_cust_aging",
+          "field_description": "Report Type (S - Cust Aging)",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 22743,
+          "name": "x_studio_supplier_invoice_number",
+          "field_description": "XXX Supplier's Invoice Number (Bill Reference)",
+          "ttype": "char",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 23073,
+          "name": "x_studio_bank_guarantee_validation",
+          "field_description": "Bank Guarantee Validation",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for record in self:\r\n  validatioin = False\r\n  if record.x_studio_bank_guarantee_approved == False:\r\n    if record.partner_id.customer_rank > 0:\r\n      if record.move_type == 'out_invoice':\r\n        if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':\r\n          if record.partner_id.x_studio_mandatory_bank_guarantee == True:\r\n            if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():\r\n              validatioin = True\r\n            else:\r\n              if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):\r\n                validatioin = True\r\n          else:\r\n            if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():\r\n              validatioin = False  \r\n            else:\r\n              if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):\r\n                validatioin = False    \r\n    \r\n  record['x_studio_bank_guarantee_validation'] = validatioin"
+        },
+        {
+          "id": 23085,
+          "name": "x_studio_bank_guarantee_notification",
+          "field_description": "Bank Guarantee Notification",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for record in self:\r\n  notification = False\r\n  \r\n  if record.x_studio_bank_guarantee_approved == False:\r\n    if record.partner_id.customer_rank > 0:\r\n      if record.move_type == 'out_invoice':\r\n        if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':\r\n          if record.partner_id.x_studio_mandatory_bank_guarantee == True:\r\n            if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():\r\n              notification = False\r\n            else:\r\n              if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):\r\n                notification = False\r\n          else:\r\n            if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():\r\n              notification = True  \r\n            else:\r\n              if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):\r\n                notification = True    \r\n    \r\n  record['x_studio_bank_guarantee_notification'] = notification"
+        },
+        {
+          "id": 23093,
+          "name": "x_studio_bg_sent",
+          "field_description": "BG Sent",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 23107,
+          "name": "x_studio_over_bank_guarantee",
+          "field_description": "Over Bank Guarantee",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 23115,
+          "name": "x_studio_bank_guarantee_approved",
+          "field_description": "Bank Guarantee Approved",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 23126,
+          "name": "x_studio_credit_limit_validation",
+          "field_description": "Credit Limit Validation",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for record in self:\r\n  record['x_studio_credit_limit_validation'] = False\r\n  if record.x_studio_credit_limit_approved == False:\r\n    if record.partner_id.id:\r\n      if record.x_studio_order_payment_method == 'Credit':\r\n        record['x_studio_credit_limit_validation'] = (record.partner_id.credit + record.amount_total) > record.partner_id.credit_limit"
+        },
+        {
+          "id": 23134,
+          "name": "x_studio_credit_limit_approved",
+          "field_description": "Credit Limit Approved",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 23142,
+          "name": "x_studio_order_payment_method",
+          "field_description": "Order Payment Method",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 27803,
+          "name": "x_studio_created_from_project_no",
+          "field_description": "Created From Project No",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28583,
+          "name": "x_studio_rug_confirmed",
+          "field_description": "RUG Confirmed",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28592,
+          "name": "x_studio_rug_acc_updated",
+          "field_description": "RUG Account Updated",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 28729,
+          "name": "x_studio_rug_rejected",
+          "field_description": "RUG Rejected",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30257,
+          "name": "x_studio_currency_rate",
+          "field_description": "Currency Rate",
+          "ttype": "float",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30265,
+          "name": "x_studio_currency_rate_updated",
+          "field_description": "Currency Rate Updated",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 30463,
+          "name": "x_studio_account_mandatory",
+          "field_description": "Account Mandatory",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 31396,
+          "name": "x_studio_purchase_type",
+          "field_description": "PR Type",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 31406,
+          "name": "x_studio_test_type",
+          "field_description": "Test Type",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 31914,
+          "name": "x_studio_project_no",
+          "field_description": "Project No",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 31932,
+          "name": "x_studio_journal_type",
+          "field_description": "Journal Type",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 32965,
+          "name": "x_studio_created_from_project",
+          "field_description": "Created From Project",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 32975,
+          "name": "x_studio_project_no_bill",
+          "field_description": "Project No Bill",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 32984,
+          "name": "x_studio_project_no_issue",
+          "field_description": "Project No Issue",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 32998,
+          "name": "x_studio_project_no_settle",
+          "field_description": "Project No Settle",
+          "ttype": "many2one",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 33437,
+          "name": "x_studio_type",
+          "field_description": "Type",
+          "ttype": "selection",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 33445,
+          "name": "x_studio_advance_acc_updated",
+          "field_description": "Advance ACC Updated",
+          "ttype": "boolean",
+          "store": true,
+          "compute": false
+        },
+        {
+          "id": 33539,
+          "name": "x_studio_valid_lines",
+          "field_description": "Valid Lines",
+          "ttype": "boolean",
+          "store": false,
+          "compute": "for rec in self:\r\n  c = 0\r\n  val = False\r\n  for line in rec.invoice_line_ids:\r\n    c += 1\r\n    if line.display_type == False:\r\n      if line.price_unit == 0:\r\n        val = True\r\n  if c == 0:\r\n    val = True\r\n  rec['x_studio_valid_lines'] = val"
+        }
+      ],
+      "present": [
+        {
+          "label": "x_studio_sale_id",
+          "found": true,
+          "detail": "many2one [stored]"
+        },
+        {
+          "label": "x_studio_acc_updated",
+          "found": false
+        },
+        {
+          "label": "x_studio_tag_updated",
+          "found": false
+        },
+        {
+          "label": "x_studio_tag_rejected",
+          "found": false
+        }
+      ]
+    }
+  ],
+  "serverActions": [
+    {
+      "label": "Change Repair Type To RUG",
+      "found": true,
+      "detail": "ID:2159 on helpdesk.ticket"
+    },
+    {
+      "label": "Update Serial",
+      "found": false
+    },
+    {
+      "label": "Create Repair Serial",
+      "found": true,
+      "detail": "ID:1994 on helpdesk.ticket"
+    },
+    {
+      "label": "Create Repair Route",
+      "found": true,
+      "detail": "ID:1993 on helpdesk.ticket"
+    },
+    {
+      "label": "Send to Factory",
+      "found": true,
+      "detail": "ID:2001 on helpdesk.ticket"
+    },
+    {
+      "label": "Receive at Factory",
+      "found": true,
+      "detail": "ID:2002 on helpdesk.ticket"
+    },
+    {
+      "label": "Send to Sales Centre",
+      "found": true,
+      "detail": "ID:2007 on helpdesk.ticket"
+    },
+    {
+      "label": "Receive at Sales Centre",
+      "found": true,
+      "detail": "ID:2006 on helpdesk.ticket"
+    },
+    {
+      "label": "Cancel",
+      "found": true,
+      "detail": "ID:2220 on helpdesk.ticket"
+    },
+    {
+      "label": "Reopen",
+      "found": true,
+      "detail": "ID:2221 on helpdesk.ticket"
+    },
+    {
+      "label": "View Repair Diagnosis Validation",
+      "found": false
+    },
+    {
+      "label": "View Repair Image Validation",
+      "found": false
+    },
+    {
+      "label": "Tested OK",
+      "found": false
+    }
+  ],
+  "views": [
+    {
+      "label": "helpdesk.ticket — helpdesk.ticket.form",
+      "found": true,
+      "detail": "helpdesk.ticket.form.inherit (ID:3994), helpdesk.ticket.form.inherit.invoicing (ID:3998), helpdesk.ticket.form.quick_create (ID:3999), helpdesk.ticket.form.inherit.stock (ID:4002), helpdesk.ticket.form.inherit.return.stock.user (ID:4003), helpdesk.ticket.form.inherit.helpdesk.repair (ID:4005), helpdesk.ticket.form.inherit.repair.stock.user (ID:4006), helpdesk.ticket.form.inherit.invoicing (ID:4010), Odoo Studio: helpdesk.ticket.form customization (ID:4012), helpdesk.ticket.form.inherit.sale (ID:4445), helpdesk.ticket.form.inherit.timesheet (ID:4777), helpdesk.ticket.form.inherit.sale.timesheet (ID:4792)"
+    },
+    {
+      "label": "project.task — project.task.form",
+      "found": true,
+      "detail": "project.task.form.inherited (ID:1263), project.task.form.quick_create (ID:1631), project.task.form.inherit.timesheet (ID:1808), Odoo Studio: project.task.form customization (ID:3019), project.task.form.inherit.timesheet (ID:4484), project.task.form.quick_create.inherit (ID:4634), project.task.form.inherit (ID:6357), project.task.form.timesheet.inherited (ID:6408), project.task.form.quick_create_inherited (ID:6552), project.task.form.quick.create.sale.order.inherited (ID:7006), project.task.form.view.account.inherit (ID:7902), project.sharing.project.task.form.view.account.inherit (ID:7904), project.task.form.inherit.sale.project (ID:7932)"
+    },
+    {
+      "label": "project.task — view.task.form2",
+      "found": true,
+      "detail": "view.task.form2.inherit (ID:1630), view.task.form2.inherit (ID:1809), view.task.form2.inherit (ID:1840), Odoo Studio: view.task.form2.inherit (ID:4620)"
+    },
+    {
+      "label": "project.task — task.form.inherit",
+      "found": true,
+      "detail": "project.task.form.inherited (ID:1263), project.task.form.inherit.timesheet (ID:1808), project.task.form.inherit.timesheet (ID:4484), task.form.inherit (ID:4642), Odoo Studio: task.form.inherit (ID:4730), project.task.form.inherit (ID:6357), project.task.form.inherit.sale.project (ID:7932)"
+    },
+    {
+      "label": "project.task — view.form.fsm.inherit.quotation",
+      "found": false
+    }
+  ],
+  "stages": [
+    {
+      "label": "Stage ID 3 — expected: \"Invoice / Invoiced\"",
+      "found": true,
+      "detail": "\"Advance Received\""
+    },
+    {
+      "label": "Stage ID 9 — expected: \"Repair Complete\"",
+      "found": true,
+      "detail": "\"Repair Completed\""
+    },
+    {
+      "label": "Stage ID 10 — expected: \"Estimation Sent\"",
+      "found": true,
+      "detail": "\"Estimation Sent to Customer\""
+    },
+    {
+      "label": "Stage ID 11 — expected: \"Repair Started\"",
+      "found": true,
+      "detail": "\"Repair Started\""
+    },
+    {
+      "label": "Stage ID 12 — expected: \"Estimation Approved\"",
+      "found": true,
+      "detail": "\"Estimation Approval Received\""
+    },
+    {
+      "label": "Stage ID 13 — expected: \"Handed Over\"",
+      "found": true,
+      "detail": "\"Handed Over to Customer\""
+    }
+  ]
+}

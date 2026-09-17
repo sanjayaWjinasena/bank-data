@@ -1,0 +1,2432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Repair Module Audit</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; padding: 2rem; }
+  h1 { color: #38bdf8; font-size: 2rem; margin-bottom: 0.25rem; }
+  .subtitle { color: #94a3b8; margin-bottom: 2rem; font-size: 0.9rem; }
+  h2 { color: #7dd3fc; font-size: 1.3rem; margin: 2rem 0 1rem; border-bottom: 1px solid #1e3a5f; padding-bottom: 0.5rem; }
+  h3 { color: #93c5fd; font-size: 1.05rem; margin: 1.5rem 0 0.5rem; }
+  section { background: #1e293b; border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 0.75rem 0; }
+  th { background: #0f172a; color: #94a3b8; padding: 0.5rem 0.75rem; text-align: left; }
+  td { padding: 0.4rem 0.75rem; border-bottom: 1px solid #1e3a5f; }
+  tr.row-found  td { background: #0f2a1a; }
+  tr.row-missing td { background: #2a0f0f; }
+  code { font-family: monospace; font-size: 0.82rem; color: #a5f3fc; }
+  .badge { padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; white-space: nowrap; }
+  .badge.found   { background: #166534; color: #86efac; }
+  .badge.missing { background: #7f1d1d; color: #fca5a5; }
+  .detail { color: #94a3b8; font-size: 0.8rem; }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .stat-card { background: #1e293b; border-radius: 8px; padding: 1.25rem; text-align: center; }
+  .stat-num { font-size: 2rem; font-weight: bold; color: #38bdf8; }
+  .stat-label { color: #94a3b8; font-size: 0.85rem; margin-top: 0.25rem; }
+  .progress-wrap { background: #0f172a; border-radius: 4px; height: 8px; margin: 0.5rem 0 0.25rem; overflow: hidden; }
+  .progress-bar  { height: 100%; border-radius: 4px; transition: width 0.3s; }
+  .progress-label { font-size: 0.8rem; color: #94a3b8; }
+  details { margin-top: 0.75rem; }
+  details summary { cursor: pointer; color: #7dd3fc; font-size: 0.85rem; padding: 0.3rem 0; }
+  details summary:hover { color: #38bdf8; }
+</style>
+</head>
+<body>
+<h1>Repair Module — Audit Report</h1>
+<p class="subtitle">Generated: 2026-04-22T03:51:33.611Z</p>
+
+<div class="summary-grid">
+  <div class="stat-card">
+    <div class="stat-num">10/10</div>
+    <div class="stat-label">Custom Models</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">100/121</div>
+    <div class="stat-label">Expected Fields</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">9/13</div>
+    <div class="stat-label">Server Actions</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">4/5</div>
+    <div class="stat-label">Inherited Views</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">6/6</div>
+    <div class="stat-label">Helpdesk Stages</div>
+  </div>
+</div>
+
+<h2>1. Custom Models (x_ models)</h2>
+<section><table>
+      <thead><tr>
+        <th>Status</th><th>Name</th><th>Detail</th>
+      </tr></thead>
+      <tbody>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Task Diagnosis (x_task_diagnosis)</code></td>
+        <td class="detail">Task Diagnosis</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Conditions (x_conditions)</code></td>
+        <td class="detail">Conditions</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Diagnosis Areas (x_diagnosis_areas)</code></td>
+        <td class="detail">Diagnosis Areas</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Diagnosis Codes (x_diagnosis_codes)</code></td>
+        <td class="detail">Diagnosis Codes</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Repair Reason (x_repair_reason)</code></td>
+        <td class="detail">Repair Reason</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Repair Stage (x_repair_stages)</code></td>
+        <td class="detail">Repair Stages</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Resolution (x_resolutions)</code></td>
+        <td class="detail">Resolutions</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Repair Sub Reason (x_repair_sub_reason)</code></td>
+        <td class="detail">Repair Sub Reason</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Symptom Areas (x_symptom_areas)</code></td>
+        <td class="detail">Symptom Areas</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Symptom Codes (x_symptom_codes)</code></td>
+        <td class="detail">Symptom Codes</td>
+      </tr></tbody>
+    </table></section>
+
+<h2>2. Fields on Existing Models</h2>
+
+    <section>
+      <h3>helpdesk.ticket</h3>
+      <div class="progress-wrap">
+      <div class="progress-bar" style="width:92%;background:#f59e0b"></div>
+    </div>
+    <span class="progress-label">58/63 (92%)</span>
+      <table>
+      <thead><tr>
+        <th>Status</th><th>Name</th><th>Detail</th>
+      </tr></thead>
+      <tbody>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_cancelled</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_repair_complete_stage_updated</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_estimation_sent_stage_updated</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_estimation_approved_stage_updated</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_repair_started_stage_updated</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_invoice_stage_updated</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_handed_over</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_rug_approved</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_send_to_factory</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_receive_at_factory</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_send_to_centre</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_receive_at_centre</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_sn_updated</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_repair_serial_created</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_normal_repair_without_serial_no</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_normal_repair_with_serial_no</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_rug_repair</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_warranty_card</code></td>
+        <td class="detail">binary [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_pick_id</code></td>
+        <td class="detail">integer [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_virtual_location_id</code></td>
+        <td class="detail">integer [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_repair_reason</code></td>
+        <td class="detail">many2many [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_return_receipt_location</code></td>
+        <td class="detail">many2one [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_serial_no</code></td>
+        <td class="detail">many2one [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_source_location</code></td>
+        <td class="detail">many2one [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_job_location</code></td>
+        <td class="detail">selection [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_quick_repair_status</code></td>
+        <td class="detail">selection [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_cancel_status</code></td>
+        <td class="detail">selection [stored]</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_repair_status</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_stage_date</code></td>
+        <td class="detail">datetime [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_created_by_1</code></td>
+        <td class="detail">many2one [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_created_by_4</code></td>
+        <td class="detail">many2one [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_created_by_5</code></td>
+        <td class="detail">many2one [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_created_by_6</code></td>
+        <td class="detail">many2one [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_created_by_7</code></td>
+        <td class="detail">many2one [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_created_by_8</code></td>
+        <td class="detail">many2one [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_created_on_1</code></td>
+        <td class="detail">datetime [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_created_on_4</code></td>
+        <td class="detail">datetime [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_created_on_5</code></td>
+        <td class="detail">datetime [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_created_on_6</code></td>
+        <td class="detail">datetime [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_created_on_7</code></td>
+        <td class="detail">datetime [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_created_on_8</code></td>
+        <td class="detail">datetime [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_fsm_task_done</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_fully_paid_so</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_handed_over</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_re_estimate_count</code></td>
+        <td class="detail">integer [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_sale_order</code></td>
+        <td class="detail">many2one [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_task_status</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_valid_confirm_return</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_valid_confirmed2_so</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_valid_confirmed_so</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_valid_delivered_so</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_valid_invoiced_so</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_valid_return</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_receive_at_centre</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_minimals_availability</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_invoice_price</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_unit_price</code></td>
+        <td class="detail">char</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_valid_confirmed_so</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_estimation_approved_stage_updated</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_pick_id</code></td>
+        <td class="detail">integer [stored]</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_picking_count</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_repair_location</code></td>
+        <td class="detail">many2one [stored]</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_repair_serial_no</code></td>
+        <td class="detail">—</td>
+      </tr></tbody>
+    </table>
+      
+        <details>
+          <summary>Extra x_studio_ fields found on this model (54)</summary>
+          <table>
+            <thead><tr><th>Field</th><th>Type</th><th>Label</th></tr></thead>
+            <tbody><tr>
+              <td><code>x_studio_rug_confirmed</code></td>
+              <td>boolean</td>
+              <td>RUG Confirmed</td>
+            </tr><tr>
+              <td><code>x_studio_rug_request_sent</code></td>
+              <td>boolean</td>
+              <td>RUG Request Sent</td>
+            </tr><tr>
+              <td><code>x_studio_material_availability</code></td>
+              <td>selection</td>
+              <td>Material Availability</td>
+            </tr><tr>
+              <td><code>x_studio_serial_number</code></td>
+              <td>many2one</td>
+              <td>Serial Number-11</td>
+            </tr><tr>
+              <td><code>x_studio_tracking</code></td>
+              <td>selection</td>
+              <td>Tracking</td>
+            </tr><tr>
+              <td><code>x_studio_virtual_location</code></td>
+              <td>many2one</td>
+              <td>Virtual Location</td>
+            </tr><tr>
+              <td><code>x_studio_picking_id</code></td>
+              <td>many2one</td>
+              <td>Picking Id</td>
+            </tr><tr>
+              <td><code>x_studio_s_shipped_date</code></td>
+              <td>datetime</td>
+              <td>Shipped Date</td>
+            </tr><tr>
+              <td><code>x_studio_s_shipped_by</code></td>
+              <td>many2one</td>
+              <td>Shipped By</td>
+            </tr><tr>
+              <td><code>x_studio_s_received_date</code></td>
+              <td>datetime</td>
+              <td>Received Date</td>
+            </tr><tr>
+              <td><code>x_studio_s_received_by</code></td>
+              <td>many2one</td>
+              <td>Received By</td>
+            </tr><tr>
+              <td><code>x_studio_f_shipped_date</code></td>
+              <td>datetime</td>
+              <td>Shipped Date</td>
+            </tr><tr>
+              <td><code>x_studio_f_shipped_by</code></td>
+              <td>many2one</td>
+              <td>Shipped By</td>
+            </tr><tr>
+              <td><code>x_studio_f_received_date</code></td>
+              <td>datetime</td>
+              <td>Received Date</td>
+            </tr><tr>
+              <td><code>x_studio_f_received_by</code></td>
+              <td>many2one</td>
+              <td>Received By</td>
+            </tr><tr>
+              <td><code>x_x_studio_created_from_help_ticket_stock_picking_count</code></td>
+              <td>integer</td>
+              <td>Created from Help Ticket count</td>
+            </tr><tr>
+              <td><code>x_studio_driver_name</code></td>
+              <td>char</td>
+              <td>Driver Name</td>
+            </tr><tr>
+              <td><code>x_studio_vehicle_details</code></td>
+              <td>char</td>
+              <td>Vehicle Details</td>
+            </tr><tr>
+              <td><code>x_studio_created_by_2</code></td>
+              <td>many2one</td>
+              <td>Created By 2</td>
+            </tr><tr>
+              <td><code>x_studio_created_on_2</code></td>
+              <td>datetime</td>
+              <td>Created On 2</td>
+            </tr><tr>
+              <td><code>x_studio_created_by_3</code></td>
+              <td>many2one</td>
+              <td>Created By 3</td>
+            </tr><tr>
+              <td><code>x_studio_created_on_3</code></td>
+              <td>datetime</td>
+              <td>Created On 3</td>
+            </tr><tr>
+              <td><code>x_studio_created_by_9</code></td>
+              <td>many2one</td>
+              <td>Created By 9</td>
+            </tr><tr>
+              <td><code>x_studio_created_on_9</code></td>
+              <td>datetime</td>
+              <td>Created On 9</td>
+            </tr><tr>
+              <td><code>x_studio_created_by_10</code></td>
+              <td>many2one</td>
+              <td>Created By 10</td>
+            </tr><tr>
+              <td><code>x_studio_created_on_10</code></td>
+              <td>datetime</td>
+              <td>Created On 10</td>
+            </tr><tr>
+              <td><code>x_studio_rug_approval_status</code></td>
+              <td>selection</td>
+              <td>RUG Approval Status</td>
+            </tr><tr>
+              <td><code>x_studio_cancelled_stage_id</code></td>
+              <td>many2one</td>
+              <td>Cancelled Stage Id</td>
+            </tr><tr>
+              <td><code>x_studio_reopened</code></td>
+              <td>boolean</td>
+              <td>Reopened</td>
+            </tr><tr>
+              <td><code>x_studio_cancel_reason</code></td>
+              <td>text</td>
+              <td>Cancel Reason</td>
+            </tr><tr>
+              <td><code>x_studio_cancelled_by</code></td>
+              <td>many2one</td>
+              <td>Cancelled By</td>
+            </tr><tr>
+              <td><code>x_studio_cancelled_date</code></td>
+              <td>datetime</td>
+              <td>Cancelled Date</td>
+            </tr><tr>
+              <td><code>x_studio_reopened_by</code></td>
+              <td>many2one</td>
+              <td>Reopened By</td>
+            </tr><tr>
+              <td><code>x_studio_reopened_date</code></td>
+              <td>datetime</td>
+              <td>Reopened Date</td>
+            </tr><tr>
+              <td><code>x_studio_reopen_status</code></td>
+              <td>selection</td>
+              <td>Reopen Status</td>
+            </tr><tr>
+              <td><code>x_studio_balance_due</code></td>
+              <td>float</td>
+              <td>Balance Due</td>
+            </tr><tr>
+              <td><code>x_studio_re_estimate_status</code></td>
+              <td>selection</td>
+              <td>Re-estimate Status</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_QuqN1</code></td>
+              <td>integer</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_FNjnC</code></td>
+              <td>one2many</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_materials_used</code></td>
+              <td>many2one</td>
+              <td>Materials Used </td>
+            </tr><tr>
+              <td><code>x_studio_quantity</code></td>
+              <td>float</td>
+              <td>Quantity</td>
+            </tr><tr>
+              <td><code>x_studio_items</code></td>
+              <td>many2many</td>
+              <td>Items</td>
+            </tr><tr>
+              <td><code>x_studio_qty</code></td>
+              <td>char</td>
+              <td>Qty</td>
+            </tr><tr>
+              <td><code>x_studio_sales_price</code></td>
+              <td>char</td>
+              <td>Sales Price</td>
+            </tr><tr>
+              <td><code>x_studio_related_information</code></td>
+              <td>binary</td>
+              <td>Related Information</td>
+            </tr><tr>
+              <td><code>x_studio_cancelled_2</code></td>
+              <td>boolean</td>
+              <td>Cancelled-2</td>
+            </tr><tr>
+              <td><code>x_studio_user_location_validation</code></td>
+              <td>boolean</td>
+              <td>User Location Validation</td>
+            </tr><tr>
+              <td><code>x_studio_cccc</code></td>
+              <td>char</td>
+              <td>CCCC</td>
+            </tr><tr>
+              <td><code>x_studio_cccc3</code></td>
+              <td>many2one</td>
+              <td>CCCC3</td>
+            </tr><tr>
+              <td><code>x_studio_stage_name</code></td>
+              <td>char</td>
+              <td>Stage Name</td>
+            </tr><tr>
+              <td><code>x_studio_virtual_location_1</code></td>
+              <td>many2one</td>
+              <td>Virtual Location</td>
+            </tr><tr>
+              <td><code>x_studio_source_location_1</code></td>
+              <td>many2one</td>
+              <td>Source Location</td>
+            </tr><tr>
+              <td><code>x_studio_city</code></td>
+              <td>selection</td>
+              <td>City</td>
+            </tr><tr>
+              <td><code>x_studio_branch</code></td>
+              <td>selection</td>
+              <td>Branch</td>
+            </tr></tbody>
+          </table>
+        </details>
+    </section>
+    <section>
+      <h3>stock.picking</h3>
+      <div class="progress-wrap">
+      <div class="progress-bar" style="width:82%;background:#f59e0b"></div>
+    </div>
+    <span class="progress-label">14/17 (82%)</span>
+      <table>
+      <thead><tr>
+        <th>Status</th><th>Name</th><th>Detail</th>
+      </tr></thead>
+      <tbody>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_cancelled</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_cash_full_payment_mode</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_helpdesk_ticket_id</code></td>
+        <td class="detail">many2one [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_created_from_help_ticket</code></td>
+        <td class="detail">many2one [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_ticket_sales_order</code></td>
+        <td class="detail">many2one</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_form_task_items</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_removed_at_centre</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_repair_return_location</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_factory_repair</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_received_at_centre</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_picking_count</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_valid_factory_repair</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_cash_full_payment_made</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_fsm_task_done</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_fully_paid_so</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_repair_payment_made</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_valid_factory_repair</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr></tbody>
+    </table>
+      
+        <details>
+          <summary>Extra x_studio_ fields found on this model (38)</summary>
+          <table>
+            <thead><tr><th>Field</th><th>Type</th><th>Label</th></tr></thead>
+            <tbody><tr>
+              <td><code>x_studio_supplier_invoice_number</code></td>
+              <td>char</td>
+              <td>Supplier Invoice Number</td>
+            </tr><tr>
+              <td><code>x_studio_consignment_no</code></td>
+              <td>many2one</td>
+              <td>Consignment No</td>
+            </tr><tr>
+              <td><code>x_studio_custom_clearance_no</code></td>
+              <td>char</td>
+              <td>Custom Clearance No</td>
+            </tr><tr>
+              <td><code>x_studio_pr_type</code></td>
+              <td>selection</td>
+              <td>PR Type</td>
+            </tr><tr>
+              <td><code>x_studio_update_consignment</code></td>
+              <td>boolean</td>
+              <td>Update Consignment</td>
+            </tr><tr>
+              <td><code>x_x_studio_created_from_transfer__account_move_count</code></td>
+              <td>integer</td>
+              <td>Created From Transfer count</td>
+            </tr><tr>
+              <td><code>x_x_studio_create_from_transfer_1__account_move_count</code></td>
+              <td>integer</td>
+              <td>Create From Transfer count</td>
+            </tr><tr>
+              <td><code>x_studio_supplier_invoice_number_1</code></td>
+              <td>char</td>
+              <td>Supplier Invoice Number</td>
+            </tr><tr>
+              <td><code>x_studio_maintenance_request_</code></td>
+              <td>many2one</td>
+              <td>Maintenance Request #</td>
+            </tr><tr>
+              <td><code>x_studio_sales_order</code></td>
+              <td>many2one</td>
+              <td>Sales Order</td>
+            </tr><tr>
+              <td><code>x_studio_quotation_type</code></td>
+              <td>selection</td>
+              <td>Quotation Type</td>
+            </tr><tr>
+              <td><code>x_studio_return_receipt_location</code></td>
+              <td>many2one</td>
+              <td>Return Receipt Location</td>
+            </tr><tr>
+              <td><code>x_studio_return_sequence</code></td>
+              <td>many2one</td>
+              <td>Return Sequence</td>
+            </tr><tr>
+              <td><code>x_studio_transfer_approval</code></td>
+              <td>boolean</td>
+              <td>Transfer Approval</td>
+            </tr><tr>
+              <td><code>x_studio_task_status</code></td>
+              <td>boolean</td>
+              <td>Task Status</td>
+            </tr><tr>
+              <td><code>x_studio_xxx</code></td>
+              <td>boolean</td>
+              <td>XXX</td>
+            </tr><tr>
+              <td><code>x_studio_budget_created</code></td>
+              <td>boolean</td>
+              <td>Budget Created</td>
+            </tr><tr>
+              <td><code>x_studio_analytic_account</code></td>
+              <td>many2one</td>
+              <td>Analytic Account</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_zZDiA</code></td>
+              <td>selection</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_quotation_type_2</code></td>
+              <td>selection</td>
+              <td>Quotation Type-2</td>
+            </tr><tr>
+              <td><code>x_studio_transfer_request_sent</code></td>
+              <td>boolean</td>
+              <td>Transfer Request Sent</td>
+            </tr><tr>
+              <td><code>x_studio_transfer_approved</code></td>
+              <td>boolean</td>
+              <td>Transfer Approved</td>
+            </tr><tr>
+              <td><code>x_studio_transfer_rejected</code></td>
+              <td>boolean</td>
+              <td>Transfer Rejected</td>
+            </tr><tr>
+              <td><code>x_studio_valid_transfer_lines</code></td>
+              <td>boolean</td>
+              <td>Valid Transfer Lines</td>
+            </tr><tr>
+              <td><code>x_studio_ttt</code></td>
+              <td>boolean</td>
+              <td>TTT</td>
+            </tr><tr>
+              <td><code>x_studio_need_approval</code></td>
+              <td>boolean</td>
+              <td>Need Approval</td>
+            </tr><tr>
+              <td><code>x_studio_validation</code></td>
+              <td>char</td>
+              <td>Validation</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_material_request_no</code></td>
+              <td>many2one</td>
+              <td>Created from Material Request No</td>
+            </tr><tr>
+              <td><code>x_studio_journal_type</code></td>
+              <td>many2one</td>
+              <td>Journal Type</td>
+            </tr><tr>
+              <td><code>x_studio_movement_journal</code></td>
+              <td>boolean</td>
+              <td>Movement Journal</td>
+            </tr><tr>
+              <td><code>x_studio_gl_account_status</code></td>
+              <td>selection</td>
+              <td>G/L Account Status</td>
+            </tr><tr>
+              <td><code>x_studio_offset_account_updated</code></td>
+              <td>boolean</td>
+              <td>Offset Account Updated</td>
+            </tr><tr>
+              <td><code>x_studio_type_of_operation</code></td>
+              <td>selection</td>
+              <td>Type of Operation</td>
+            </tr><tr>
+              <td><code>x_studio_mj_in</code></td>
+              <td>boolean</td>
+              <td>MJ IN</td>
+            </tr><tr>
+              <td><code>x_studio_mj_out</code></td>
+              <td>boolean</td>
+              <td>MJ OUT</td>
+            </tr><tr>
+              <td><code>x_studio_sequence_code</code></td>
+              <td>char</td>
+              <td>Sequence Code</td>
+            </tr><tr>
+              <td><code>x_studio_user_location_validation</code></td>
+              <td>boolean</td>
+              <td>User Location Validation</td>
+            </tr><tr>
+              <td><code>x_studio_user_location_validation_2</code></td>
+              <td>boolean</td>
+              <td>User Location Validation 2</td>
+            </tr></tbody>
+          </table>
+        </details>
+    </section>
+    <section>
+      <h3>project.task</h3>
+      <div class="progress-wrap">
+      <div class="progress-bar" style="width:84%;background:#f59e0b"></div>
+    </div>
+    <span class="progress-label">16/19 (84%)</span>
+      <table>
+      <thead><tr>
+        <th>Status</th><th>Name</th><th>Detail</th>
+      </tr></thead>
+      <tbody>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_diagnosis_ids</code></td>
+        <td class="detail">one2many [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_repair_image_01</code></td>
+        <td class="detail">binary [stored]</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_quick_repair_status</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_end_quick_repair</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_cancelled</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_repair_reason</code></td>
+        <td class="detail">many2many [stored]</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_repair_stage</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_repair_information</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_quotation_type</code></td>
+        <td class="detail">selection [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_payment_type</code></td>
+        <td class="detail">selection [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_warranty_card</code></td>
+        <td class="detail">binary [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_valid_confirm_so</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_valid_confirm2_so</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_valid_delivered_so</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_valid_delivered_so2</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_valid_invoiced_so</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_fully_invoiced_so</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_incomplete_delivery_available</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_valid_diagnosis</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr></tbody>
+    </table>
+      
+        <details>
+          <summary>Extra x_studio_ fields found on this model (8)</summary>
+          <table>
+            <thead><tr><th>Field</th><th>Type</th><th>Label</th></tr></thead>
+            <tbody><tr>
+              <td><code>x_studio_priority</code></td>
+              <td>selection</td>
+              <td>Priority</td>
+            </tr><tr>
+              <td><code>x_studio_created_date</code></td>
+              <td>datetime</td>
+              <td>Created Date</td>
+            </tr><tr>
+              <td><code>x_studio_starting_date</code></td>
+              <td>datetime</td>
+              <td>Starting Date</td>
+            </tr><tr>
+              <td><code>x_studio_material_availability</code></td>
+              <td>selection</td>
+              <td>Material Availability</td>
+            </tr><tr>
+              <td><code>x_studio_repair_image_02</code></td>
+              <td>binary</td>
+              <td>Repair Image 02</td>
+            </tr><tr>
+              <td><code>x_studio_quick_repair_status_1</code></td>
+              <td>selection</td>
+              <td>Quick Repair Status</td>
+            </tr><tr>
+              <td><code>x_studio_related_information</code></td>
+              <td>binary</td>
+              <td>Related Information</td>
+            </tr><tr>
+              <td><code>x_studio_repair_completed_stage_updated</code></td>
+              <td>boolean</td>
+              <td>Repair Completed Stage Updated</td>
+            </tr></tbody>
+          </table>
+        </details>
+    </section>
+    <section>
+      <h3>sale.order</h3>
+      <div class="progress-wrap">
+      <div class="progress-bar" style="width:67%;background:#f59e0b"></div>
+    </div>
+    <span class="progress-label">8/12 (67%)</span>
+      <table>
+      <thead><tr>
+        <th>Status</th><th>Name</th><th>Detail</th>
+      </tr></thead>
+      <tbody>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_quotation_type</code></td>
+        <td class="detail">selection [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_order_payment_method</code></td>
+        <td class="detail">selection [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_rug_approved</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_re_estimate_count</code></td>
+        <td class="detail">integer [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_cancelled</code></td>
+        <td class="detail">boolean [stored]</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_tag_approved</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_tag_confirmed</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_tag_rejected</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_tag_request_sent</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_customer_payment_method</code></td>
+        <td class="detail">selection [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_fully_paid</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_fsm_done</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr></tbody>
+    </table>
+      
+        <details>
+          <summary>Extra x_studio_ fields found on this model (95)</summary>
+          <table>
+            <thead><tr><th>Field</th><th>Type</th><th>Label</th></tr></thead>
+            <tbody><tr>
+              <td><code>x_studio_over_credit</code></td>
+              <td>boolean</td>
+              <td>Over Credit</td>
+            </tr><tr>
+              <td><code>x_studio_credit_limit_approved</code></td>
+              <td>boolean</td>
+              <td>Credit Limit Approved</td>
+            </tr><tr>
+              <td><code>x_studio_customer_credit_limit</code></td>
+              <td>float</td>
+              <td>Customer Credit Limit</td>
+            </tr><tr>
+              <td><code>x_studio_cust_total_receivable</code></td>
+              <td>monetary</td>
+              <td>Cust. Total Receivable</td>
+            </tr><tr>
+              <td><code>x_studio_current_tot_amount</code></td>
+              <td>float</td>
+              <td>Current Tot. Amount</td>
+            </tr><tr>
+              <td><code>x_studio_over_credit_amount</code></td>
+              <td>float</td>
+              <td>Over Credit Amount</td>
+            </tr><tr>
+              <td><code>x_studio_approval_request_sent</code></td>
+              <td>boolean</td>
+              <td>Approval Request Sent</td>
+            </tr><tr>
+              <td><code>x_studio_grant_temporary_credit</code></td>
+              <td>boolean</td>
+              <td>Temporary Credit Sale</td>
+            </tr><tr>
+              <td><code>x_studio_tem_credit_approval_request_sent</code></td>
+              <td>boolean</td>
+              <td>Tem. Credit Approval Request Sent</td>
+            </tr><tr>
+              <td><code>x_studio_temporary_credit_approved</code></td>
+              <td>boolean</td>
+              <td>Temporary Credit Approved</td>
+            </tr><tr>
+              <td><code>x_studio_total_overdue</code></td>
+              <td>monetary</td>
+              <td>Total Overdue</td>
+            </tr><tr>
+              <td><code>x_studio_overdue</code></td>
+              <td>boolean</td>
+              <td>Overdue</td>
+            </tr><tr>
+              <td><code>x_studio_overdue_approved</code></td>
+              <td>boolean</td>
+              <td>Overdue Approved</td>
+            </tr><tr>
+              <td><code>x_studio_overdue_request_sent</code></td>
+              <td>boolean</td>
+              <td>Overdue Request Sent</td>
+            </tr><tr>
+              <td><code>x_studio_over_bank_guarantee</code></td>
+              <td>boolean</td>
+              <td>Over Bank Guarantee</td>
+            </tr><tr>
+              <td><code>x_studio_customer_bank_guarantee</code></td>
+              <td>float</td>
+              <td>Customer Bank Guarantee</td>
+            </tr><tr>
+              <td><code>x_studio_current_tot_amount_1</code></td>
+              <td>float</td>
+              <td>Current Tot. Amount</td>
+            </tr><tr>
+              <td><code>x_studio_over_bank_guarantee_amount</code></td>
+              <td>float</td>
+              <td>Over Bank Guarantee Amount</td>
+            </tr><tr>
+              <td><code>x_studio_bank_guarantee_approved</code></td>
+              <td>boolean</td>
+              <td>Bank Guarantee Approved</td>
+            </tr><tr>
+              <td><code>x_studio_valid_bank_guarantee</code></td>
+              <td>boolean</td>
+              <td>Valid Bank Guarantee</td>
+            </tr><tr>
+              <td><code>x_studio_cust_total_receivable_1</code></td>
+              <td>monetary</td>
+              <td>Cust. Total Receivable</td>
+            </tr><tr>
+              <td><code>x_studio_bank_guarantee_request_sent</code></td>
+              <td>boolean</td>
+              <td>Bank Guarantee Request Sent</td>
+            </tr><tr>
+              <td><code>x_studio_petty_cash_reimbursement</code></td>
+              <td>boolean</td>
+              <td>Petty Cash Reimbursement</td>
+            </tr><tr>
+              <td><code>x_studio_sell_and_win</code></td>
+              <td>boolean</td>
+              <td>Sell and Win</td>
+            </tr><tr>
+              <td><code>x_studio_over_commission</code></td>
+              <td>boolean</td>
+              <td>Over Commission</td>
+            </tr><tr>
+              <td><code>x_studio_over_comm_approval_request_sent</code></td>
+              <td>boolean</td>
+              <td>Over Comm. Approval Request Sent</td>
+            </tr><tr>
+              <td><code>x_studio_over_commission_approved</code></td>
+              <td>boolean</td>
+              <td>Over Commission Approved</td>
+            </tr><tr>
+              <td><code>x_studio_margin_exceed</code></td>
+              <td>boolean</td>
+              <td>Margin Exceed</td>
+            </tr><tr>
+              <td><code>x_studio_margin_approval_request_sent</code></td>
+              <td>boolean</td>
+              <td>Margin Approval Request Sent</td>
+            </tr><tr>
+              <td><code>x_studio_</code></td>
+              <td>boolean</td>
+              <td>Test Field</td>
+            </tr><tr>
+              <td><code>x_studio_margin_approved</code></td>
+              <td>boolean</td>
+              <td>Margin Approved</td>
+            </tr><tr>
+              <td><code>x_studio_expiry_date</code></td>
+              <td>date</td>
+              <td>Bank Guarantee Expiry Date</td>
+            </tr><tr>
+              <td><code>x_studio_guarantee_status</code></td>
+              <td>char</td>
+              <td>Guarantee Status</td>
+            </tr><tr>
+              <td><code>x_studio_valid_order_lines</code></td>
+              <td>boolean</td>
+              <td>Valid Order Lines</td>
+            </tr><tr>
+              <td><code>x_studio_bank_guarantee_validation</code></td>
+              <td>boolean</td>
+              <td>Bank Guarantee Validation</td>
+            </tr><tr>
+              <td><code>x_studio_bank_guarantee_notification</code></td>
+              <td>boolean</td>
+              <td>Bank Guarantee Notification</td>
+            </tr><tr>
+              <td><code>x_studio_bg_sent</code></td>
+              <td>boolean</td>
+              <td>BG Sent</td>
+            </tr><tr>
+              <td><code>x_studio_credit_limit_validation</code></td>
+              <td>boolean</td>
+              <td>Credit Limit Validation</td>
+            </tr><tr>
+              <td><code>x_studio_rug_confirmed</code></td>
+              <td>boolean</td>
+              <td>RUG Confirmed</td>
+            </tr><tr>
+              <td><code>x_studio_project_no</code></td>
+              <td>many2one</td>
+              <td>Project No</td>
+            </tr><tr>
+              <td><code>x_studio_rug_request_sent</code></td>
+              <td>boolean</td>
+              <td>RUG Request Sent</td>
+            </tr><tr>
+              <td><code>x_studio_rug_rejected</code></td>
+              <td>boolean</td>
+              <td>RUG Rejected</td>
+            </tr><tr>
+              <td><code>x_studio_repair_image_01</code></td>
+              <td>binary</td>
+              <td>Repair Image 01</td>
+            </tr><tr>
+              <td><code>x_studio_repair_image_02</code></td>
+              <td>binary</td>
+              <td>Repair Image 02</td>
+            </tr><tr>
+              <td><code>x_studio_repair_reason</code></td>
+              <td>many2many</td>
+              <td>Repair Reason</td>
+            </tr><tr>
+              <td><code>x_studio_project_group</code></td>
+              <td>many2one</td>
+              <td>Project Group</td>
+            </tr><tr>
+              <td><code>x_studio_transfer_inventory_ok</code></td>
+              <td>boolean</td>
+              <td>Transfer Inventory  Not OK</td>
+            </tr><tr>
+              <td><code>x_studio_reject_reason</code></td>
+              <td>text</td>
+              <td>Reject Reason</td>
+            </tr><tr>
+              <td><code>x_studio_expired</code></td>
+              <td>boolean</td>
+              <td>Expired</td>
+            </tr><tr>
+              <td><code>x_studio_new_item_from_project</code></td>
+              <td>boolean</td>
+              <td>New Item From Project</td>
+            </tr><tr>
+              <td><code>x_studio_project_item_request_sent</code></td>
+              <td>boolean</td>
+              <td>Project Item Request Sent</td>
+            </tr><tr>
+              <td><code>x_studio_project_item_approved</code></td>
+              <td>boolean</td>
+              <td>Project Item Approved</td>
+            </tr><tr>
+              <td><code>x_studio_one2many_field_ERCBB</code></td>
+              <td>one2many</td>
+              <td>New One2many</td>
+            </tr><tr>
+              <td><code>x_studio_warranty_card</code></td>
+              <td>binary</td>
+              <td>Warranty Card</td>
+            </tr><tr>
+              <td><code>x_studio_budget_created</code></td>
+              <td>boolean</td>
+              <td>Budget Created</td>
+            </tr><tr>
+              <td><code>x_x_studio_created_from_sales_order_1_crossovered_budget_count</code></td>
+              <td>integer</td>
+              <td>Project Budget</td>
+            </tr><tr>
+              <td><code>x_studio_inventory_short</code></td>
+              <td>boolean</td>
+              <td>Inventory Short</td>
+            </tr><tr>
+              <td><code>x_studio_pr_created</code></td>
+              <td>boolean</td>
+              <td>PR Created</td>
+            </tr><tr>
+              <td><code>x_x_studio_created_from_so_x_purchase_request_count</code></td>
+              <td>integer</td>
+              <td>Created From SO count</td>
+            </tr><tr>
+              <td><code>x_studio_pr_cost_updated</code></td>
+              <td>boolean</td>
+              <td>PR Cost Updated</td>
+            </tr><tr>
+              <td><code>x_studio_document_1</code></td>
+              <td>binary</td>
+              <td>Document 1</td>
+            </tr><tr>
+              <td><code>x_studio_image_1</code></td>
+              <td>binary</td>
+              <td>Image 1</td>
+            </tr><tr>
+              <td><code>x_studio_document_2</code></td>
+              <td>binary</td>
+              <td>Document 2</td>
+            </tr><tr>
+              <td><code>x_studio_document_3</code></td>
+              <td>binary</td>
+              <td>Document 3</td>
+            </tr><tr>
+              <td><code>x_studio_image_2</code></td>
+              <td>binary</td>
+              <td>Image 2</td>
+            </tr><tr>
+              <td><code>x_studio_image_3</code></td>
+              <td>binary</td>
+              <td>Image 3</td>
+            </tr><tr>
+              <td><code>x_studio_main_project_no</code></td>
+              <td>many2one</td>
+              <td>Main Project No</td>
+            </tr><tr>
+              <td><code>x_studio_main_project_2</code></td>
+              <td>many2one</td>
+              <td>Main Project 2</td>
+            </tr><tr>
+              <td><code>x_studio_project_start_date</code></td>
+              <td>date</td>
+              <td>Contract Start Date</td>
+            </tr><tr>
+              <td><code>x_studio_project_end_date</code></td>
+              <td>date</td>
+              <td>Contract End Date</td>
+            </tr><tr>
+              <td><code>x_studio_project_budget</code></td>
+              <td>many2one</td>
+              <td>Project Budget</td>
+            </tr><tr>
+              <td><code>x_studio_proj_budget_status</code></td>
+              <td>selection</td>
+              <td>Proj. Budget Status</td>
+            </tr><tr>
+              <td><code>x_x_studio_subcontracting_so_purchase_order_count</code></td>
+              <td>integer</td>
+              <td>Subcontracting SO count</td>
+            </tr><tr>
+              <td><code>x_studio_re_estimate_request_sent</code></td>
+              <td>boolean</td>
+              <td>Re-estimate Request Sent</td>
+            </tr><tr>
+              <td><code>x_studio_re_estimate_request_count</code></td>
+              <td>boolean</td>
+              <td>Re-estimate Request Count</td>
+            </tr><tr>
+              <td><code>x_studio_re_estimate_request_count_1</code></td>
+              <td>integer</td>
+              <td>Re-estimate Request Count</td>
+            </tr><tr>
+              <td><code>x_studio_locked</code></td>
+              <td>boolean</td>
+              <td>Locked</td>
+            </tr><tr>
+              <td><code>x_studio_unlocked</code></td>
+              <td>boolean</td>
+              <td>Unlocked</td>
+            </tr><tr>
+              <td><code>x_studio_sub_contract</code></td>
+              <td>boolean</td>
+              <td>Sub Contract</td>
+            </tr><tr>
+              <td><code>x_studio_valid_transfer</code></td>
+              <td>boolean</td>
+              <td>Valid Transfer</td>
+            </tr><tr>
+              <td><code>x_studio_clear_free_items</code></td>
+              <td>boolean</td>
+              <td>Clear Free Items</td>
+            </tr><tr>
+              <td><code>x_x_studio_sales_order_account_payment_count</code></td>
+              <td>integer</td>
+              <td>Sales Order count</td>
+            </tr><tr>
+              <td><code>x_studio_related_information</code></td>
+              <td>binary</td>
+              <td>Related Information</td>
+            </tr><tr>
+              <td><code>x_studio_authorized_repair_user</code></td>
+              <td>boolean</td>
+              <td>Authorized Repair User</td>
+            </tr><tr>
+              <td><code>x_studio_repair_validation</code></td>
+              <td>char</td>
+              <td>Repair Validation</td>
+            </tr><tr>
+              <td><code>x_studio_account_mandatory</code></td>
+              <td>boolean</td>
+              <td>Account Mandatory</td>
+            </tr><tr>
+              <td><code>x_studio_sales_order_validity</code></td>
+              <td>integer</td>
+              <td>Sales Order Validity</td>
+            </tr><tr>
+              <td><code>x_studio_confirm_validation</code></td>
+              <td>text</td>
+              <td>Confirm Validation</td>
+            </tr><tr>
+              <td><code>x_studio_valid_order_lines_for_projects</code></td>
+              <td>boolean</td>
+              <td>Valid Order Lines for Projects</td>
+            </tr><tr>
+              <td><code>x_studio_service_item_available</code></td>
+              <td>boolean</td>
+              <td>Service Item Available</td>
+            </tr><tr>
+              <td><code>x_studio_confirm_validation_1</code></td>
+              <td>text</td>
+              <td>Confirm Validation</td>
+            </tr><tr>
+              <td><code>x_studio_total</code></td>
+              <td>char</td>
+              <td>Total</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_KjdJ3</code></td>
+              <td>many2one</td>
+              <td>Budgetary Position</td>
+            </tr><tr>
+              <td><code>x_studio_valid_order_lines_for_update_rfq_cost</code></td>
+              <td>boolean</td>
+              <td>Valid Order Lines for Update RFQ Cost</td>
+            </tr><tr>
+              <td><code>x_studio_price_not_confirmed</code></td>
+              <td>boolean</td>
+              <td>Price Not Confirmed</td>
+            </tr></tbody>
+          </table>
+        </details>
+    </section>
+    <section>
+      <h3>account.payment</h3>
+      <div class="progress-wrap">
+      <div class="progress-bar" style="width:50%;background:#f59e0b"></div>
+    </div>
+    <span class="progress-label">3/6 (50%)</span>
+      <table>
+      <thead><tr>
+        <th>Status</th><th>Name</th><th>Detail</th>
+      </tr></thead>
+      <tbody>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_quotation_type</code></td>
+        <td class="detail">selection [stored]</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_sales_order</code></td>
+        <td class="detail">many2one [stored]</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_acc_updated</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_tag_updated</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_tag_rejected</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_payment_validation</code></td>
+        <td class="detail">boolean [computed]</td>
+      </tr></tbody>
+    </table>
+      
+        <details>
+          <summary>Extra x_studio_ fields found on this model (116)</summary>
+          <table>
+            <thead><tr><th>Field</th><th>Type</th><th>Label</th></tr></thead>
+            <tbody><tr>
+              <td><code>x_studio_many2one_field_4CPvU</code></td>
+              <td>many2one</td>
+              <td>Purchase  Request Cash</td>
+            </tr><tr>
+              <td><code>x_studio_cre</code></td>
+              <td>many2one</td>
+              <td>Created From CP No</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_rpsBC</code></td>
+              <td>many2one</td>
+              <td>Purchase Order (Non-Inventory)</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_pr_no</code></td>
+              <td>many2one</td>
+              <td>Created From PR No</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_npo_no</code></td>
+              <td>many2one</td>
+              <td>Created From NPO No</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_jslCp</code></td>
+              <td>many2one</td>
+              <td>Consignment Header</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_consignment</code></td>
+              <td>many2one</td>
+              <td>Created From Consignment</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_A197A</code></td>
+              <td>many2one</td>
+              <td>Consignment Header</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_consignment_2</code></td>
+              <td>many2one</td>
+              <td>Created From Consignment 2</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_consignment_1</code></td>
+              <td>many2one</td>
+              <td>Created From Consignment</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_TEK9K</code></td>
+              <td>many2one</td>
+              <td>Transfer</td>
+            </tr><tr>
+              <td><code>x_studio_created_transfer</code></td>
+              <td>many2one</td>
+              <td>Created Transfer</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_transfer</code></td>
+              <td>many2one</td>
+              <td>Created From Transfer</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_6Sjmv</code></td>
+              <td>many2one</td>
+              <td>Transfer</td>
+            </tr><tr>
+              <td><code>x_studio_create_from_transfer</code></td>
+              <td>many2one</td>
+              <td>Create From Transfer</td>
+            </tr><tr>
+              <td><code>x_studio_create_from_transfer_1</code></td>
+              <td>many2one</td>
+              <td>Create From Transfer</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_yj3hQ</code></td>
+              <td>selection</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_m4xKC</code></td>
+              <td>selection</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_XhwuI</code></td>
+              <td>many2one</td>
+              <td>Purchase Order</td>
+            </tr><tr>
+              <td><code>x_studio_purchase_id</code></td>
+              <td>many2one</td>
+              <td>Purchase Order</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_w1zkr</code></td>
+              <td>selection</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_mucWu</code></td>
+              <td>many2one</td>
+              <td>Consignment Header</td>
+            </tr><tr>
+              <td><code>x_studio_co</code></td>
+              <td>many2one</td>
+              <td>Co</td>
+            </tr><tr>
+              <td><code>x_studio_consignment_no</code></td>
+              <td>many2one</td>
+              <td>Consignment No</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_pSJXo</code></td>
+              <td>char</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_custom_clearance_no</code></td>
+              <td>char</td>
+              <td>Custom Clearance No</td>
+            </tr><tr>
+              <td><code>x_studio_boolean_field_xNbhc</code></td>
+              <td>boolean</td>
+              <td>New Checkbox</td>
+            </tr><tr>
+              <td><code>x_studio_update_consignment</code></td>
+              <td>boolean</td>
+              <td>Update Consignment</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_mULOh</code></td>
+              <td>many2one</td>
+              <td>Journal Entry</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_xkSx5</code></td>
+              <td>many2one</td>
+              <td>Journal Entry</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_6HjHy</code></td>
+              <td>many2one</td>
+              <td>Journal Entry</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_vendor_bill</code></td>
+              <td>many2one</td>
+              <td>Created From Vendor Bill</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_ffAE3</code></td>
+              <td>many2one</td>
+              <td>Journal Entry</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_vendor_bill_1</code></td>
+              <td>many2one</td>
+              <td>Created From Vendor Bill</td>
+            </tr><tr>
+              <td><code>x_x_studio_created_from_vendor_bill__account_move_count</code></td>
+              <td>integer</td>
+              <td>Created From Vendor Bill count</td>
+            </tr><tr>
+              <td><code>x_x_studio_created_from_vendor_bill_1__account_move_count</code></td>
+              <td>integer</td>
+              <td>Created From Vendor Bill count</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_KKFaY</code></td>
+              <td>many2one</td>
+              <td>TP Invoice Header</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_tp_invoice</code></td>
+              <td>many2one</td>
+              <td>Created From TP Invoice</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_aIXMs</code></td>
+              <td>many2one</td>
+              <td>TP Invoice Header</td>
+            </tr><tr>
+              <td><code>x_studio_tp_id</code></td>
+              <td>many2one</td>
+              <td>Created From TP Invoice</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_PJkjM</code></td>
+              <td>many2one</td>
+              <td>LC Header</td>
+            </tr><tr>
+              <td><code>x_studio_lc_no</code></td>
+              <td>many2one</td>
+              <td>LC No</td>
+            </tr><tr>
+              <td><code>x_studio_lc_no_1</code></td>
+              <td>many2one</td>
+              <td>LC No</td>
+            </tr><tr>
+              <td><code>x_studio_boolean_field_bnVim</code></td>
+              <td>boolean</td>
+              <td>New Checkbox</td>
+            </tr><tr>
+              <td><code>x_studio_credit_note_request_sent</code></td>
+              <td>boolean</td>
+              <td>Credit Note Request Sent</td>
+            </tr><tr>
+              <td><code>x_studio_boolean_field_djczB</code></td>
+              <td>boolean</td>
+              <td>New Checkbox</td>
+            </tr><tr>
+              <td><code>x_studio_credit_note_approved</code></td>
+              <td>boolean</td>
+              <td>Credit Note Approved</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_nQx1u</code></td>
+              <td>boolean</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_lc_test1</code></td>
+              <td>boolean</td>
+              <td>LC - test1</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_re1H2</code></td>
+              <td>many2one</td>
+              <td>Sales Order</td>
+            </tr><tr>
+              <td><code>x_studio_sale_id</code></td>
+              <td>many2one</td>
+              <td>Sale_Id</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_L9MIu</code></td>
+              <td>many2one</td>
+              <td>Sales Report Type</td>
+            </tr><tr>
+              <td><code>x_studio_report_type_s_cust_aging</code></td>
+              <td>many2one</td>
+              <td>Report Type (S - Cust Aging)</td>
+            </tr><tr>
+              <td><code>x_studio_char_field_FnRNH</code></td>
+              <td>char</td>
+              <td>New Text</td>
+            </tr><tr>
+              <td><code>x_studio_supplier_invoice_number</code></td>
+              <td>char</td>
+              <td>XXX Supplier's Invoice Number (Bill Reference)</td>
+            </tr><tr>
+              <td><code>x_studio_boolean_field_XzV6D</code></td>
+              <td>boolean</td>
+              <td>New Checkbox</td>
+            </tr><tr>
+              <td><code>x_studio_bank_guarantee_validation</code></td>
+              <td>boolean</td>
+              <td>Bank Guarantee Validation</td>
+            </tr><tr>
+              <td><code>x_studio_boolean_field_qcQya</code></td>
+              <td>boolean</td>
+              <td>New Checkbox</td>
+            </tr><tr>
+              <td><code>x_studio_bank_guarantee_notification</code></td>
+              <td>boolean</td>
+              <td>Bank Guarantee Notification</td>
+            </tr><tr>
+              <td><code>x_studio_boolean_field_MVlhn</code></td>
+              <td>boolean</td>
+              <td>New Checkbox</td>
+            </tr><tr>
+              <td><code>x_studio_bg_sent</code></td>
+              <td>boolean</td>
+              <td>BG Sent</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_7SPn1</code></td>
+              <td>boolean</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_over_bank_guarantee</code></td>
+              <td>boolean</td>
+              <td>Over Bank Guarantee</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_v5UEx</code></td>
+              <td>boolean</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_bank_guarantee_approved</code></td>
+              <td>boolean</td>
+              <td>Bank Guarantee Approved</td>
+            </tr><tr>
+              <td><code>x_studio_boolean_field_ygnit</code></td>
+              <td>boolean</td>
+              <td>New Checkbox</td>
+            </tr><tr>
+              <td><code>x_studio_credit_limit_validation</code></td>
+              <td>boolean</td>
+              <td>Credit Limit Validation</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_1JsOz</code></td>
+              <td>boolean</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_credit_limit_approved</code></td>
+              <td>boolean</td>
+              <td>Credit Limit Approved</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_bRYM3</code></td>
+              <td>selection</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_order_payment_method</code></td>
+              <td>selection</td>
+              <td>Order Payment Method</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_P4o2n</code></td>
+              <td>many2one</td>
+              <td>Project</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_project_no</code></td>
+              <td>many2one</td>
+              <td>Created From Project No</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_QgLxV</code></td>
+              <td>boolean</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_rug_confirmed</code></td>
+              <td>boolean</td>
+              <td>RUG Confirmed</td>
+            </tr><tr>
+              <td><code>x_studio_boolean_field_RIlaO</code></td>
+              <td>boolean</td>
+              <td>New Checkbox</td>
+            </tr><tr>
+              <td><code>x_studio_rug_acc_updated</code></td>
+              <td>boolean</td>
+              <td>RUG Account Updated</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_VMbnh</code></td>
+              <td>boolean</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_rug_rejected</code></td>
+              <td>boolean</td>
+              <td>RUG Rejected</td>
+            </tr><tr>
+              <td><code>x_studio_float_field_5tma1</code></td>
+              <td>float</td>
+              <td>New Decimal</td>
+            </tr><tr>
+              <td><code>x_studio_currency_rate</code></td>
+              <td>float</td>
+              <td>Currency Rate</td>
+            </tr><tr>
+              <td><code>x_studio_boolean_field_EoMg9</code></td>
+              <td>boolean</td>
+              <td>New Checkbox</td>
+            </tr><tr>
+              <td><code>x_studio_currency_rate_updated</code></td>
+              <td>boolean</td>
+              <td>Currency Rate Updated</td>
+            </tr><tr>
+              <td><code>x_studio_boolean_field_A32jc</code></td>
+              <td>boolean</td>
+              <td>New Checkbox</td>
+            </tr><tr>
+              <td><code>x_studio_account_mandatory</code></td>
+              <td>boolean</td>
+              <td>Account Mandatory</td>
+            </tr><tr>
+              <td><code>x_studio_purchase_order</code></td>
+              <td>many2one</td>
+              <td>Purchase Order</td>
+            </tr><tr>
+              <td><code>x_studio_tp_invoice_no</code></td>
+              <td>many2one</td>
+              <td>TP Invoice No</td>
+            </tr><tr>
+              <td><code>x_studio_payment_validation_1</code></td>
+              <td>char</td>
+              <td>Payment Validation</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_DBwI2</code></td>
+              <td>selection</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_nIq3I</code></td>
+              <td>selection</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_related_field_T4rIR</code></td>
+              <td>selection</td>
+              <td>New Related Field</td>
+            </tr><tr>
+              <td><code>x_studio_purchase_type</code></td>
+              <td>selection</td>
+              <td>PR Type</td>
+            </tr><tr>
+              <td><code>x_studio_selection_field_N6ihz</code></td>
+              <td>selection</td>
+              <td>New Selection</td>
+            </tr><tr>
+              <td><code>x_studio_test_type</code></td>
+              <td>selection</td>
+              <td>Test Type</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_vAeTQ</code></td>
+              <td>many2one</td>
+              <td>Project</td>
+            </tr><tr>
+              <td><code>x_studio_project_no</code></td>
+              <td>many2one</td>
+              <td>Project No</td>
+            </tr><tr>
+              <td><code>x_studio_project_no_1</code></td>
+              <td>many2one</td>
+              <td>Project No</td>
+            </tr><tr>
+              <td><code>x_studio_selection_field_KlNrV</code></td>
+              <td>selection</td>
+              <td>New Selection</td>
+            </tr><tr>
+              <td><code>x_studio_journal_type</code></td>
+              <td>selection</td>
+              <td>Journal Type</td>
+            </tr><tr>
+              <td><code>x_studio_boolean_field_E4oM7</code></td>
+              <td>boolean</td>
+              <td>New Checkbox</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_project</code></td>
+              <td>boolean</td>
+              <td>Created From Project</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_project_1</code></td>
+              <td>boolean</td>
+              <td>Created From Project</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_R46Ke</code></td>
+              <td>many2one</td>
+              <td>Project</td>
+            </tr><tr>
+              <td><code>x_studio_project_no_bill</code></td>
+              <td>many2one</td>
+              <td>Project No Bill</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_B4ibh</code></td>
+              <td>many2one</td>
+              <td>Project</td>
+            </tr><tr>
+              <td><code>x_studio_project_no_issue</code></td>
+              <td>many2one</td>
+              <td>Project No Issue</td>
+            </tr><tr>
+              <td><code>x_studio_many2one_field_tpCkS</code></td>
+              <td>many2one</td>
+              <td>Project</td>
+            </tr><tr>
+              <td><code>x_studio_project_no_settle</code></td>
+              <td>many2one</td>
+              <td>Project No Settle</td>
+            </tr><tr>
+              <td><code>x_studio_project_no_settle_1</code></td>
+              <td>many2one</td>
+              <td>Project No Settle</td>
+            </tr><tr>
+              <td><code>x_studio_type</code></td>
+              <td>selection</td>
+              <td>Type</td>
+            </tr><tr>
+              <td><code>x_studio_advance_payment_acc_updated</code></td>
+              <td>boolean</td>
+              <td>Advance Payment ACC Updated</td>
+            </tr><tr>
+              <td><code>x_studio_selection_field_5Gimk</code></td>
+              <td>selection</td>
+              <td>New Selection</td>
+            </tr><tr>
+              <td><code>x_studio_boolean_field_xud0H</code></td>
+              <td>boolean</td>
+              <td>New Checkbox</td>
+            </tr><tr>
+              <td><code>x_studio_advance_acc_updated</code></td>
+              <td>boolean</td>
+              <td>Advance ACC Updated</td>
+            </tr><tr>
+              <td><code>x_studio_boolean_field_ydmJ5</code></td>
+              <td>boolean</td>
+              <td>New Checkbox</td>
+            </tr><tr>
+              <td><code>x_studio_valid_lines</code></td>
+              <td>boolean</td>
+              <td>Valid Lines</td>
+            </tr></tbody>
+          </table>
+        </details>
+    </section>
+    <section>
+      <h3>account.move</h3>
+      <div class="progress-wrap">
+      <div class="progress-bar" style="width:25%;background:#ef4444"></div>
+    </div>
+    <span class="progress-label">1/4 (25%)</span>
+      <table>
+      <thead><tr>
+        <th>Status</th><th>Name</th><th>Detail</th>
+      </tr></thead>
+      <tbody>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>x_studio_sale_id</code></td>
+        <td class="detail">many2one [stored]</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_acc_updated</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_tag_updated</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>x_studio_tag_rejected</code></td>
+        <td class="detail">—</td>
+      </tr></tbody>
+    </table>
+      
+        <details>
+          <summary>Extra x_studio_ fields found on this model (47)</summary>
+          <table>
+            <thead><tr><th>Field</th><th>Type</th><th>Label</th></tr></thead>
+            <tbody><tr>
+              <td><code>x_studio_cre</code></td>
+              <td>many2one</td>
+              <td>Created From CP No</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_npo_no</code></td>
+              <td>many2one</td>
+              <td>Created From NPO No</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_consignment</code></td>
+              <td>many2one</td>
+              <td>Created From Consignment</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_consignment_1</code></td>
+              <td>many2one</td>
+              <td>Created From Consignment</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_transfer</code></td>
+              <td>many2one</td>
+              <td>Created From Transfer</td>
+            </tr><tr>
+              <td><code>x_studio_create_from_transfer_1</code></td>
+              <td>many2one</td>
+              <td>Create From Transfer</td>
+            </tr><tr>
+              <td><code>x_studio_purchase_id</code></td>
+              <td>many2one</td>
+              <td>Purchase Order</td>
+            </tr><tr>
+              <td><code>x_studio_consignment_no</code></td>
+              <td>many2one</td>
+              <td>Consignment No</td>
+            </tr><tr>
+              <td><code>x_studio_custom_clearance_no</code></td>
+              <td>char</td>
+              <td>Custom Clearance No</td>
+            </tr><tr>
+              <td><code>x_studio_update_consignment</code></td>
+              <td>boolean</td>
+              <td>Update Consignment</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_vendor_bill</code></td>
+              <td>many2one</td>
+              <td>Created From Vendor Bill</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_vendor_bill_1</code></td>
+              <td>many2one</td>
+              <td>Created From Vendor Bill</td>
+            </tr><tr>
+              <td><code>x_x_studio_created_from_vendor_bill__account_move_count</code></td>
+              <td>integer</td>
+              <td>Created From Vendor Bill count</td>
+            </tr><tr>
+              <td><code>x_x_studio_created_from_vendor_bill_1__account_move_count</code></td>
+              <td>integer</td>
+              <td>Created From Vendor Bill count</td>
+            </tr><tr>
+              <td><code>x_studio_tp_id</code></td>
+              <td>many2one</td>
+              <td>Created From TP Invoice</td>
+            </tr><tr>
+              <td><code>x_studio_lc_no</code></td>
+              <td>many2one</td>
+              <td>LC No</td>
+            </tr><tr>
+              <td><code>x_studio_credit_note_request_sent</code></td>
+              <td>boolean</td>
+              <td>Credit Note Request Sent</td>
+            </tr><tr>
+              <td><code>x_studio_credit_note_approved</code></td>
+              <td>boolean</td>
+              <td>Credit Note Approved</td>
+            </tr><tr>
+              <td><code>x_studio_lc_test1</code></td>
+              <td>boolean</td>
+              <td>LC - test1</td>
+            </tr><tr>
+              <td><code>x_studio_report_type_s_cust_aging</code></td>
+              <td>many2one</td>
+              <td>Report Type (S - Cust Aging)</td>
+            </tr><tr>
+              <td><code>x_studio_supplier_invoice_number</code></td>
+              <td>char</td>
+              <td>XXX Supplier's Invoice Number (Bill Reference)</td>
+            </tr><tr>
+              <td><code>x_studio_bank_guarantee_validation</code></td>
+              <td>boolean</td>
+              <td>Bank Guarantee Validation</td>
+            </tr><tr>
+              <td><code>x_studio_bank_guarantee_notification</code></td>
+              <td>boolean</td>
+              <td>Bank Guarantee Notification</td>
+            </tr><tr>
+              <td><code>x_studio_bg_sent</code></td>
+              <td>boolean</td>
+              <td>BG Sent</td>
+            </tr><tr>
+              <td><code>x_studio_over_bank_guarantee</code></td>
+              <td>boolean</td>
+              <td>Over Bank Guarantee</td>
+            </tr><tr>
+              <td><code>x_studio_bank_guarantee_approved</code></td>
+              <td>boolean</td>
+              <td>Bank Guarantee Approved</td>
+            </tr><tr>
+              <td><code>x_studio_credit_limit_validation</code></td>
+              <td>boolean</td>
+              <td>Credit Limit Validation</td>
+            </tr><tr>
+              <td><code>x_studio_credit_limit_approved</code></td>
+              <td>boolean</td>
+              <td>Credit Limit Approved</td>
+            </tr><tr>
+              <td><code>x_studio_order_payment_method</code></td>
+              <td>selection</td>
+              <td>Order Payment Method</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_project_no</code></td>
+              <td>many2one</td>
+              <td>Created From Project No</td>
+            </tr><tr>
+              <td><code>x_studio_rug_confirmed</code></td>
+              <td>boolean</td>
+              <td>RUG Confirmed</td>
+            </tr><tr>
+              <td><code>x_studio_rug_acc_updated</code></td>
+              <td>boolean</td>
+              <td>RUG Account Updated</td>
+            </tr><tr>
+              <td><code>x_studio_rug_rejected</code></td>
+              <td>boolean</td>
+              <td>RUG Rejected</td>
+            </tr><tr>
+              <td><code>x_studio_currency_rate</code></td>
+              <td>float</td>
+              <td>Currency Rate</td>
+            </tr><tr>
+              <td><code>x_studio_currency_rate_updated</code></td>
+              <td>boolean</td>
+              <td>Currency Rate Updated</td>
+            </tr><tr>
+              <td><code>x_studio_account_mandatory</code></td>
+              <td>boolean</td>
+              <td>Account Mandatory</td>
+            </tr><tr>
+              <td><code>x_studio_purchase_type</code></td>
+              <td>selection</td>
+              <td>PR Type</td>
+            </tr><tr>
+              <td><code>x_studio_test_type</code></td>
+              <td>selection</td>
+              <td>Test Type</td>
+            </tr><tr>
+              <td><code>x_studio_project_no</code></td>
+              <td>many2one</td>
+              <td>Project No</td>
+            </tr><tr>
+              <td><code>x_studio_journal_type</code></td>
+              <td>selection</td>
+              <td>Journal Type</td>
+            </tr><tr>
+              <td><code>x_studio_created_from_project</code></td>
+              <td>boolean</td>
+              <td>Created From Project</td>
+            </tr><tr>
+              <td><code>x_studio_project_no_bill</code></td>
+              <td>many2one</td>
+              <td>Project No Bill</td>
+            </tr><tr>
+              <td><code>x_studio_project_no_issue</code></td>
+              <td>many2one</td>
+              <td>Project No Issue</td>
+            </tr><tr>
+              <td><code>x_studio_project_no_settle</code></td>
+              <td>many2one</td>
+              <td>Project No Settle</td>
+            </tr><tr>
+              <td><code>x_studio_type</code></td>
+              <td>selection</td>
+              <td>Type</td>
+            </tr><tr>
+              <td><code>x_studio_advance_acc_updated</code></td>
+              <td>boolean</td>
+              <td>Advance ACC Updated</td>
+            </tr><tr>
+              <td><code>x_studio_valid_lines</code></td>
+              <td>boolean</td>
+              <td>Valid Lines</td>
+            </tr></tbody>
+          </table>
+        </details>
+    </section>
+
+<h2>3. Server Actions</h2>
+<section><table>
+      <thead><tr>
+        <th>Status</th><th>Name</th><th>Detail</th>
+      </tr></thead>
+      <tbody>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Change Repair Type To RUG</code></td>
+        <td class="detail">ID:2159 on helpdesk.ticket</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>Update Serial</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Create Repair Serial</code></td>
+        <td class="detail">ID:1994 on helpdesk.ticket</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Create Repair Route</code></td>
+        <td class="detail">ID:1993 on helpdesk.ticket</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Send to Factory</code></td>
+        <td class="detail">ID:2001 on helpdesk.ticket</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Receive at Factory</code></td>
+        <td class="detail">ID:2002 on helpdesk.ticket</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Send to Sales Centre</code></td>
+        <td class="detail">ID:2007 on helpdesk.ticket</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Receive at Sales Centre</code></td>
+        <td class="detail">ID:2006 on helpdesk.ticket</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Cancel</code></td>
+        <td class="detail">ID:2220 on helpdesk.ticket</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Reopen</code></td>
+        <td class="detail">ID:2221 on helpdesk.ticket</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>View Repair Diagnosis Validation</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>View Repair Image Validation</code></td>
+        <td class="detail">—</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>Tested OK</code></td>
+        <td class="detail">—</td>
+      </tr></tbody>
+    </table></section>
+
+<h2>4. Inherited Views</h2>
+<section><table>
+      <thead><tr>
+        <th>Status</th><th>Name</th><th>Detail</th>
+      </tr></thead>
+      <tbody>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>helpdesk.ticket — helpdesk.ticket.form</code></td>
+        <td class="detail">helpdesk.ticket.form.inherit (ID:3994), helpdesk.ticket.form.inherit.invoicing (ID:3998), helpdesk.ticket.form.quick_create (ID:3999), helpdesk.ticket.form.inherit.stock (ID:4002), helpdesk.ticket.form.inherit.return.stock.user (ID:4003), helpdesk.ticket.form.inherit.helpdesk.repair (ID:4005), helpdesk.ticket.form.inherit.repair.stock.user (ID:4006), helpdesk.ticket.form.inherit.invoicing (ID:4010), Odoo Studio: helpdesk.ticket.form customization (ID:4012), helpdesk.ticket.form.inherit.sale (ID:4445), helpdesk.ticket.form.inherit.timesheet (ID:4777), helpdesk.ticket.form.inherit.sale.timesheet (ID:4792)</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>project.task — project.task.form</code></td>
+        <td class="detail">project.task.form.inherited (ID:1263), project.task.form.quick_create (ID:1631), project.task.form.inherit.timesheet (ID:1808), Odoo Studio: project.task.form customization (ID:3019), project.task.form.inherit.timesheet (ID:4484), project.task.form.quick_create.inherit (ID:4634), project.task.form.inherit (ID:6357), project.task.form.timesheet.inherited (ID:6408), project.task.form.quick_create_inherited (ID:6552), project.task.form.quick.create.sale.order.inherited (ID:7006), project.task.form.view.account.inherit (ID:7902), project.sharing.project.task.form.view.account.inherit (ID:7904), project.task.form.inherit.sale.project (ID:7932)</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>project.task — view.task.form2</code></td>
+        <td class="detail">view.task.form2.inherit (ID:1630), view.task.form2.inherit (ID:1809), view.task.form2.inherit (ID:1840), Odoo Studio: view.task.form2.inherit (ID:4620)</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>project.task — task.form.inherit</code></td>
+        <td class="detail">project.task.form.inherited (ID:1263), project.task.form.inherit.timesheet (ID:1808), project.task.form.inherit.timesheet (ID:4484), task.form.inherit (ID:4642), Odoo Studio: task.form.inherit (ID:4730), project.task.form.inherit (ID:6357), project.task.form.inherit.sale.project (ID:7932)</td>
+      </tr>
+      <tr class="row-missing">
+        <td><span class="badge missing">✗ Missing</span></td>
+        <td><code>project.task — view.form.fsm.inherit.quotation</code></td>
+        <td class="detail">—</td>
+      </tr></tbody>
+    </table></section>
+
+<h2>5. Helpdesk Stages</h2>
+<section><table>
+      <thead><tr>
+        <th>Status</th><th>Name</th><th>Detail</th>
+      </tr></thead>
+      <tbody>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Stage ID 3 — expected: "Invoice / Invoiced"</code></td>
+        <td class="detail">"Advance Received"</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Stage ID 9 — expected: "Repair Complete"</code></td>
+        <td class="detail">"Repair Completed"</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Stage ID 10 — expected: "Estimation Sent"</code></td>
+        <td class="detail">"Estimation Sent to Customer"</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Stage ID 11 — expected: "Repair Started"</code></td>
+        <td class="detail">"Repair Started"</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Stage ID 12 — expected: "Estimation Approved"</code></td>
+        <td class="detail">"Estimation Approval Received"</td>
+      </tr>
+      <tr class="row-found">
+        <td><span class="badge found">✓ Found</span></td>
+        <td><code>Stage ID 13 — expected: "Handed Over"</code></td>
+        <td class="detail">"Handed Over to Customer"</td>
+      </tr></tbody>
+    </table></section>
+
+</body>
+</html>

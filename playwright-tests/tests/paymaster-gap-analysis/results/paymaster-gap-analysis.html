@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<title>Paymaster Gap Analysis</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f172a;color:#e2e8f0;padding:32px}
+  h1{color:#38bdf8;margin-bottom:6px}
+  h2{color:#7dd3fc;font-size:15px;margin:28px 0 10px;border-bottom:1px solid #1e293b;padding-bottom:6px}
+  p.sub{color:#64748b;font-size:12px;margin-bottom:16px}
+  .summary{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0 24px}
+  .badge{padding:10px 20px;border-radius:6px;font-weight:700;font-size:13px;min-width:150px;text-align:center}
+  .green{background:#052e16;color:#4ade80}
+  .red{background:#2d0707;color:#f87171}
+  .blue{background:#0c1a2e;color:#60a5fa}
+  .amber{background:#1c1407;color:#fbbf24}
+  table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:32px}
+  th{background:#1e293b;padding:7px 10px;text-align:left;color:#94a3b8;position:sticky;top:0;white-space:nowrap}
+  tr:hover{background:#1e293b !important}
+  .scroll-wrap{overflow-x:auto;margin-bottom:32px}
+  .tabs{display:flex;gap:4px;margin-bottom:0;border-bottom:2px solid #1e293b}
+  .tab{padding:8px 20px;cursor:pointer;border-radius:6px 6px 0 0;color:#94a3b8;font-size:13px;font-weight:600;background:#1e293b}
+  .tab.active{background:#0f172a;color:#38bdf8;border-bottom:2px solid #38bdf8;margin-bottom:-2px}
+  .tab-content{display:none;padding-top:20px}
+  .tab-content.active{display:block}
+  .legend{display:flex;gap:16px;margin-bottom:12px;font-size:11px}
+  .leg{display:flex;align-items:center;gap:6px}
+  .dot{width:10px;height:10px;border-radius:50%}
+</style>
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.getElementById('content-'+id).classList.add('active');
+}
+</script>
+</head><body>
+
+<h1>Paymaster Gap Analysis</h1>
+<p class="sub">Generated 4/22/2026, 9:20:32 AM · Jinasena Agricultural Machinery (Pvt) Ltd · Odoo vs Excel Paymaster</p>
+
+<div class="summary">
+  <div class="badge blue">Total Records: 43</div>
+  <div class="badge blue">Total Amount: Rs 730,342.00</div>
+  <div class="badge red">Complete: 0/43</div>
+  <div class="badge amber">Ready Amount: Rs 0.00</div>
+  <div class="badge red">Employees Found: 0/43</div>
+  <div class="badge red">Has Bank Acct: 0/43</div>
+  <div class="badge red">Has MICR: 0/43</div>
+  <div class="badge red">Has Branch: 0/43</div>
+  <div class="badge amber">MICR Match: 0/43</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" id="tab-records" onclick="showTab('records')">All Records (43)</div>
+  <div class="tab" id="tab-employees" onclick="showTab('employees')">By Employee (31)</div>
+  <div class="tab" id="tab-banks" onclick="showTab('banks')">Banks / MICR (6)</div>
+  <div class="tab" id="tab-missing" onclick="showTab('missing')">Missing Data (43)</div>
+</div>
+
+<!-- Tab: All Records -->
+<div class="tab-content active" id="content-records">
+  <div class="legend">
+    <div class="leg"><div class="dot" style="background:#4ade80"></div>Complete / Match</div>
+    <div class="leg"><div class="dot" style="background:#f87171"></div>Missing / Mismatch</div>
+    <div class="leg"><div class="dot" style="background:#fbbf24"></div>Warning</div>
+  </div>
+  <div class="scroll-wrap"><table>
+    <thead><tr>
+      <th>Status</th>
+      <th>Emp ID</th>
+      <th>Excel Name</th>
+      <th>Reference</th>
+      <th>Odoo Employee</th>
+      <th>Matched Via</th>
+      <th>Acct# (Odoo)</th>
+      <th>MICR (Odoo)</th>
+      <th>MICR (Excel)</th>
+      <th>MICR?</th>
+      <th>Branch (Odoo)</th>
+      <th>Branch (Excel)</th>
+      <th>Branch?</th>
+      <th>Acct# (Excel)</th>
+      <th>Acct?</th>
+      <th>Amount (Rs)</th>
+      <th>Issues</th>
+    </tr></thead>
+    <tbody><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1101003</td>
+      <td style="padding:5px 10px">U N D Gunaweera</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7010</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">45</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">850546</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">35,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1101143</td>
+      <td style="padding:5px 10px">J K B Ranmal</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7010</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">762</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">5311266</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">35,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1430887</td>
+      <td style="padding:5px 10px">MerchantBank ofSLPLC</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">ANPL 13-00405500</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7010</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">34</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">3263005</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">8,657.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1100955</td>
+      <td style="padding:5px 10px">C K Thilakarathna</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7010</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">762</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">77748980</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">15,500.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1101287</td>
+      <td style="padding:5px 10px">AMARANGIKA S P I</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7010</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">39</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">78847329</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">22,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1201572</td>
+      <td style="padding:5px 10px">M L P P Kumara</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7010</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">43</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">8406966</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1401111</td>
+      <td style="padding:5px 10px">SENEVIRATNA W M C</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7728</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">87</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">2245080</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">13,697.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1401056</td>
+      <td style="padding:5px 10px">R I Vidanage</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7737</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">1</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">1020052803</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">4,350.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400980</td>
+      <td style="padding:5px 10px">WASALA W M C A</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7737</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">1</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">1023099958</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">4,115.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1401056</td>
+      <td style="padding:5px 10px">R I Vidanage</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7737</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">1</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">102100000504</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">6,300.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400400</td>
+      <td style="padding:5px 10px">P S S P Dharmasiri</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7755</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">116</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">116010108563</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">31,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400400</td>
+      <td style="padding:5px 10px">P S S P Dharmasiri</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7056</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">71</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">8710007700</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">5,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400257</td>
+      <td style="padding:5px 10px">ERANGA K D K</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7755</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">116</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">116010106680</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">20,500.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1100423</td>
+      <td style="padding:5px 10px">I P Aselaarachchi</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7719</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">61</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">100610275999</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,500.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1100423</td>
+      <td style="padding:5px 10px">M.B.N.Perera</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7719</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">65</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">100017067429</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">100.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1100423</td>
+      <td style="padding:5px 10px">M.R.S.Perera</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7719</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">65</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">100017039280</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">100.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1110164</td>
+      <td style="padding:5px 10px">H C L HETTIARACHCHI</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">SavingsMAY2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7214</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">44</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">106240156019</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">10,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1101053</td>
+      <td style="padding:5px 10px">D A T S S RANASINGHE</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7719</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">36</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">700360536636</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">5,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1201572</td>
+      <td style="padding:5px 10px">M L P P Kumara</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7719</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">64</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">100640357642</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">6,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1201196</td>
+      <td style="padding:5px 10px">M.P.S. PERERA</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7719</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">64</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">100640368741</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">10,710.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1210166</td>
+      <td style="padding:5px 10px">P Kulara Pabasari Silva</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7719</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">1</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">100017076401</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">2,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1201322</td>
+      <td style="padding:5px 10px">MALLAWARACHCHI S W</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">SavingsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7135</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">34</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">200250017019</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">9,500.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1200559</td>
+      <td style="padding:5px 10px">W M A K HERATH</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">SavingsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7056</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">50</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">8500009856</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">12,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1401264</td>
+      <td style="padding:5px 10px">CHANDRAKUMARA A S</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">SavingsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7135</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">239</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">200140026993</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1401264</td>
+      <td style="padding:5px 10px">CHANDRAKUMARA A S</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">SavingsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7135</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">239</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">200140035412</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400996</td>
+      <td style="padding:5px 10px">J.K.R.LALINDA</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">SavingsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7135</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">239</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">200150040106</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400996</td>
+      <td style="padding:5px 10px">J.K.R.LALINDA</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">SavingsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7135</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">25</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">200396495568</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,500.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1401264</td>
+      <td style="padding:5px 10px">CHANDRAKUMARA A S</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">SavingsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7135</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">239</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">200140043539</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1401056</td>
+      <td style="padding:5px 10px">R.I.VIDANAGE</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7755</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">116</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">116010111654</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">14,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400924</td>
+      <td style="padding:5px 10px">P S Chaminda</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7755</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">116</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">116010106983</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">13,850.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1100795</td>
+      <td style="padding:5px 10px">H A U Kumara</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">SavingsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7278</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">145</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">114553717330</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">3,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400996</td>
+      <td style="padding:5px 10px">J.K.R.Lalinda</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">SavingsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7728</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">87</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">2141225</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">16,111.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400660</td>
+      <td style="padding:5px 10px">M.M.U.K. DISSNAYAKE</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7728</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">82</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">1512833</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">12,377.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">2200517</td>
+      <td style="padding:5px 10px">B M L FERNANDO </td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7010</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">711</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">79807183</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">14,500.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">2200521</td>
+      <td style="padding:5px 10px">C J K Hettiarachchi</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7135</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">25</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">200216497270</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">2,100.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1101143</td>
+      <td style="padding:5px 10px">C.M.S.Weheragoda</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7056</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">45</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">8450027420</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">2,500.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1401286</td>
+      <td style="padding:5px 10px">L P ASANKA FERNANDO</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7728</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">87</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">2912031</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">7,523.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1420101</td>
+      <td style="padding:5px 10px">C M M J C SILVA</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7135</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">25</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">200153403136</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400988</td>
+      <td style="padding:5px 10px">W N WEERASEKARA</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7056</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">71</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">8014301748</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1401430</td>
+      <td style="padding:5px 10px">J A G K JAYAKODY</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">SavingsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7135</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">26</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">200190042630</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1401430</td>
+      <td style="padding:5px 10px">J A O M JAYAKODY</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">SavingsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7135</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">26</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">200170073104</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400922</td>
+      <td style="padding:5px 10px">H D N D Fernando</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">LoanInsJUNE2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7728</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">82</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">1906108</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">10,681.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">null</td>
+      <td style="padding:5px 10px">Jinasena (Pvt) Ltd</td>
+      <td style="padding:5px 10px;color:#94a3b8;font-size:11px">SO-JUNE 2025</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Not Found</td>
+      <td style="padding:5px 10px;color:#64748b;font-size:11px">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">7056</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">50</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">1500001888</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">❌ Missing</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">365,171.00</td>
+      <td style="padding:5px 10px"><ul style="margin:0;padding-left:16px;color:#f87171;font-size:11px"><li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li></ul></td>
+    </tr></tbody>
+  </table></div>
+</div>
+
+<!-- Tab: By Employee -->
+<div class="tab-content" id="content-employees">
+  <div class="scroll-wrap"><table>
+    <thead><tr>
+      <th>Status</th>
+      <th>Emp ID</th>
+      <th>Name</th>
+      <th>In Odoo?</th>
+      <th>Bank Acct#</th>
+      <th>MICR</th>
+      <th>Branch</th>
+      <th>Total (Rs)</th>
+      <th>Issues</th>
+    </tr></thead>
+    <tbody><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1101003</td>
+      <td style="padding:5px 10px">U N D Gunaweera</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">35,000.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1101143</td>
+      <td style="padding:5px 10px">J K B Ranmal</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">37,500.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1430887</td>
+      <td style="padding:5px 10px">MerchantBank ofSLPLC</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">8,657.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1100955</td>
+      <td style="padding:5px 10px">C K Thilakarathna</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">15,500.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1101287</td>
+      <td style="padding:5px 10px">AMARANGIKA S P I</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">22,000.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1201572</td>
+      <td style="padding:5px 10px">M L P P Kumara</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">7,000.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1401111</td>
+      <td style="padding:5px 10px">SENEVIRATNA W M C</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">13,697.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1401056</td>
+      <td style="padding:5px 10px">R I Vidanage</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">24,650.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400980</td>
+      <td style="padding:5px 10px">WASALA W M C A</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">4,115.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400400</td>
+      <td style="padding:5px 10px">P S S P Dharmasiri</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">36,000.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400257</td>
+      <td style="padding:5px 10px">ERANGA K D K</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">20,500.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1100423</td>
+      <td style="padding:5px 10px">I P Aselaarachchi</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,700.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1110164</td>
+      <td style="padding:5px 10px">H C L HETTIARACHCHI</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">10,000.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1101053</td>
+      <td style="padding:5px 10px">D A T S S RANASINGHE</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">5,000.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1201196</td>
+      <td style="padding:5px 10px">M.P.S. PERERA</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">10,710.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1210166</td>
+      <td style="padding:5px 10px">P Kulara Pabasari Silva</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">2,000.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1201322</td>
+      <td style="padding:5px 10px">MALLAWARACHCHI S W</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">9,500.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1200559</td>
+      <td style="padding:5px 10px">W M A K HERATH</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">12,000.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1401264</td>
+      <td style="padding:5px 10px">CHANDRAKUMARA A S</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">3,000.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400996</td>
+      <td style="padding:5px 10px">J.K.R.LALINDA</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">18,611.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400924</td>
+      <td style="padding:5px 10px">P S Chaminda</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">13,850.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1100795</td>
+      <td style="padding:5px 10px">H A U Kumara</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">3,000.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400660</td>
+      <td style="padding:5px 10px">M.M.U.K. DISSNAYAKE</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">12,377.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">2200517</td>
+      <td style="padding:5px 10px">B M L FERNANDO </td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">14,500.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">2200521</td>
+      <td style="padding:5px 10px">C J K Hettiarachchi</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">2,100.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1401286</td>
+      <td style="padding:5px 10px">L P ASANKA FERNANDO</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">7,523.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1420101</td>
+      <td style="padding:5px 10px">C M M J C SILVA</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400988</td>
+      <td style="padding:5px 10px">W N WEERASEKARA</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1401430</td>
+      <td style="padding:5px 10px">J A G K JAYAKODY</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">2,000.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">1400922</td>
+      <td style="padding:5px 10px">H D N D Fernando</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">10,681.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr><tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px;color:#f87171;font-weight:700">✘</td>
+      <td style="padding:5px 10px;font-family:monospace">null</td>
+      <td style="padding:5px 10px">Jinasena (Pvt) Ltd</td>
+      <td style="padding:5px 10px;color:#f87171">✘</td>
+      <td style="padding:5px 10px;color:#f87171">✘ None</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;color:#f87171;font-family:monospace">✘</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">365,171.00</td>
+      <td style="padding:5px 10px;font-size:11px;color:#f87171">Employee not found in Odoo | Bank MICR code missing in res.bank | Branch code missing in res.partner.bank | Account number missing | No completed payslip found</td>
+    </tr></tbody>
+  </table></div>
+</div>
+
+<!-- Tab: Banks / MICR -->
+<div class="tab-content" id="content-banks">
+  <p style="color:#64748b;font-size:12px;margin-bottom:12px">
+    MICR codes in Excel: <span style="color:#60a5fa;font-family:monospace">7010, 7728, 7737, 7755, 7056, 7719, 7214, 7135, 7278</span>
+  </p>
+  <div class="scroll-wrap"><table>
+    <thead><tr>
+      <th>Bank Name</th>
+      <th>MICR Code (x_micr_code)</th>
+      <th>BIC / SWIFT</th>
+      <th>In Excel Paymaster?</th>
+    </tr></thead>
+    <tbody><tr style="border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px">Commercial Bank</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">5623</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">COMMBANK</td>
+      <td style="padding:5px 10px;color:#64748b">—</td>
+    </tr><tr style="border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px">Hatton National Bank</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">3422</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">HNB0001</td>
+      <td style="padding:5px 10px;color:#64748b">—</td>
+    </tr><tr style="border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px">Peoples Bank</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">—</td>
+      <td style="padding:5px 10px;color:#64748b">—</td>
+    </tr><tr style="border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px">Sampath</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">GEB123</td>
+      <td style="padding:5px 10px;color:#64748b">—</td>
+    </tr><tr style="border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px">TEST</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">TEST123</td>
+      <td style="padding:5px 10px;color:#64748b">—</td>
+    </tr><tr style="border-bottom:1px solid #1e293b">
+      <td style="padding:5px 10px">TEST-2</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">—</td>
+      <td style="padding:5px 10px;font-family:monospace;color:#94a3b8">TEST-2</td>
+      <td style="padding:5px 10px;color:#64748b">—</td>
+    </tr></tbody>
+  </table></div>
+  <h2>res.partner.bank Records (5)</h2>
+  <div class="scroll-wrap"><table>
+    <thead><tr>
+      <th>ID</th><th>Account Number</th><th>Holder</th><th>Bank</th><th>Branch Code (x_branch_code)</th>
+    </tr></thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;color:#64748b">19</td>
+        <td style="padding:5px 10px;font-family:monospace">12345</td>
+        <td style="padding:5px 10px">Jinasena Agricultural Machinery (Pvt) Ltd.</td>
+        <td style="padding:5px 10px;color:#94a3b8">Sampath - GEB123</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#f87171">✘ Empty</td>
+      </tr><tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;color:#64748b">20</td>
+        <td style="padding:5px 10px;font-family:monospace">2222222222222</td>
+        <td style="padding:5px 10px">B M L Fernando</td>
+        <td style="padding:5px 10px;color:#94a3b8">Hatton National Bank - HNB0001</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#4ade80">878</td>
+      </tr><tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;color:#64748b">23</td>
+        <td style="padding:5px 10px;font-family:monospace">21323222</td>
+        <td style="padding:5px 10px">MR H A C HETTIARACHCHI</td>
+        <td style="padding:5px 10px;color:#94a3b8">Commercial Bank - COMMBANK</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#4ade80">232</td>
+      </tr><tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;color:#64748b">24</td>
+        <td style="padding:5px 10px;font-family:monospace">7662377772</td>
+        <td style="padding:5px 10px">C J K Hettiarachchi</td>
+        <td style="padding:5px 10px;color:#94a3b8">Commercial Bank - COMMBANK</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#4ade80">232</td>
+      </tr><tr style="border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;color:#64748b">25</td>
+        <td style="padding:5px 10px;font-family:monospace">1112222333333</td>
+        <td style="padding:5px 10px">A C PAUL & CO LTD</td>
+        <td style="padding:5px 10px;color:#94a3b8">Commercial Bank - COMMBANK</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#4ade80">444</td>
+      </tr>
+    </tbody>
+  </table></div>
+</div>
+
+<!-- Tab: Missing Data -->
+<div class="tab-content" id="content-missing">
+  <p style="color:#64748b;font-size:12px;margin-bottom:12px">
+    43 records have missing or mismatched data and cannot be included in the paymaster file without remediation.
+  </p>
+  <div class="scroll-wrap"><table>
+    <thead><tr>
+      <th>Emp ID</th>
+      <th>Excel Name</th>
+      <th>Amount (Rs)</th>
+      <th>Missing Items</th>
+    </tr></thead>
+    <tbody>
+      
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1101003</td>
+        <td style="padding:5px 10px">U N D Gunaweera</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">35,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1101143</td>
+        <td style="padding:5px 10px">J K B Ranmal</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">35,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1430887</td>
+        <td style="padding:5px 10px">MerchantBank ofSLPLC</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">8,657.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1100955</td>
+        <td style="padding:5px 10px">C K Thilakarathna</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">15,500.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1101287</td>
+        <td style="padding:5px 10px">AMARANGIKA S P I</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">22,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1201572</td>
+        <td style="padding:5px 10px">M L P P Kumara</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1401111</td>
+        <td style="padding:5px 10px">SENEVIRATNA W M C</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">13,697.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1401056</td>
+        <td style="padding:5px 10px">R I Vidanage</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">4,350.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1400980</td>
+        <td style="padding:5px 10px">WASALA W M C A</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">4,115.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1401056</td>
+        <td style="padding:5px 10px">R I Vidanage</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">6,300.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1400400</td>
+        <td style="padding:5px 10px">P S S P Dharmasiri</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">31,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1400400</td>
+        <td style="padding:5px 10px">P S S P Dharmasiri</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">5,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1400257</td>
+        <td style="padding:5px 10px">ERANGA K D K</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">20,500.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1100423</td>
+        <td style="padding:5px 10px">I P Aselaarachchi</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,500.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1100423</td>
+        <td style="padding:5px 10px">M.B.N.Perera</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">100.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1100423</td>
+        <td style="padding:5px 10px">M.R.S.Perera</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">100.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1110164</td>
+        <td style="padding:5px 10px">H C L HETTIARACHCHI</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">10,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1101053</td>
+        <td style="padding:5px 10px">D A T S S RANASINGHE</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">5,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1201572</td>
+        <td style="padding:5px 10px">M L P P Kumara</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">6,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1201196</td>
+        <td style="padding:5px 10px">M.P.S. PERERA</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">10,710.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1210166</td>
+        <td style="padding:5px 10px">P Kulara Pabasari Silva</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">2,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1201322</td>
+        <td style="padding:5px 10px">MALLAWARACHCHI S W</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">9,500.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1200559</td>
+        <td style="padding:5px 10px">W M A K HERATH</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">12,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1401264</td>
+        <td style="padding:5px 10px">CHANDRAKUMARA A S</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1401264</td>
+        <td style="padding:5px 10px">CHANDRAKUMARA A S</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1400996</td>
+        <td style="padding:5px 10px">J.K.R.LALINDA</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1400996</td>
+        <td style="padding:5px 10px">J.K.R.LALINDA</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,500.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1401264</td>
+        <td style="padding:5px 10px">CHANDRAKUMARA A S</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1401056</td>
+        <td style="padding:5px 10px">R.I.VIDANAGE</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">14,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1400924</td>
+        <td style="padding:5px 10px">P S Chaminda</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">13,850.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1100795</td>
+        <td style="padding:5px 10px">H A U Kumara</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">3,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1400996</td>
+        <td style="padding:5px 10px">J.K.R.Lalinda</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">16,111.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1400660</td>
+        <td style="padding:5px 10px">M.M.U.K. DISSNAYAKE</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">12,377.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">2200517</td>
+        <td style="padding:5px 10px">B M L FERNANDO </td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">14,500.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">2200521</td>
+        <td style="padding:5px 10px">C J K Hettiarachchi</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">2,100.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1101143</td>
+        <td style="padding:5px 10px">C.M.S.Weheragoda</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">2,500.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1401286</td>
+        <td style="padding:5px 10px">L P ASANKA FERNANDO</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">7,523.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1420101</td>
+        <td style="padding:5px 10px">C M M J C SILVA</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1400988</td>
+        <td style="padding:5px 10px">W N WEERASEKARA</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1401430</td>
+        <td style="padding:5px 10px">J A G K JAYAKODY</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1401430</td>
+        <td style="padding:5px 10px">J A O M JAYAKODY</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">1,000.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">1400922</td>
+        <td style="padding:5px 10px">H D N D Fernando</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">10,681.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background:#2d0707;border-bottom:1px solid #1e293b">
+        <td style="padding:5px 10px;font-family:monospace">null</td>
+        <td style="padding:5px 10px">Jinasena (Pvt) Ltd</td>
+        <td style="padding:5px 10px;font-family:monospace;color:#60a5fa">365,171.00</td>
+        <td style="padding:5px 10px">
+          <ul style="margin:0;padding-left:16px;color:#fbbf24;font-size:11px">
+            <li>Employee not found in Odoo</li><li>Bank MICR code missing in res.bank</li><li>Branch code missing in res.partner.bank</li><li>Account number missing</li><li>No completed payslip found</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table></div>
+</div>
+
+</body></html>
