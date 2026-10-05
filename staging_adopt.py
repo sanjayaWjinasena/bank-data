@@ -21,7 +21,11 @@ module declares with `_name` (read from its Python files), plus every
 ir.model pin in its data, it registers `<module>.model_<name>` on the
 existing ir.model row; and for every field it declares in Python (on its
 own models and on models it _inherit-s) it registers
-`<module>.field_<model>__<field>` on the existing ir.model.fields row. The model then belongs to this repo (Python
+`<module>.field_<model>__<field>` on the existing ir.model.fields row. For
+models it defines with _name, ALL their fields get the xmlid, as Odoo does
+for a module's own models: that covers the automatic fields (id,
+create_date, create_uid, write_date, write_uid) that never appear in the
+Python, except fields another (non-Studio) module already owns. The model then belongs to this repo (Python
 reflection sets state=base); nothing else is written. Models that do not
 exist yet are created as usual; on a fresh database nothing matches, so this
 is a no-op there. Goal: nothing left owned by Studio.
@@ -163,6 +167,19 @@ def pre_init_hook(env):
                 continue
             IMD.create({'module': MODULE, 'name': xmlid, 'model': 'ir.model.fields', 'res_id': fid, 'noupdate': True})
             fadopted += 1
+    # every field of the models this module defines (automatic fields included)
+    own_models = sorted(_declared_models())
+    for model_name in own_models:
+        for field in Fields.search([('model', '=', model_name)]):
+            xmlid = 'field_%s__%s' % (model_name.replace('.', '_'), field.name)
+            if IMD.search_count([('module', '=', MODULE), ('name', '=', xmlid)]):
+                continue
+            owners = IMD.search([('model', '=', 'ir.model.fields'), ('res_id', '=', field.id)]).mapped('module')
+            if any(o not in ('studio_customization', '__export__', MODULE) for o in owners):
+                continue
+            IMD.create({'module': MODULE, 'name': xmlid, 'model': 'ir.model.fields', 'res_id': field.id, 'noupdate': True})
+            fadopted += 1
+
     for xmlid, (model_name, fname) in sorted(_xml_field_records().items()):
         if IMD.search_count([('module', '=', MODULE), ('name', '=', xmlid)]):
             continue
