@@ -12,6 +12,8 @@ Python already exist as Studio models. Two things then break on install:
   * ir.model.fields records defined in XML (e.g. Studio fields on system
     tables) try to CREATE fields that already exist
     (ir_model_fields_name_unique);
+  * res.groups records try to CREATE groups that already exist
+    (res_groups_name_uniq: same name in the same category);
   * likewise `<module>.field_<model>__<field>` is never created for fields
     that already exist as Studio fields, so data referencing them fails
     ("External ID not found: BugFix-HR.field_x_paye_tax__x_active").
@@ -122,6 +124,55 @@ def _xml_field_records():
     return out
 
 
+def _xml_group_records():
+    """[(xmlid, name, category_ref, category_search)] for res.groups records in this module's XML."""
+    out = []
+    for path in glob.glob(os.path.join(_HERE, '**', '*.xml'), recursive=True):
+        try:
+            tree = etree.parse(path)
+        except etree.XMLSyntaxError:
+            continue
+        for rec in tree.iter('record'):
+            if rec.get('model') != 'res.groups' or not rec.get('id') or '.' in rec.get('id'):
+                continue
+            name = rec.find("field[@name='name']")
+            if name is None or not name.text:
+                continue
+            cat = rec.find("field[@name='category_id']")
+            out.append((rec.get('id'), name.text.strip(),
+                        cat.get('ref') if cat is not None else None,
+                        cat.get('search') if cat is not None else None))
+    return out
+
+
+def _adopt_groups(env, IMD):
+    """Bind this module's group xmlids to existing groups: same name in the
+    same category, else a unique name match. Writes nothing to the group."""
+    Groups = env['res.groups'].sudo().with_context(active_test=False)
+    adopted = 0
+    for xmlid, name, cat_ref, cat_search in _xml_group_records():
+        if IMD.search_count([('module', '=', MODULE), ('name', '=', xmlid)]):
+            continue
+        domain = [('name', '=', name)]
+        if cat_ref:
+            ref = cat_ref if '.' in cat_ref else '%s.%s' % (MODULE, cat_ref)
+            cat = env.ref(ref, raise_if_not_found=False)
+            domain.append(('category_id', '=', cat.id if cat else False))
+        elif cat_search:
+            cats = env['ir.module.category'].sudo().search(ast.literal_eval(cat_search))
+            domain.append(('category_id', 'in', cats.ids))
+        else:
+            domain.append(('category_id', '=', False))
+        hit = Groups.search(domain)
+        if not hit:
+            hit = Groups.search([('name', '=', name)])
+        if len(hit) != 1:
+            continue
+        IMD.create({'module': MODULE, 'name': xmlid, 'model': 'res.groups', 'res_id': hit.id, 'noupdate': True})
+        adopted += 1
+    return adopted
+
+
 def _pinned_models():
     """{xmlid: model name} for ir.model pin records shipped in this module's XML."""
     pins = {}
@@ -187,3 +238,4 @@ def pre_init_hook(env):
         IMD.create({'module': MODULE, 'name': xmlid, 'model': 'ir.model.fields', 'res_id': field.id, 'noupdate': True})
         fadopted += 1
     _logger.info("%s pre_init_hook: repo-owned %d existing fields", MODULE, fadopted)
+    _logger.info("%s pre_init_hook: adopted %d existing groups", MODULE, _adopt_groups(env, IMD))
