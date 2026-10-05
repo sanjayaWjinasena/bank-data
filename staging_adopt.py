@@ -25,7 +25,8 @@ own models and on models it _inherit-s) it registers
 models it defines with _name, ALL their fields get the xmlid, as Odoo does
 for a module's own models: that covers the automatic fields (id,
 create_date, create_uid, write_date, write_uid) that never appear in the
-Python, except fields another (non-Studio) module already owns. The model then belongs to this repo (Python
+Python. When several modules define the same model, each gets its own
+xmlid on the same field, exactly as Odoo does on a fresh database. The model then belongs to this repo (Python
 reflection sets state=base); nothing else is written. Models that do not
 exist yet are created as usual; on a fresh database nothing matches, so this
 is a no-op there. Goal: nothing left owned by Studio.
@@ -173,9 +174,6 @@ def pre_init_hook(env):
         for field in Fields.search([('model', '=', model_name)]):
             xmlid = 'field_%s__%s' % (model_name.replace('.', '_'), field.name)
             if IMD.search_count([('module', '=', MODULE), ('name', '=', xmlid)]):
-                continue
-            owners = IMD.search([('model', '=', 'ir.model.fields'), ('res_id', '=', field.id)]).mapped('module')
-            if any(o not in ('studio_customization', '__export__', MODULE) for o in owners):
                 continue
             IMD.create({'module': MODULE, 'name': xmlid, 'model': 'ir.model.fields', 'res_id': field.id, 'noupdate': True})
             fadopted += 1
