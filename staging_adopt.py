@@ -9,6 +9,9 @@ Python already exist as Studio models. Two things then break on install:
   * Odoo does not create this module's `model_<name>` xmlids for them, so
     security/ir.model.access.csv fails with
     "No matching record found for external id '<module>.model_x_...'".
+  * ir.model.fields records defined in XML (e.g. Studio fields on system
+    tables) try to CREATE fields that already exist
+    (ir_model_fields_name_unique);
   * likewise `<module>.field_<model>__<field>` is never created for fields
     that already exist as Studio fields, so data referencing them fails
     ("External ID not found: BugFix-HR.field_x_paye_tax__x_active").
@@ -96,6 +99,24 @@ def _declared_fields():
     return out
 
 
+def _xml_field_records():
+    """{xmlid: (model, field)} for ir.model.fields records shipped in this module's XML."""
+    out = {}
+    for path in glob.glob(os.path.join(_HERE, '**', '*.xml'), recursive=True):
+        try:
+            tree = etree.parse(path)
+        except etree.XMLSyntaxError:
+            continue
+        for rec in tree.iter('record'):
+            if rec.get('model') != 'ir.model.fields' or not rec.get('id') or '.' in rec.get('id'):
+                continue
+            name = rec.find("field[@name='name']")
+            model = rec.find("field[@name='model']")
+            if name is not None and model is not None and name.text and model.text:
+                out[rec.get('id')] = (model.text.strip(), name.text.strip())
+    return out
+
+
 def _pinned_models():
     """{xmlid: model name} for ir.model pin records shipped in this module's XML."""
     pins = {}
@@ -142,4 +163,12 @@ def pre_init_hook(env):
                 continue
             IMD.create({'module': MODULE, 'name': xmlid, 'model': 'ir.model.fields', 'res_id': fid, 'noupdate': True})
             fadopted += 1
+    for xmlid, (model_name, fname) in sorted(_xml_field_records().items()):
+        if IMD.search_count([('module', '=', MODULE), ('name', '=', xmlid)]):
+            continue
+        field = Fields.search([('model', '=', model_name), ('name', '=', fname)], limit=1)
+        if not field:
+            continue
+        IMD.create({'module': MODULE, 'name': xmlid, 'model': 'ir.model.fields', 'res_id': field.id, 'noupdate': True})
+        fadopted += 1
     _logger.info("%s pre_init_hook: repo-owned %d existing fields", MODULE, fadopted)
