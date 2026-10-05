@@ -9,11 +9,16 @@ Python already exist as Studio models. Two things then break on install:
   * Odoo does not create this module's `model_<name>` xmlids for them, so
     security/ir.model.access.csv fails with
     "No matching record found for external id '<module>.model_x_...'".
+  * likewise `<module>.field_<model>__<field>` is never created for fields
+    that already exist as Studio fields, so data referencing them fails
+    ("External ID not found: BugFix-HR.field_x_paye_tax__x_active").
 
 pre_init_hook runs before this module's data loads. For every model this
 module declares with `_name` (read from its Python files), plus every
 ir.model pin in its data, it registers `<module>.model_<name>` on the
-existing ir.model row. The model then belongs to this repo (Python
+existing ir.model row; and for every field it declares in Python (on its
+own models and on models it _inherit-s) it registers
+`<module>.field_<model>__<field>` on the existing ir.model.fields row. The model then belongs to this repo (Python
 reflection sets state=base); nothing else is written. Models that do not
 exist yet are created as usual; on a fresh database nothing matches, so this
 is a no-op there. Goal: nothing left owned by Studio.
@@ -53,6 +58,44 @@ def _declared_models():
     return names
 
 
+def _class_model(cls):
+    """Model a class body applies to: _name, else a single _inherit."""
+    name = inherit = None
+    for st in cls.body:
+        if isinstance(st, ast.Assign) and len(st.targets) == 1 and isinstance(st.targets[0], ast.Name):
+            if st.targets[0].id == '_name' and isinstance(st.value, ast.Constant):
+                name = st.value.value
+            elif st.targets[0].id == '_inherit':
+                if isinstance(st.value, ast.Constant):
+                    inherit = st.value.value
+                elif isinstance(st.value, (ast.List, ast.Tuple)) and len(st.value.elts) == 1                         and isinstance(st.value.elts[0], ast.Constant):
+                    inherit = st.value.elts[0].value
+    return name or inherit
+
+
+def _declared_fields():
+    """{(model, field)} for every fields.X(...) assignment in this module's Python."""
+    out = set()
+    for path in glob.glob(os.path.join(_HERE, '**', '*.py'), recursive=True):
+        if os.sep + 'migrations' + os.sep in path or path.endswith('staging_adopt.py'):
+            continue
+        try:
+            with open(path, encoding='utf-8') as f:
+                tree = ast.parse(f.read())
+        except (SyntaxError, UnicodeDecodeError):
+            continue
+        for cls in (n for n in ast.walk(tree) if isinstance(n, ast.ClassDef)):
+            model = _class_model(cls)
+            if not isinstance(model, str):
+                continue
+            for st in cls.body:
+                if (isinstance(st, ast.Assign) and len(st.targets) == 1 and isinstance(st.targets[0], ast.Name)
+                        and isinstance(st.value, ast.Call)
+                        and getattr(getattr(st.value.func, 'value', None), 'id', None) == 'fields'):
+                    out.add((model, st.targets[0].id))
+    return out
+
+
 def _pinned_models():
     """{xmlid: model name} for ir.model pin records shipped in this module's XML."""
     pins = {}
@@ -85,3 +128,18 @@ def pre_init_hook(env):
         adopted += 1
     _logger.info("%s pre_init_hook: repo-owned %d existing models (%d declared/pinned)",
                  MODULE, adopted, len(wanted))
+
+    Fields = env['ir.model.fields'].sudo()
+    by_model = {}
+    for model_name, fname in _declared_fields():
+        by_model.setdefault(model_name, set()).add(fname)
+    fadopted = 0
+    for model_name, fnames in sorted(by_model.items()):
+        existing = {f.name: f.id for f in Fields.search([('model', '=', model_name), ('name', 'in', sorted(fnames))])}
+        for fname, fid in sorted(existing.items()):
+            xmlid = 'field_%s__%s' % (model_name.replace('.', '_'), fname)
+            if IMD.search_count([('module', '=', MODULE), ('name', '=', xmlid)]):
+                continue
+            IMD.create({'module': MODULE, 'name': xmlid, 'model': 'ir.model.fields', 'res_id': fid, 'noupdate': True})
+            fadopted += 1
+    _logger.info("%s pre_init_hook: repo-owned %d existing fields", MODULE, fadopted)
