@@ -31,6 +31,8 @@
         # window_actions_gap.xml — must load AFTER it.
         'data/menus_f6.xml',
     ],
+    # Staging_Migration: repo-own existing Studio models before data loads.
+    'pre_init_hook': 'pre_init_hook',
     'installable': True,
     'application': False,
     'license': 'LGPL-3',
