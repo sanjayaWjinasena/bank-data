@@ -19,7 +19,7 @@ Python already exist as Studio models. Two things then break on install:
     ("External ID not found: BugFix-HR.field_x_paye_tax__x_active").
   * every config record the module ports from Clear-DB (automations,
     server/window/report actions, views, menus, record rules, access
-    rights, filters, mail templates, defaults, crons) is CREATED a second
+    rights, filters, mail templates, defaults, crons, approval rules) is CREATED a second
     time next to the Studio record it was ported from, so both run
     (e.g. 250 automations firing twice on the first staging copy).
 
@@ -301,6 +301,8 @@ _KEYS = {
     'ir.actions.report': [('report_name', 'text', None), ('model', 'text', None)],
     'ir.default': [('field_id', 'm2o', None), ('company_id', 'm2o', False)],
     'ir.cron': [('name', 'text', None), ('model_id', 'm2o', None)],
+    'studio.approval.rule': [('model_id', 'm2o', None), ('method', 'text', False), ('action_id', 'm2o', False),
+                             ('group_id', 'm2o', False)],
 }
 _REF = re.compile(r"""ref\(\s*['"]([^'"]+)['"]\s*\)""")
 _UNRESOLVED = object()
@@ -374,6 +376,12 @@ def _config_candidates():
 
 
 _SECURITY_KEYS = {'groups', 'group_id'}
+# web_studio refuses to change these on an approval rule that has entries: they must already match
+_STRICT = {'studio.approval.rule': {'model_id', 'method', 'action_id', 'group_id'}}
+
+
+def _strict(model):
+    return _SECURITY_KEYS | _STRICT.get(model, set())
 _KEEP_ACTIVE_PARAM = 'staging_adopt.keep_active.%s'
 _MAP_FILE = os.path.join(_HERE, 'staging_adopt_map.json')
 _MAP = None
@@ -458,7 +466,7 @@ def _adopt_config(env, IMD, rebind=False):
         if stamp != created:
             return False
         for field, kind, _default in _KEYS[model]:
-            if field not in want or field not in _SECURITY_KEYS:
+            if field not in want or field not in _strict(model):
                 continue
             v = have[field]
             if kind == 'm2o':
@@ -516,7 +524,7 @@ def _adopt_config(env, IMD, rebind=False):
             Model = env[model].sudo().with_context(active_test=False, lang='en_US')
             want = {}
             for field, kind, default in _KEYS[model]:
-                if sources and field not in _SECURITY_KEYS:
+                if sources and field not in _strict(model):
                     continue            # identity comes from id + create_date
                 if field in vals:
                     want[field] = declared(field, vals[field][0], vals[field][1], kind)
