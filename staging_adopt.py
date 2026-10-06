@@ -219,6 +219,11 @@ def _pinned_models():
 
 
 def _bind_structure(env):
+    _unpark_views(env)
+    _bind_structure_only(env)
+
+
+def _bind_structure_only(env):
     """Bind this module's model / field / group xmlids to the records that
     already exist (bind-only, idempotent). Runs at install and, through
     migrations/0.0.0, on every upgrade, so records added to the repo later
@@ -581,6 +586,30 @@ def _adopt_config(env, IMD, rebind=False):
 _PARKED_PARAM = 'staging_adopt.parked_views'
 
 
+def _unpark_views(env):
+    """Switch parked views back on as soon as they validate again. Runs before and
+    after every repo's load: a view parked by an earlier repo has been rewritten
+    by then (e.g. BugFix-Sales' sale.order views, needed by BugFix-Accounting's
+    modifiers). One savepoint each; what still fails (e.g. a field a later repo
+    declares) stays parked for the next try and, finally, Jinasena_All."""
+    Param = env['ir.config_parameter'].sudo()
+    parked = json.loads(Param.get_param(_PARKED_PARAM) or '[]')
+    if not parked:
+        return
+    still = []
+    for view in env['ir.ui.view'].sudo().with_context(active_test=False).browse(parked).exists():
+        if view.active:
+            continue
+        try:
+            with env.cr.savepoint():
+                view.active = True
+        except Exception:  # noqa: BLE001 - not valid yet, retry later
+            still.append(view.id)
+    Param.set_param(_PARKED_PARAM, json.dumps(still))
+    _logger.info("%s staging_adopt: switched %d parked views back on, %d still parked",
+                 MODULE, len(parked) - len(still), len(still))
+
+
 def _park_studio_children(env, IMD, adopted_now=()):
     """While a repo rewrites a view it took over, Odoo validates it together with
     every child view whose xmlid belongs to an already-loaded module - which
@@ -638,6 +667,7 @@ def rebind_duplicates(env):
 def archive_rebound_copies(env):
     """migrations/0.0.0/post-migrate: archive the copies (no double runs) until
     Jinasena_All deletes them. Only records with no xmlid left are touched."""
+    _unpark_views(env)
     IMD = env['ir.model.data'].sudo()
     known = json.loads(env['ir.config_parameter'].sudo().get_param(_ORPHAN_PARAM % MODULE) or '[]')
     archived = 0
