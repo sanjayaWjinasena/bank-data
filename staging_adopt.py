@@ -282,7 +282,9 @@ def pre_init_hook(env):
 
 # --- config records (v8) -----------------------------------------------------
 
-_STUDIO_MODULES = {'studio_customization', '__export__', 'web_studio'}
+# __export__: id added by an export; __cloc_exclude__: marker the 15->17 upgrade put on Studio server actions
+# whose code it migrated (migrated_to_code_server_action_N). Neither is an owner.
+_STUDIO_MODULES = {'studio_customization', '__export__', '__cloc_exclude__', 'web_studio'}
 _CDB_ID = re.compile(r'(?:^|_)(\d{1,6})(?:_|$)')
 _COMODEL = {'model_id': 'ir.model', 'binding_model_id': 'ir.model', 'inherit_id': 'ir.ui.view',
             'parent_id': 'ir.ui.menu', 'field_id': 'ir.model.fields', 'company_id': 'res.company',
