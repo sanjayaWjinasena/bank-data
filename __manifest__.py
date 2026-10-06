@@ -1,6 +1,6 @@
 {
     'name': 'Jinasena : SubModule : Payroll : Bank Data',
-    'version': '17.0.1.0.9',
+    'version': '17.0.1.0.10',
     'category': 'Payroll',
     'summary': 'Generate CBC Paymaster file for bulk salary bank transfers (SLIPS)',
     'description': """

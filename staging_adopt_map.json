@@ -1,0 +1,170 @@
+{
+"access_paymaster_config": {
+"ir.model.access": [
+[
+8588,
+"2026-04-07 10:13:59"
+]
+]
+},
+"access_paymaster_wizard": {
+"ir.model.access": [
+[
+8585,
+"2026-03-26 08:15:18"
+]
+]
+},
+"access_paymaster_wizard_line": {
+"ir.model.access": [
+[
+8586,
+"2026-03-26 08:15:18"
+]
+]
+},
+"act_window_2895_bank_data": {
+"ir.actions.act_window": [
+[
+2895,
+"2025-03-10 06:01:24"
+]
+]
+},
+"action_export_bank_data_csv": {
+"ir.actions.server": [
+[
+3628,
+"2026-04-08 03:56:26"
+]
+]
+},
+"action_paymaster_config": {
+"ir.actions.act_window": [
+[
+3627,
+"2026-04-07 10:13:59"
+]
+]
+},
+"action_paymaster_wizard": {
+"ir.actions.act_window": [
+[
+3626,
+"2026-03-26 08:15:18"
+]
+]
+},
+"base_automation_347_validate_acc_number_max_13_digits": {
+"base.automation": [
+[
+347,
+"2026-04-09 09:21:58"
+]
+]
+},
+"menu_f6_bank_data": {
+"ir.ui.menu": [
+[
+1477,
+"2025-03-10 06:01:24"
+]
+]
+},
+"server_action_3630_validate_acc_number_max_13_digits": {
+"ir.actions.server": [
+[
+3630,
+"2026-04-09 09:21:58"
+]
+]
+},
+"view_3058_odoo_studio_res_bank_form_customization_e": {
+"ir.ui.view": [
+[
+3058,
+"2021-11-02 10:06:28"
+]
+]
+},
+"view_3059_odoo_studio_res_bank_tree_customization_e": {
+"ir.ui.view": [
+[
+3059,
+"2021-11-02 10:08:09"
+]
+]
+},
+"view_5279_odoo_studio_res_partner_bank_form_customization_e": {
+"ir.ui.view": [
+[
+5279,
+"2023-09-04 14:44:54"
+]
+]
+},
+"view_account_move_line_bank_data_tree": {
+"ir.ui.view": [
+[
+9507,
+"2026-04-07 10:13:59"
+]
+]
+},
+"view_hr_payslip_bank_data_tree": {
+"ir.ui.view": [
+[
+9509,
+"2026-04-08 02:50:10"
+]
+]
+},
+"view_paymaster_config_form": {
+"ir.ui.view": [
+[
+9506,
+"2026-04-07 10:13:59"
+]
+]
+},
+"view_paymaster_wizard_form": {
+"ir.ui.view": [
+[
+9503,
+"2026-03-26 08:15:18"
+]
+]
+},
+"view_paymaster_wizard_line_list": {
+"ir.ui.view": [
+[
+9502,
+"2026-03-26 08:15:18"
+]
+]
+},
+"view_res_bank_form_inherit": {
+"ir.ui.view": [
+[
+9504,
+"2026-04-07 10:13:59"
+]
+]
+},
+"view_res_bank_list_inherit": {
+"ir.ui.view": [
+[
+9500,
+"2026-03-26 08:15:18"
+]
+]
+},
+"view_res_partner_bank_form_inherit": {
+"ir.ui.view": [
+[
+9505,
+"2026-04-07 10:13:59"
+]
+]
+}
+}
