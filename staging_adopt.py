@@ -574,14 +574,14 @@ def _adopt_config(env, IMD, rebind=False):
             _logger.info("%s staging_adopt: %s %s %d Studio records, %d not matched%s",
                          MODULE, model, 'moved onto' if rebind else 'adopted', stats.get(model, 0), len(missed),
                          (' (%s)' % ', '.join(missed[:40])) if missed else '')
-    _park_studio_children(env, IMD)
+    _park_studio_children(env, IMD, {i for m, i in bound if m == 'ir.ui.view'})
     return orphans if rebind else sum(stats.values())
 
 
 _PARKED_PARAM = 'staging_adopt.parked_views'
 
 
-def _park_studio_children(env, IMD):
+def _park_studio_children(env, IMD, adopted_now=()):
     """While a repo rewrites a view it took over, Odoo validates it together with
     every child view whose xmlid belongs to an already-loaded module - which
     includes production's Studio extensions (studio_customization loads early).
@@ -589,7 +589,10 @@ def _park_studio_children(env, IMD):
     on x_consignment_header lives in BugFix-Purchase, loaded after BugFix-Stock),
     so validation fails mid-upgrade. Archive such Studio children for the rest of
     the upgrade; Jinasena_All switches them back on once every repo has loaded
-    (and remove_studio deletes the ones a repo replaced)."""
+    (and remove_studio deletes the ones a repo replaced). Children this module
+    took over in this same run are parked too: until the data load rewrites them
+    they still carry production's arch (e.g. Studio view 2816, adopted by
+    BugFix-Stock, still used the field when parent 2811 was rewritten first)."""
     mine = [r['res_id'] for r in IMD.search_read([('module', '=', MODULE), ('model', '=', 'ir.ui.view')], ['res_id'])]
     if not mine:
         return
@@ -601,7 +604,8 @@ def _park_studio_children(env, IMD):
     for row in IMD.search_read([('model', '=', 'ir.ui.view'), ('res_id', 'in', children.ids)], ['module', 'res_id']):
         owners.setdefault(row['res_id'], set()).add(row['module'])
     studio = children.filtered(
-        lambda v: owners.get(v.id) and owners[v.id] <= {'studio_customization', '__export__', '__cloc_exclude__'})
+        lambda v: v.id in adopted_now
+        or (owners.get(v.id) and owners[v.id] <= {'studio_customization', '__export__', '__cloc_exclude__'}))
     if not studio:
         return
     Param = env['ir.config_parameter'].sudo()
