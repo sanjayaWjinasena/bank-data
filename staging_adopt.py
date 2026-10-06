@@ -574,7 +574,42 @@ def _adopt_config(env, IMD, rebind=False):
             _logger.info("%s staging_adopt: %s %s %d Studio records, %d not matched%s",
                          MODULE, model, 'moved onto' if rebind else 'adopted', stats.get(model, 0), len(missed),
                          (' (%s)' % ', '.join(missed[:40])) if missed else '')
+    _park_studio_children(env, IMD)
     return orphans if rebind else sum(stats.values())
+
+
+_PARKED_PARAM = 'staging_adopt.parked_views'
+
+
+def _park_studio_children(env, IMD):
+    """While a repo rewrites a view it took over, Odoo validates it together with
+    every child view whose xmlid belongs to an already-loaded module - which
+    includes production's Studio extensions (studio_customization loads early).
+    Those may use fields a repo loading later declares (e.g. x_studio_delivery_term
+    on x_consignment_header lives in BugFix-Purchase, loaded after BugFix-Stock),
+    so validation fails mid-upgrade. Archive such Studio children for the rest of
+    the upgrade; Jinasena_All switches them back on once every repo has loaded
+    (and remove_studio deletes the ones a repo replaced)."""
+    mine = [r['res_id'] for r in IMD.search_read([('module', '=', MODULE), ('model', '=', 'ir.ui.view')], ['res_id'])]
+    if not mine:
+        return
+    Views = env['ir.ui.view'].sudo().with_context(active_test=False)
+    children = Views.search([('inherit_id', 'in', mine), ('active', '=', True)])
+    if not children:
+        return
+    owners = {}
+    for row in IMD.search_read([('model', '=', 'ir.ui.view'), ('res_id', 'in', children.ids)], ['module', 'res_id']):
+        owners.setdefault(row['res_id'], set()).add(row['module'])
+    studio = children.filtered(
+        lambda v: owners.get(v.id) and owners[v.id] <= {'studio_customization', '__export__', '__cloc_exclude__'})
+    if not studio:
+        return
+    Param = env['ir.config_parameter'].sudo()
+    parked = json.loads(Param.get_param(_PARKED_PARAM) or '[]')
+    parked += [i for i in studio.ids if i not in parked]
+    Param.set_param(_PARKED_PARAM, json.dumps(parked))
+    studio.write({'active': False})
+    _logger.info("%s staging_adopt: parked %d Studio child views until Jinasena_All: %s", MODULE, len(studio), studio.ids)
 
 # --- databases installed before v8: move xmlids off the duplicates -----------
 
