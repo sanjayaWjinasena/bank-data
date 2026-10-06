@@ -590,22 +590,22 @@ def _park_studio_children(env, IMD, adopted_now=()):
     so validation fails mid-upgrade. Archive such Studio children for the rest of
     the upgrade; Jinasena_All switches them back on once every repo has loaded
     (and remove_studio deletes the ones a repo replaced). Children this module
-    took over in this same run are parked too: until the data load rewrites them
+    took over in this same run are parked too, and so is every extension view it
+    took over in this run whatever its parent: until the data load rewrites them
     they still carry production's arch (e.g. Studio view 2816, adopted by
     BugFix-Stock, still used the field when parent 2811 was rewritten first)."""
-    mine = [r['res_id'] for r in IMD.search_read([('module', '=', MODULE), ('model', '=', 'ir.ui.view')], ['res_id'])]
-    if not mine:
-        return
     Views = env['ir.ui.view'].sudo().with_context(active_test=False)
-    children = Views.search([('inherit_id', 'in', mine), ('active', '=', True)])
-    if not children:
-        return
+    mine = [r['res_id'] for r in IMD.search_read([('module', '=', MODULE), ('model', '=', 'ir.ui.view')], ['res_id'])]
+    children = Views.search([('inherit_id', 'in', mine), ('active', '=', True)]) if mine else Views
     owners = {}
     for row in IMD.search_read([('model', '=', 'ir.ui.view'), ('res_id', 'in', children.ids)], ['module', 'res_id']):
         owners.setdefault(row['res_id'], set()).add(row['module'])
     studio = children.filtered(
-        lambda v: v.id in adopted_now
-        or (owners.get(v.id) and owners[v.id] <= {'studio_customization', '__export__', '__cloc_exclude__'}))
+        lambda v: owners.get(v.id) and owners[v.id] <= {'studio_customization', '__export__', '__cloc_exclude__'})
+    # every extension view taken over in this run, whatever its parent: until the data load
+    # rewrites it, it still carries production's arch (e.g. Studio 2299's positional
+    # h1[1]/field[@name='name'] broke once BugFix-Sales put Reference in a new first h1)
+    studio |= Views.browse(list(adopted_now)).exists().filtered(lambda v: v.active and v.inherit_id)
     if not studio:
         return
     Param = env['ir.config_parameter'].sudo()
