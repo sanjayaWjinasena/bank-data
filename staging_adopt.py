@@ -218,7 +218,11 @@ def _pinned_models():
     return pins
 
 
-def pre_init_hook(env):
+def _bind_structure(env):
+    """Bind this module's model / field / group xmlids to the records that
+    already exist (bind-only, idempotent). Runs at install and, through
+    migrations/0.0.0, on every upgrade, so records added to the repo later
+    (e.g. new groups) also take over production's instead of colliding."""
     IrModel = env['ir.model'].sudo()
     IMD = env['ir.model.data'].sudo()
     wanted = {'model_' + n.replace('.', '_'): n for n in _declared_models()}
@@ -268,7 +272,12 @@ def pre_init_hook(env):
         fadopted += 1
     _logger.info("%s pre_init_hook: repo-owned %d existing fields", MODULE, fadopted)
     _logger.info("%s pre_init_hook: adopted %d existing groups", MODULE, _adopt_groups(env, IMD))
-    _logger.info("%s pre_init_hook: adopted %d existing config records", MODULE, _adopt_config(env, IMD))
+
+
+def pre_init_hook(env):
+    _bind_structure(env)
+    _logger.info("%s pre_init_hook: adopted %d existing config records",
+                 MODULE, _adopt_config(env, env['ir.model.data'].sudo()))
 
 
 # --- config records (v8) -----------------------------------------------------
@@ -567,6 +576,7 @@ def rebind_duplicates(env):
     each ported xmlid from the repo-created copy onto the Studio record N it
     duplicates (same rules as install). The reload then writes the repo
     version onto N. The copies are remembered for archive + delete."""
+    _bind_structure(env)
     IMD = env['ir.model.data'].sudo()
     orphans = _adopt_config(env, IMD, rebind=True)
     Param = env['ir.config_parameter'].sudo()
