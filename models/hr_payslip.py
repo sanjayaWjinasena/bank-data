@@ -224,7 +224,17 @@ class HrPayslip(models.Model):
         buf = io.BytesIO()
         wb.save(buf)
 
-        attachment = self.env['ir.attachment'].sudo().create({
+        # Salary and bank details must not pile up in the filestore:
+        # drop this user's earlier exports before writing the new one.
+        # Created as the user (no sudo) so normal access rules apply.
+        Attachment = self.env['ir.attachment']
+        Attachment.search([
+            ('name', '=', 'PAYMASTER_BANK_DATA.xlsx'),
+            ('res_model', '=', 'hr.payslip'),
+            ('res_id', '=', False),
+            ('create_uid', '=', self.env.uid),
+        ]).unlink()
+        attachment = Attachment.create({
             'name': 'PAYMASTER_BANK_DATA.xlsx',
             'type': 'binary',
             'datas': base64.b64encode(buf.getvalue()).decode(),

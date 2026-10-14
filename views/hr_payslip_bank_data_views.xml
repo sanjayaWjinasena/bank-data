@@ -13,7 +13,8 @@
                     <button name="action_export_bank_data_csv"
                             string="Export Paymaster XLSX"
                             type="object"
-                            class="btn-primary"/>
+                            class="btn-primary"
+                            groups="hr_payroll.group_hr_payroll_user"/>
                 </header>
 
                 <!-- Required by employee_id domain validation -->
@@ -68,6 +69,7 @@
         <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
         <field name="binding_model_id" ref="hr_payroll.model_hr_payslip"/>
         <field name="binding_view_types">list</field>
+        <field name="groups_id" eval="[(4, ref('hr_payroll.group_hr_payroll_user'))]"/>
         <field name="state">code</field>
         <field name="code">action = records.action_export_bank_data_csv()</field>
     </record>

@@ -1,4 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_paymaster_wizard,jinasena.paymaster.wizard,model_jinasena_paymaster_wizard,,1,1,1,1
-access_paymaster_wizard_line,jinasena.paymaster.wizard.line,model_jinasena_paymaster_wizard_line,,1,1,1,1
-access_paymaster_config,jinasena.paymaster.config,model_jinasena_paymaster_config,,1,1,1,0
+access_paymaster_wizard,jinasena.paymaster.wizard payroll officer,model_jinasena_paymaster_wizard,hr_payroll.group_hr_payroll_user,1,1,1,1
+access_paymaster_wizard_line,jinasena.paymaster.wizard.line payroll officer,model_jinasena_paymaster_wizard_line,hr_payroll.group_hr_payroll_user,1,1,1,1
+access_paymaster_config,jinasena.paymaster.config payroll officer,model_jinasena_paymaster_config,hr_payroll.group_hr_payroll_user,1,1,1,0
+access_paymaster_config_manager,jinasena.paymaster.config payroll manager,model_jinasena_paymaster_config,hr_payroll.group_hr_payroll_manager,1,1,1,1

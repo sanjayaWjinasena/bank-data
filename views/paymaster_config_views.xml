@@ -47,6 +47,7 @@
         <field name="res_model">jinasena.paymaster.config</field>
         <field name="view_mode">form</field>
         <field name="target">current</field>
+        <field name="groups_id" eval="[(4, ref('hr_payroll.group_hr_payroll_user'))]"/>
         <!-- res_id is set dynamically by the post_migrate hook -->
     </record>
 
