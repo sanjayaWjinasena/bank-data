@@ -1,0 +1,35 @@
+# OCA (Odoo Community Association) ruff configuration for Odoo 17.
+# PEP 8 + pyflakes + bugbear + isort (OCA section order) + pyupgrade + mccabe.
+target-version = "py310"
+
+[lint]
+extend-select = [
+    "B",    # flake8-bugbear: likely bugs
+    "C90",  # mccabe: cyclomatic complexity
+    "E501", # line too long (88)
+    "I",    # isort
+    "UP",   # pyupgrade
+]
+exclude = ["_disabled/*", "playwright-tests/*"]
+
+[lint.per-file-ignores]
+"__init__.py" = ["F401", "I001"]  # Odoo package imports: unused by design, order matters
+"__manifest__.py" = ["B018"]  # a manifest is a bare dict expression
+
+[lint.isort]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "odoo",
+    "odoo-addons",
+    "first-party",
+    "local-folder",
+]
+
+[lint.isort.sections]
+"odoo" = ["odoo"]
+"odoo-addons" = ["odoo.addons"]
+
+[lint.mccabe]
+max-complexity = 16

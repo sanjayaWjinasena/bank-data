@@ -1,0 +1,31 @@
+# OCA-style pre-commit checks. Install once per clone:
+#   pip install pre-commit && pre-commit install
+exclude: |
+  (?x)
+  /_disabled/|
+  /playwright-tests/|
+  /static/lib/|
+  ^CHANGELOG\.md$
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-merge-conflict
+      - id: check-xml
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: debug-statements
+      - id: detect-private-key
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.0
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+  - repo: https://github.com/OCA/pylint-odoo
+    rev: v10.0.12
+    hooks:
+      - id: pylint_odoo
+        args: [--rcfile=.pylintrc, --exit-zero]
+        verbose: true

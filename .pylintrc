@@ -1,0 +1,13 @@
+# OCA pylint-odoo checks (mandatory set) for Odoo 17.
+[MASTER]
+load-plugins=pylint_odoo
+score=n
+ignore=_disabled,playwright-tests,__pycache__
+
+[ODOOLINT]
+valid-odoo-versions=17.0
+manifest-required-authors=Jinasena Agricultural Machinery (Pvt) Ltd.
+
+[MESSAGES CONTROL]
+disable=all
+enable=odoolint
