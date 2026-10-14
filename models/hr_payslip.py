@@ -2,8 +2,10 @@ import base64
 import io
 import logging
 import re
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+
 from .account_move_line import _CFG_DEFAULTS
 
 _logger = logging.getLogger(__name__)
@@ -97,9 +99,9 @@ class HrPayslip(models.Model):
         """Export payslips as XLSX matching the CBC Paymaster com_upload sheet."""
         try:
             from openpyxl import Workbook
-            from openpyxl.styles import Font, PatternFill, Alignment
+            from openpyxl.styles import Alignment, Font, PatternFill
         except ImportError:
-            raise UserError(_('openpyxl is required for XLSX export. Please contact your administrator.'))
+            raise UserError(_('openpyxl is required for XLSX export. Please contact your administrator.')) from None
 
         wb = Workbook()
         ws = wb.active

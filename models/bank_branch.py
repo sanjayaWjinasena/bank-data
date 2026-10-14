@@ -17,12 +17,12 @@ class JinasenaBankBranch(models.Model):
     _order = 'branch_code'
     _rec_name = 'name'
 
-    bank_id = fields.Many2one('res.bank', string='Bank', required=True, ondelete='cascade')
+    bank_id = fields.Many2one('res.bank', required=True, ondelete='cascade')
     name = fields.Char(string='Branch Name', required=True)
-    branch_code = fields.Char(string='Branch Code', size=3, required=True,
+    branch_code = fields.Char(size=3, required=True,
                               help='3-digit CBC branch code for SLIPS transfers.')
     street = fields.Char(string='Address')
-    city = fields.Char(string='City')
-    phone = fields.Char(string='Phone')
-    email = fields.Char(string='Email')
+    city = fields.Char()
+    phone = fields.Char()
+    email = fields.Char()
     x_studio_lc_limit = fields.Float(string='LC Limit')

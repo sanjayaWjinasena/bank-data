@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import fields, models
+
 
 class ResPartnerBankGap(models.Model):
     _inherit = 'res.partner.bank'

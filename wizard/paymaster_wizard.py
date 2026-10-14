@@ -1,5 +1,6 @@
 import base64
 import re
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
@@ -36,7 +37,6 @@ class PaymasterWizard(models.TransientModel):
         help="Jinasena's originating Commercial Bank account.",
     )
     company_branch_code = fields.Char(
-        string='Company Branch Code',
         size=3,
         required=True,
         help="3-digit CBC branch code for Jinasena's account. e.g. 003",
@@ -50,7 +50,6 @@ class PaymasterWizard(models.TransientModel):
         help='2-digit transaction type code. 23 = Salary/Loan credit transfer (SLIPS standard).',
     )
     return_code = fields.Char(
-        string='Return Code',
         size=2,
         default=lambda self: self.env['jinasena.paymaster.config'].get_config().return_code or '00',
         required=True,
@@ -64,14 +63,12 @@ class PaymasterWizard(models.TransientModel):
         help='Credit/Debit indicator. 0 = credit (outgoing salary/loan payment).',
     )
     return_date = fields.Char(
-        string='Return Date',
         size=6,
         default=lambda self: self.env['jinasena.paymaster.config'].get_config().return_date or '000000',
         required=True,
         help='6-digit return date in YYMMDD. 000000 = no return date (standard for outgoing payments).',
     )
     currency_code = fields.Char(
-        string='Currency Code',
         size=3,
         default=lambda self: self.env['jinasena.paymaster.config'].get_config().currency_code or 'SLR',
         required=True,
