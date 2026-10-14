@@ -172,8 +172,8 @@ class PaymasterWizard(models.TransientModel):
         )
         if len(record) != 151:
             raise UserError(
-                _('Internal error: record length is %d, expected 151.\nRecord: %s')
-                % (len(record), record)
+                _('Internal error: record length is %(length)d, expected 151.\n'
+                  'Record: %(record)s', length=len(record), record=record)
             )
         return record
 
@@ -206,12 +206,12 @@ class PaymasterWizard(models.TransientModel):
             bank_acc = emp.bank_account_id  # standard hr.employee field
 
             if not bank_acc:
-                errors.append(_('Employee "%s" has no bank account configured.') % emp.name)
+                errors.append(_('Employee "%s" has no bank account configured.', emp.name))
                 continue
             if not bank_acc.x_branch_code:
-                errors.append(_('Employee "%s": bank account missing Branch Code.') % emp.name)
+                errors.append(_('Employee "%s": bank account missing Branch Code.', emp.name))
             if not (bank_acc.bank_id and bank_acc.bank_id.x_micr_code):
-                errors.append(_('Employee "%s": bank missing MICR code.') % emp.name)
+                errors.append(_('Employee "%s": bank missing MICR code.', emp.name))
 
             dest_bank_micr = bank_acc.bank_id.x_micr_code if bank_acc.bank_id else '0000'
             emp_number = emp.barcode or str(emp.id)
