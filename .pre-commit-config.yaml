@@ -21,8 +21,16 @@ repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.17.0
     hooks:
+      # Warn-only for now: legacy code still has long lines and complex
+      # functions. Switch to blocking (drop --exit-zero) once cleaned up.
       - id: ruff
-        args: [--fix, --exit-non-zero-on-fix]
+        name: ruff (style, warn only)
+        args: [--fix, --exit-zero]
+      # Always blocking: undefined names, syntax errors, loop-closure
+      # bugs and bandit security rules.
+      - id: ruff
+        name: ruff (bugs and security, blocking)
+        args: [--select, "F821,F811,E9,B023,S", --no-fix]
   - repo: https://github.com/OCA/pylint-odoo
     rev: v10.0.12
     hooks:
