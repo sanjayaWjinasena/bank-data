@@ -31,6 +31,7 @@ repos:
       - id: ruff
         name: ruff (bugs and security, blocking)
         args: [--select, "F821,F811,E9,B023,S", --no-fix]
+      - id: ruff-format
   - repo: https://github.com/OCA/pylint-odoo
     rev: v10.0.12
     hooks:

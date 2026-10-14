@@ -422,14 +422,13 @@ This repo adds the 3-digit Branch Code, used as the destination branch in Paymas
   <details><summary>code (9 lines)</summary>
 
 ```python
-
 for record in records:
-    acc = (record.acc_number or '').strip()
-    digits_only = ''.join(c for c in acc if c.isdigit())
+    acc = (record.acc_number or "").strip()
+    digits_only = "".join(c for c in acc if c.isdigit())
     if len(digits_only) > 13:
         raise UserError(
             'Account number "%s" exceeds 13 digits. '
-            'Please enter a maximum of 13 digits.' % acc
+            "Please enter a maximum of 13 digits." % acc
         )
 ```
   </details>
