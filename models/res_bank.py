@@ -12,3 +12,9 @@ class ResBank(models.Model):
         "7719 = Nations Trust Bank, 7755 = Sampath Bank, "
         "7728 = HNB, 7737 = NSB, 7214 = Peoples Bank, 7135 = Seylan Bank",
     )
+
+
+class ResBankGap(models.Model):
+    _inherit = "res.bank"
+
+    x_studio_lc_limit = fields.Float(string="LC Limit")

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <!-- CBC Paymaster columns on the Bank Data list view (columns B–T in Excel order) -->
     <record id="view_account_move_line_bank_data_tree" model="ir.ui.view">
         <field name="name">account.move.line.tree.bank.data.jinasena</field>
@@ -50,5 +49,4 @@
             </tree>
         </field>
     </record>
-
 </odoo>

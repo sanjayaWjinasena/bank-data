@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <!-- Add Branch Code to res.partner.bank form -->
     <record id="view_res_partner_bank_form_inherit" model="ir.ui.view">
         <field name="name">res.partner.bank.form.jinasena.branch</field>
@@ -8,13 +7,10 @@
         <field name="inherit_id" ref="base.view_partner_bank_form"/>
         <field name="arch" type="xml">
             <field name="bank_id" position="after">
-                <field name="x_branch_code"
-                       placeholder="e.g. 050"
-                       help="3-digit CBC branch code for SLIPS transfers."/>
+                <field name="x_branch_code" placeholder="e.g. 050" help="3-digit CBC branch code for SLIPS transfers."/>
             </field>
         </field>
     </record>
-
     <!-- Action: Employee Bank Accounts (filtered to employees only).
          Kept live so the action xmlid resolves for any future callers.
          The menu that surfaced this action was removed in v17.0.1.0.2
@@ -26,5 +22,19 @@
         <field name="domain">[('partner_id.employee_ids', '!=', False)]</field>
         <field name="context">{}</field>
     </record>
-
+    <record id="view_5279_odoo_studio_res_partner_bank_form_customization_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: res.partner.bank.form customization</field>
+      <field name="model">res.partner.bank</field>
+      <field name="type">form</field>
+      <field name="priority">200</field>
+      <field name="inherit_id" ref="base.view_partner_bank_form"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+  <xpath expr="//field[@name='acc_holder_name']" position="after">
+    <field name="x_studio_swift_code" string="SWIFT Code"/>
+  </xpath>
+</data>
+      </field>
+    </record>
 </odoo>
