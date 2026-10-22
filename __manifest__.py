@@ -18,7 +18,6 @@
         "views/hr_payslip_run_views.xml",
         "views/bank_data_menus.xml",
     ],
-    "application": False,
     "license": "LGPL-3",
     "post_migrate": "odoo.addons.bank_data.hooks.post_migrate",
 }
