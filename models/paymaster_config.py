@@ -66,7 +66,8 @@ class JinasenaPaymasterConfig(models.Model):
     orig_bank_micr = fields.Char(
         string="Orig Bank MICR (L)",
         size=4,
-        help="4-digit SLIPS MICR code for Jinasena's bank (e.g. 7056 for Commercial Bank).",
+        help="4-digit SLIPS MICR code for Jinasena's bank (e.g. 7056 for "
+        "Commercial Bank).",
     )
     orig_branch = fields.Char(
         string="Orig Branch Code (M)",

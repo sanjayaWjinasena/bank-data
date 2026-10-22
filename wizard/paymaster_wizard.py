@@ -49,7 +49,8 @@ class PaymasterWizard(models.TransientModel):
             self.env["jinasena.paymaster.config"].get_config().trn_code or "23"
         ),
         required=True,
-        help="2-digit transaction type code. 23 = Salary/Loan credit transfer (SLIPS standard).",
+        help="2-digit transaction type code. 23 = Salary/Loan credit transfer "
+        "(SLIPS standard).",
     )
     return_code = fields.Char(
         size=2,
@@ -77,7 +78,8 @@ class PaymasterWizard(models.TransientModel):
             self.env["jinasena.paymaster.config"].get_config().return_date or "000000"
         ),
         required=True,
-        help="6-digit return date in YYMMDD. 000000 = no return date (standard for outgoing payments).",
+        help="6-digit return date in YYMMDD. 000000 = no return date (standard "
+        "for outgoing payments).",
     )
     currency_code = fields.Char(
         size=3,

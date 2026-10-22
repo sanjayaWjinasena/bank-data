@@ -142,7 +142,8 @@ class HrPayslip(models.Model):
         except ImportError:
             raise UserError(
                 _(
-                    "openpyxl is required for XLSX export. Please contact your administrator."
+                    "openpyxl is required for XLSX export. Please contact "
+                    "your administrator."
                 )
             ) from None
 
