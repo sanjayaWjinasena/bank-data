@@ -292,13 +292,13 @@ class PaymasterWizard(models.TransientModel):
             raise UserError(msg)
 
         total_cents = sum(int(round(l.amount * 100)) for l in lines_to_pay)
-        summary_cr = "Cr.%d%d" % (len(records), total_cents)
-        summary_dr = "Dr.1%d" % total_cents
+        summary_cr = f"Cr.{len(records)}{total_cents}"
+        summary_dr = f"Dr.1{total_cents}"
 
         file_content = "\r\n".join([summary_cr, summary_dr, ""] + records) + "\r\n"
         file_bytes = file_content.encode("ascii", errors="replace")
 
-        filename = "PAYMASTER_%s_%s.dat" % (
+        filename = "PAYMASTER_{}_{}.dat".format(
             self.reference.replace(" ", "_"),
             self.payment_date.strftime("%Y%m%d"),
         )
@@ -321,7 +321,7 @@ class PaymasterWizard(models.TransientModel):
 
         return {
             "type": "ir.actions.act_url",
-            "url": "/web/content/%d?download=true" % attachment.id,
+            "url": f"/web/content/{attachment.id}?download=true",
             "target": "self",
         }
 
