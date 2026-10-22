@@ -103,7 +103,7 @@ class PaymasterWizard(models.TransientModel):
     @api.onchange("employee_ids")
     def _onchange_employees(self):
         """Pre-populate payment lines — all 20 Excel columns filled at creation time."""
-        existing = {l.employee_id.id for l in self.line_ids}
+        existing = {line.employee_id.id for line in self.line_ids}
 
         # Resolve originating account values once (same for every line)
         orig_acc = self.company_account_id
@@ -157,7 +157,9 @@ class PaymasterWizard(models.TransientModel):
             )
 
         remove = [
-            (2, l.id) for l in self.line_ids if l.employee_id not in self.employee_ids
+            (2, line.id)
+            for line in self.line_ids
+            if line.employee_id not in self.employee_ids
         ]
         self.line_ids = remove + new_lines
 
@@ -229,7 +231,7 @@ class PaymasterWizard(models.TransientModel):
                 _("No payment lines. Add employees and enter their payment amounts.")
             )
 
-        lines_to_pay = self.line_ids.filtered(lambda l: l.amount > 0)
+        lines_to_pay = self.line_ids.filtered(lambda rec_line: rec_line.amount > 0)
         if not lines_to_pay:
             raise UserError(
                 _("All amounts are zero. Enter the payment amount for each employee.")
@@ -291,7 +293,9 @@ class PaymasterWizard(models.TransientModel):
                 msg += "\n\n" + "\n".join(errors)
             raise UserError(msg)
 
-        total_cents = sum(int(round(l.amount * 100)) for l in lines_to_pay)
+        total_cents = sum(
+            int(round(rec_line.amount * 100)) for rec_line in lines_to_pay
+        )
         summary_cr = f"Cr.{len(records)}{total_cents}"
         summary_dr = f"Dr.1{total_cents}"
 
