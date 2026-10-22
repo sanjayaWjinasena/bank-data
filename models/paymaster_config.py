@@ -86,7 +86,12 @@ class JinasenaPaymasterConfig(models.Model):
 
     @api.model
     def get_config(self):
-        """Return the singleton config record, creating defaults if none exists."""
+        """Return the singleton config record, creating defaults if none exists.
+
+        Callable over RPC, so check the caller may read the config first;
+        internal callers that need it regardless call it with sudo().
+        """
+        self.check_access_rights("read")
         config = self.sudo().search([], limit=1, order="id asc")
         if not config:
             config = self.sudo().create({"name": "CBC Paymaster Config"})
