@@ -83,26 +83,27 @@ class HrPayslip(models.Model):
         # Load CBC config with fallback defaults
         cfg = _CFG_DEFAULTS.copy()
         try:
-            rec = self.env["jinasena.paymaster.config"].sudo().get_config()
-            cfg.update(
-                {
-                    "trn_code": rec.trn_code or cfg["trn_code"],
-                    "return_code": rec.return_code or cfg["return_code"],
-                    "cr_dr_code": rec.cr_dr_code or cfg["cr_dr_code"],
-                    "return_date": rec.return_date or cfg["return_date"],
-                    "currency_code": rec.currency_code or cfg["currency_code"],
-                    "orig_bank_micr": rec.orig_bank_micr or "",
-                    "orig_branch": rec.orig_branch or "",
-                    "orig_account": rec.orig_account or "",
-                    "orig_name": rec.orig_name or "",
-                    "security_field": rec.security_field or cfg["security_field"],
-                    "filler": rec.filler or cfg["filler"],
-                }
-            )
+            with self.env.cr.savepoint():
+                rec = self.env["jinasena.paymaster.config"].sudo().get_config()
+                cfg.update(
+                    {
+                        "trn_code": rec.trn_code or cfg["trn_code"],
+                        "return_code": rec.return_code or cfg["return_code"],
+                        "cr_dr_code": rec.cr_dr_code or cfg["cr_dr_code"],
+                        "return_date": rec.return_date or cfg["return_date"],
+                        "currency_code": rec.currency_code or cfg["currency_code"],
+                        "orig_bank_micr": rec.orig_bank_micr or "",
+                        "orig_branch": rec.orig_branch or "",
+                        "orig_account": rec.orig_account or "",
+                        "orig_name": rec.orig_name or "",
+                        "security_field": rec.security_field or cfg["security_field"],
+                        "filler": rec.filler or cfg["filler"],
+                    }
+                )
         except Exception:
             _logger.warning(
                 "bank_data: jinasena.paymaster.config not available. Using defaults.",
-                exc_info=False,
+                exc_info=True,
             )
 
         for slip in self:
