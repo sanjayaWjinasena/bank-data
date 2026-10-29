@@ -19,5 +19,4 @@
         "views/bank_data_menus.xml",
     ],
     "license": "LGPL-3",
-    "post_migrate": "odoo.addons.bank_data.hooks.post_migrate",
 }

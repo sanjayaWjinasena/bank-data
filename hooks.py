@@ -1,6 +1,9 @@
 from odoo import SUPERUSER_ID, api
 
 
+# Not called by Odoo: "post_migrate" is not a manifest hook (the key was removed from
+# __manifest__.py). Kept for reference; wire it as post_init_hook or a migration
+# if needed.
 def post_migrate(cr, registry):
     env = api.Environment(cr, SUPERUSER_ID, {})
 
