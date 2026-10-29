@@ -11,6 +11,9 @@ extend-select = [
     "I",    # isort
     "UP",   # pyupgrade
 ]
+# RUF012: Odoo reads _inherit / _order / _sql_constraints as class settings, they are not
+# shared mutable defaults; the rule does not apply to Odoo models.
+ignore = ["RUF012"]
 
 [lint.per-file-ignores]
 "__init__.py" = ["F401", "I001"]  # Odoo package imports: unused by design, order matters
