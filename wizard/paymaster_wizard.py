@@ -99,8 +99,8 @@ class PaymasterWizard(models.TransientModel):
 
     @api.onchange("company_account_id")
     def _onchange_company_account(self):
-        if self.company_account_id and self.company_account_id.x_branch_code:
-            self.company_branch_code = self.company_account_id.x_branch_code
+        if self.company_account_id and self.company_account_id.branch_code:
+            self.company_branch_code = self.company_account_id.branch_code
 
     @api.onchange("employee_ids")
     def _onchange_employees(self):
@@ -110,7 +110,7 @@ class PaymasterWizard(models.TransientModel):
         # Resolve originating account values once (same for every line)
         orig_acc = self.company_account_id
         orig_micr = (
-            orig_acc.bank_id.x_micr_code if (orig_acc and orig_acc.bank_id) else ""
+            orig_acc.bank_id.micr_code if (orig_acc and orig_acc.bank_id) else ""
         )
         orig_branch = self.company_branch_code or ""
         orig_acno = orig_acc.acc_number if orig_acc else ""
@@ -132,10 +132,10 @@ class PaymasterWizard(models.TransientModel):
                         "employee_id": emp.id,
                         "amount": 0.0,
                         # B C D P — per-employee destination fields
-                        "dest_bank_micr": acc.bank_id.x_micr_code
+                        "dest_bank_micr": acc.bank_id.micr_code
                         if (acc and acc.bank_id)
                         else "",
-                        "dest_branch": acc.x_branch_code or "",
+                        "dest_branch": acc.branch_code or "",
                         "dest_account": acc.acc_number or "",
                         "particulars": emp.barcode or str(emp.id),
                         # F G H I K — configurable format fields from wizard header
@@ -241,8 +241,8 @@ class PaymasterWizard(models.TransientModel):
 
         # Originating account details
         orig_acc = self.company_account_id
-        orig_bank_micr = orig_acc.bank_id.x_micr_code if orig_acc.bank_id else "7056"
-        orig_branch = self.company_branch_code or (orig_acc.x_branch_code or "000")
+        orig_bank_micr = orig_acc.bank_id.micr_code if orig_acc.bank_id else "7056"
+        orig_branch = self.company_branch_code or (orig_acc.branch_code or "000")
         orig_acc_number = orig_acc.acc_number or ""
         orig_name = orig_acc.acc_holder_name or orig_acc.partner_id.name or ""
 
@@ -258,15 +258,15 @@ class PaymasterWizard(models.TransientModel):
                     _('Employee "%s" has no bank account configured.', emp.name)
                 )
                 continue
-            if not bank_acc.x_branch_code:
+            if not bank_acc.branch_code:
                 errors.append(
                     _('Employee "%s": bank account missing Branch Code.', emp.name)
                 )
-            if not (bank_acc.bank_id and bank_acc.bank_id.x_micr_code):
+            if not (bank_acc.bank_id and bank_acc.bank_id.micr_code):
                 errors.append(_('Employee "%s": bank missing MICR code.', emp.name))
 
             dest_bank_micr = (
-                bank_acc.bank_id.x_micr_code if bank_acc.bank_id else "0000"
+                bank_acc.bank_id.micr_code if bank_acc.bank_id else "0000"
             )
             emp_number = emp.barcode or str(emp.id)
             amount_cents = line.amount * 100
@@ -275,7 +275,7 @@ class PaymasterWizard(models.TransientModel):
                 self._format_record(
                     seq=len(records) + 1,
                     dest_bank=dest_bank_micr,
-                    dest_branch=bank_acc.x_branch_code or "000",
+                    dest_branch=bank_acc.branch_code or "000",
                     dest_acc=bank_acc.acc_number,
                     dest_name=emp.name,
                     amount_cents=amount_cents,

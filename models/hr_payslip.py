@@ -23,53 +23,53 @@ class HrPayslip(models.Model):
     # Q: payslip reference
     # R: date_to as YYMMDD
 
-    x_dest_bank_micr = fields.Char(
+    dest_bank_micr = fields.Char(
         "Dest Bank (B)", compute="_compute_cbc_payslip", store=False
     )
-    x_dest_branch = fields.Char(
+    dest_branch = fields.Char(
         "Dest Branch (C)", compute="_compute_cbc_payslip", store=False
     )
-    x_dest_account = fields.Char(
+    dest_account = fields.Char(
         "Dest Account (D)", compute="_compute_cbc_payslip", store=False
     )
-    x_trn_code = fields.Char(
+    trn_code = fields.Char(
         "TRN Code (F)", compute="_compute_cbc_payslip", store=False
     )
-    x_return_code = fields.Char(
+    return_code = fields.Char(
         "Return Code (G)", compute="_compute_cbc_payslip", store=False
     )
-    x_cr_dr_code = fields.Char("Cr/Dr (H)", compute="_compute_cbc_payslip", store=False)
-    x_return_date = fields.Char(
+    cr_dr_code = fields.Char("Cr/Dr (H)", compute="_compute_cbc_payslip", store=False)
+    return_date = fields.Char(
         "Return Date (I)", compute="_compute_cbc_payslip", store=False
     )
-    x_currency_code = fields.Char(
+    currency_code = fields.Char(
         "Currency (K)", compute="_compute_cbc_payslip", store=False
     )
-    x_orig_bank_micr = fields.Char(
+    orig_bank_micr = fields.Char(
         "Orig Bank (L)", compute="_compute_cbc_payslip", store=False
     )
-    x_orig_branch = fields.Char(
+    orig_branch = fields.Char(
         "Orig Branch (M)", compute="_compute_cbc_payslip", store=False
     )
-    x_orig_account = fields.Char(
+    orig_account = fields.Char(
         "Orig Account (N)", compute="_compute_cbc_payslip", store=False
     )
-    x_orig_name = fields.Char(
+    orig_name = fields.Char(
         "Orig Name (O)", compute="_compute_cbc_payslip", store=False
     )
-    x_particulars = fields.Char(
+    particulars = fields.Char(
         "Particulars (P)", compute="_compute_cbc_payslip", store=False
     )
-    x_cbc_reference = fields.Char(
+    cbc_reference = fields.Char(
         "Reference (Q)", compute="_compute_cbc_payslip", store=False
     )
-    x_value_date = fields.Char(
+    value_date = fields.Char(
         "Value Date (R)", compute="_compute_cbc_payslip", store=False
     )
-    x_security_field = fields.Char(
+    security_field = fields.Char(
         "Security (S)", compute="_compute_cbc_payslip", store=False
     )
-    x_filler = fields.Char("Filler (T)", compute="_compute_cbc_payslip", store=False)
+    filler = fields.Char("Filler (T)", compute="_compute_cbc_payslip", store=False)
 
     @api.depends(
         "employee_id",
@@ -109,29 +109,29 @@ class HrPayslip(models.Model):
         for slip in self:
             bank = slip.employee_id.bank_account_id
 
-            slip.x_dest_bank_micr = (
-                (bank.bank_id.x_micr_code or "") if (bank and bank.bank_id) else ""
+            slip.dest_bank_micr = (
+                (bank.bank_id.micr_code or "") if (bank and bank.bank_id) else ""
             )
-            slip.x_dest_branch = (bank.x_branch_code or "") if bank else ""
-            slip.x_dest_account = (bank.acc_number or "")[:12] if bank else ""
+            slip.dest_branch = (bank.branch_code or "") if bank else ""
+            slip.dest_account = (bank.acc_number or "")[:12] if bank else ""
 
-            slip.x_trn_code = cfg["trn_code"]
-            slip.x_return_code = cfg["return_code"]
-            slip.x_cr_dr_code = cfg["cr_dr_code"]
-            slip.x_return_date = cfg["return_date"]
-            slip.x_currency_code = cfg["currency_code"]
-            slip.x_orig_bank_micr = cfg["orig_bank_micr"]
-            slip.x_orig_branch = cfg["orig_branch"]
-            slip.x_orig_account = cfg["orig_account"]
-            slip.x_orig_name = cfg["orig_name"]
+            slip.trn_code = cfg["trn_code"]
+            slip.return_code = cfg["return_code"]
+            slip.cr_dr_code = cfg["cr_dr_code"]
+            slip.return_date = cfg["return_date"]
+            slip.currency_code = cfg["currency_code"]
+            slip.orig_bank_micr = cfg["orig_bank_micr"]
+            slip.orig_branch = cfg["orig_branch"]
+            slip.orig_account = cfg["orig_account"]
+            slip.orig_name = cfg["orig_name"]
 
-            slip.x_particulars = (
+            slip.particulars = (
                 slip.employee_id.barcode or str(slip.employee_id.id or "")
             )[:15]
-            slip.x_cbc_reference = (slip.name or "")[:15]
-            slip.x_value_date = slip.date_to.strftime("%y%m%d") if slip.date_to else ""
-            slip.x_security_field = cfg["security_field"]
-            slip.x_filler = cfg["filler"]
+            slip.cbc_reference = (slip.name or "")[:15]
+            slip.value_date = slip.date_to.strftime("%y%m%d") if slip.date_to else ""
+            slip.security_field = cfg["security_field"]
+            slip.filler = cfg["filler"]
 
     # ── CBC Paymaster XLSX export — mimics com_upload sheet format ───────
 
@@ -237,23 +237,23 @@ class HrPayslip(models.Model):
             r = 7 + i
             bank = slip.employee_id.bank_account_id
 
-            dest_bank = safe_int(slip.x_dest_bank_micr)
-            dest_branch = safe_int(slip.x_dest_branch)
+            dest_bank = safe_int(slip.dest_bank_micr)
+            dest_branch = safe_int(slip.dest_branch)
             dest_acc = safe_int(bank.acc_number if bank else "")
             dest_name = (slip.employee_id.name or "")[:20]
-            trn = safe_int(slip.x_trn_code) or 23
-            ret_code = safe_int(slip.x_return_code)
-            cr_dr = safe_int(slip.x_cr_dr_code)
-            ret_date = safe_int(slip.x_return_date)
+            trn = safe_int(slip.trn_code) or 23
+            ret_code = safe_int(slip.return_code)
+            cr_dr = safe_int(slip.cr_dr_code)
+            ret_date = safe_int(slip.return_date)
             amount_cents = int(round((slip.net_wage or 0) * 100))
-            currency = (slip.x_currency_code or "SLR")[:3]
-            orig_bank = safe_int(slip.x_orig_bank_micr)
-            orig_branch = safe_int(slip.x_orig_branch)
-            orig_acc = safe_int(slip.x_orig_account)
-            orig_name = (slip.x_orig_name or "")[:20]
-            particulars = slip.x_particulars or ""
-            reference = slip.x_cbc_reference or ""
-            val_date = slip.x_value_date or ""
+            currency = (slip.currency_code or "SLR")[:3]
+            orig_bank = safe_int(slip.orig_bank_micr)
+            orig_branch = safe_int(slip.orig_branch)
+            orig_acc = safe_int(slip.orig_account)
+            orig_name = (slip.orig_name or "")[:20]
+            particulars = slip.particulars or ""
+            reference = slip.cbc_reference or ""
+            val_date = slip.value_date or ""
 
             row_data = {
                 "A": (0, "0000"),

@@ -8,43 +8,43 @@
             <tree string="Bank Data" create="false" edit="true" multi_edit="1" sample="1">
 
                 <!-- B  Destination Bank MICR (04) -->
-                <field name="x_dest_bank_micr"/>
+                <field name="dest_bank_micr"/>
                 <!-- C  Destination Branch (03) -->
-                <field name="x_dest_branch"/>
+                <field name="dest_branch"/>
                 <!-- D  Destination Account (12) -->
-                <field name="x_dest_account"/>
+                <field name="dest_account"/>
                 <!-- E  Destination Account Name (20) -->
-                <field name="x_dest_name"/>
+                <field name="dest_name"/>
                 <!-- F  TRN Code (02) -->
-                <field name="x_trn_code"/>
+                <field name="trn_code"/>
                 <!-- G  Return Code (02) -->
-                <field name="x_return_code"/>
+                <field name="return_code"/>
                 <!-- H  Cr/Dr Code (01) -->
-                <field name="x_cr_dr_code"/>
+                <field name="cr_dr_code"/>
                 <!-- I  Return Date (06) -->
-                <field name="x_return_date"/>
+                <field name="return_date"/>
                 <!-- J  Amount (12) -->
-                <field name="x_cbc_amount" sum="Total (LKR)"/>
+                <field name="cbc_amount" sum="Total (LKR)"/>
                 <!-- K  Currency Code (03) -->
-                <field name="x_currency_code"/>
+                <field name="currency_code"/>
                 <!-- L  Originating Bank MICR (04) -->
-                <field name="x_orig_bank_micr"/>
+                <field name="orig_bank_micr"/>
                 <!-- M  Originating Branch (03) -->
-                <field name="x_orig_branch"/>
+                <field name="orig_branch"/>
                 <!-- N  Originating Account (12) -->
-                <field name="x_orig_account"/>
+                <field name="orig_account"/>
                 <!-- O  Originating Account Name (20) -->
-                <field name="x_orig_name"/>
+                <field name="orig_name"/>
                 <!-- P  Particulars (15) -->
-                <field name="x_particulars"/>
+                <field name="particulars"/>
                 <!-- Q  Reference (15) -->
-                <field name="x_reference"/>
+                <field name="reference"/>
                 <!-- R  Value Date (06) -->
-                <field name="x_value_date"/>
+                <field name="value_date"/>
                 <!-- S  Security Field (06) -->
-                <field name="x_security_field"/>
+                <field name="security_field"/>
                 <!-- T  Filler (01) -->
-                <field name="x_filler"/>
+                <field name="filler"/>
 
             </tree>
         </field>

@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="base.view_partner_bank_form"/>
         <field name="arch" type="xml">
             <field name="bank_id" position="after">
-                <field name="x_branch_code" placeholder="e.g. 050" help="3-digit CBC branch code for SLIPS transfers."/>
+                <field name="branch_code" placeholder="e.g. 050" help="3-digit CBC branch code for SLIPS transfers."/>
             </field>
         </field>
     </record>
@@ -32,7 +32,7 @@
       <field name="arch" type="xml">
         <data>
   <xpath expr="//field[@name='acc_holder_name']" position="after">
-    <field name="x_studio_swift_code" string="SWIFT Code"/>
+    <field name="swift_code" string="SWIFT Code"/>
   </xpath>
 </data>
       </field>

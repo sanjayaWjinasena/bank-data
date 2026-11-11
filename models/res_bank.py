@@ -4,7 +4,7 @@ from odoo import fields, models
 class ResBank(models.Model):
     _inherit = "res.bank"
 
-    x_micr_code = fields.Char(
+    micr_code = fields.Char(
         string="Bank MICR Code",
         size=4,
         help="4-digit SLIPS bank MICR code used in CBC Paymaster file. "
@@ -17,4 +17,4 @@ class ResBank(models.Model):
 class ResBankGap(models.Model):
     _inherit = "res.bank"
 
-    x_studio_lc_limit = fields.Float(string="LC Limit")
+    lc_limit = fields.Float(string="LC Limit")

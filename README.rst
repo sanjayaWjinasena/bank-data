@@ -9,8 +9,8 @@ Paymaster format (151 chars/record) for SLIPS bulk salary transfers.
 
 Custom fields added:
 
-- res.bank: x_micr_code (4-digit SLIPS bank MICR code)
-- res.partner.bank: x_branch_code (3-digit CBC branch code)
+- res.bank: micr_code (4-digit SLIPS bank MICR code)
+- res.partner.bank: branch_code (3-digit CBC branch code)
 
 Information
 -----------
