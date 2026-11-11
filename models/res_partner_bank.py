@@ -5,7 +5,6 @@ class ResPartnerBank(models.Model):
     _inherit = "res.partner.bank"
 
     branch_code = fields.Char(
-        string="Branch Code",
         size=3,
         help="3-digit CBC branch code for SLIPS transfers.",
     )
