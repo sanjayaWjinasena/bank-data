@@ -1,0 +1,85 @@
+# Copies this repo's main branch into rohanabalagalla/JinStage (branch Upgrade_Testing), folder bank-data.
+# The push to JinStage triggers the Odoo.sh build of Upgrade Testing.
+name: Sync main to JinStage Upgrade_Testing
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: jinstage-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  FOLDER: bank-data
+  TARGET_REPO: rohanabalagalla/JinStage
+  TARGET_BRANCH: Upgrade_Testing
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out this repo (main)
+        uses: actions/checkout@v4
+        with:
+          path: src
+
+      - name: Clone JinStage
+        env:
+          TOKEN: ${{ secrets.JINSTAGE_TOKEN }}
+        run: |
+          test -n "$TOKEN" || { echo "::error::secret JINSTAGE_TOKEN is not set"; exit 1; }
+          AUTH=$(printf 'x-access-token:%s' "$TOKEN" | base64 -w0)
+          echo "::add-mask::$AUTH"
+          git -c http.extraHeader="Authorization: Basic $AUTH" clone --quiet --depth 50 --branch "$TARGET_BRANCH" \
+            "https://github.com/$TARGET_REPO.git" target
+          git -C target config http.extraHeader "Authorization: Basic $AUTH"
+
+      - name: Refuse a version downgrade
+        run: |
+          ver() { python3 -c "import ast,sys; print(ast.literal_eval(open(sys.argv[1]).read()).get('version','0'))" "$1" 2>/dev/null || echo 0; }
+          NEW=$(ver src/__manifest__.py); OLD=$(ver "target/$FOLDER/__manifest__.py")
+          echo "main=$NEW JinStage=$OLD"
+          python3 - "$NEW" "$OLD" <<'EOF'
+          import sys
+          k = lambda v: [int(x) if x.isdigit() else 0 for x in v.split('.')]
+          new, old = sys.argv[1], sys.argv[2]
+          if k(new) < k(old):
+              print(f"::error::main version {new} is lower than JinStage {old}; refusing to overwrite newer code")
+              sys.exit(1)
+          EOF
+          echo "VERSION=$NEW" >> "$GITHUB_ENV"
+
+      - name: Copy main into the folder
+        run: |
+          mkdir -p "target/$FOLDER"
+          rsync -a --delete --exclude .git --exclude .github src/ "target/$FOLDER/"
+          cd target
+          git add -A -- "$FOLDER"
+          if git diff --cached --quiet; then
+            echo "JinStage/$FOLDER already matches main; nothing to do"
+            echo "NOTHING=1" >> "$GITHUB_ENV"
+          fi
+
+      - name: Commit and push to JinStage
+        if: env.NOTHING != '1'
+        env:
+          AUTHOR_NAME: ${{ github.event.head_commit.author.name || github.actor }}
+          AUTHOR_EMAIL: ${{ github.event.head_commit.author.email || format('{0}@users.noreply.github.com', github.actor) }}
+          HEAD_MSG: ${{ github.event.head_commit.message || 'manual sync' }}
+        run: |
+          cd target
+          SUBJECT=$(printf '%s' "$HEAD_MSG" | head -1)
+          SHA=$(git -C ../src rev-parse --short=7 HEAD)
+          git -c user.name="$AUTHOR_NAME" -c user.email="$AUTHOR_EMAIL" commit -q \
+            -m "Upgrade_Testing: $FOLDER $VERSION (${GITHUB_REPOSITORY#*/}@$SHA) - $SUBJECT"
+          for i in 1 2 3 4 5; do
+            if git push --quiet origin "HEAD:$TARGET_BRANCH"; then echo "pushed"; exit 0; fi
+            echo "push rejected, rebasing (attempt $i)"; sleep $((i * 5))
+            git fetch --quiet origin "$TARGET_BRANCH" && git rebase --quiet "origin/$TARGET_BRANCH"
+          done
+          echo "::error::push to JinStage kept being rejected"; exit 1
