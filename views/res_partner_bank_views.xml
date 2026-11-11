@@ -22,7 +22,7 @@
         <field name="domain">[('partner_id.employee_ids', '!=', False)]</field>
         <field name="context">{}</field>
     </record>
-    <record id="view_5279_odoo_studio_res_partner_bank_form_customization_e" model="ir.ui.view">
+    <record id="view_res_partner_bank_form_inherit_2" model="ir.ui.view">
       <field name="name">Odoo Studio: res.partner.bank.form customization</field>
       <field name="model">res.partner.bank</field>
       <field name="type">form</field>

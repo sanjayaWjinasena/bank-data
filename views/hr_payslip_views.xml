@@ -56,7 +56,7 @@
             </tree>
         </field>
     </record>
-  <record id="act_window_2895_bank_data" model="ir.actions.act_window">
+  <record id="action_bank_data" model="ir.actions.act_window">
     <field name="name">Bank Data</field>
     <field name="res_model">hr.payslip</field>
     <field name="view_mode">tree,form</field>
