@@ -302,7 +302,8 @@ def migrate(cr, version):
     # Studio 'manual' fields with a mapped name stay x_ (Odoo requires it): text of
     # their model keeps that name
     cr.execute(
-        "SELECT model, name FROM ir_model_fields WHERE state = 'manual' AND name = ANY(%s)",
+        "SELECT model, name FROM ir_model_fields "
+        "WHERE state = 'manual' AND name = ANY(%s)",
         (list(mapping),),
     )
     keep = {}

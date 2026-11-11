@@ -32,9 +32,7 @@ class HrPayslip(models.Model):
     dest_account = fields.Char(
         "Dest Account (D)", compute="_compute_cbc_payslip", store=False
     )
-    trn_code = fields.Char(
-        "TRN Code (F)", compute="_compute_cbc_payslip", store=False
-    )
+    trn_code = fields.Char("TRN Code (F)", compute="_compute_cbc_payslip", store=False)
     return_code = fields.Char(
         "Return Code (G)", compute="_compute_cbc_payslip", store=False
     )
@@ -304,7 +302,9 @@ class HrPayslip(models.Model):
                 "name": "PAYMASTER_BANK_DATA.xlsx",
                 "type": "binary",
                 "datas": base64.b64encode(buf.getvalue()).decode(),
-                "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "mimetype": (
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                ),
                 "res_model": "hr.payslip",
             }
         )
