@@ -13,8 +13,4 @@ class ResBank(models.Model):
         "7728 = HNB, 7737 = NSB, 7214 = Peoples Bank, 7135 = Seylan Bank",
     )
 
-
-class ResBankGap(models.Model):
-    _inherit = "res.bank"
-
     lc_limit = fields.Float(string="LC Limit")

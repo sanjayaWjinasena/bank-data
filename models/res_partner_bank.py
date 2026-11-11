@@ -9,10 +9,6 @@ class ResPartnerBank(models.Model):
         help="3-digit CBC branch code for SLIPS transfers.",
     )
 
-
-class ResPartnerBankGap(models.Model):
-    _inherit = "res.partner.bank"
-
     bank_code_1 = fields.Char(string="Bank code")
     branch_code_1 = fields.Char(string="Branch code")
     swift_code = fields.Char(string="SWIFT Code")
